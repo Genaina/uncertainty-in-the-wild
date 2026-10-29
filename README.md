@@ -6,7 +6,9 @@ This repository contains the empirical catalogue used in the study, together wit
 
 ## Overview
 
-The project studies how uncertainty sources interact across autonomous, self-adaptive, cyber-physical, and AI-enabled systems. The main artifact is the case-study catalogue in `artifacts_case_studies_raw.csv`, which records a cross-domain set of scenarios spanning domains such as:
+The project studies how uncertainty sources interact across autonomous, self-adaptive, cyber-physical, and AI-enabled systems. The main artifact is the case-study catalogue in `uip_analysis/data/artifacts_case_studies_raw.csv`.
+
+The catalogue covers domains such as:
 
 - AI-enabled cloud infrastructure
 - automotive systems
@@ -17,7 +19,7 @@ The project studies how uncertainty sources interact across autonomous, self-ada
 
 The repository is organized around two major components:
 
-1. the raw and curated case-study dataset
+1. the case-study dataset used for the empirical catalogue
 2. the reproducible analysis scripts in `uip_analysis/`
 
 ## Repository structure
@@ -26,9 +28,9 @@ The repository is organized around two major components:
 uncertainty-in-the-wild/
 ├── LICENSE
 ├── README.md
-├── artifacts_case_studies_raw.csv
 ├── uip_analysis/
 │   ├── README.md
+│   ├── README_uip_analysis.md
 │   ├── common.py
 │   ├── coding.py
 │   ├── paper_reported.py
@@ -38,8 +40,7 @@ uncertainty-in-the-wild/
 │   ├── rq4.py
 │   ├── run_all.py
 │   ├── data/
-│   │   ├── artifacts_case_studies_raw_ORIGINAL.csv
-│   │   ├── artifacts_case_studies_raw_corrected.csv
+│   │   ├── artifacts_case_studies_raw.csv
 │   │   └── manual_interaction_counts.csv
 │   └── output/
 └── ...
@@ -47,12 +48,10 @@ uncertainty-in-the-wild/
 
 ## Core dataset
 
-The repository includes the following key dataset files:
+The repository currently includes the following main data files in `uip_analysis/data/`:
 
-- `artifacts_case_studies_raw.csv` — primary raw catalogue used in the study
-- `uip_analysis/data/artifacts_case_studies_raw_ORIGINAL.csv` — original source export retained for traceability
-- `uip_analysis/data/artifacts_case_studies_raw_corrected.csv` — corrected version aligned with the manuscript and analysis workflow
-- `uip_analysis/data/manual_interaction_counts.csv` — manually curated counts used as the validation ground truth for RQ1
+- `uip_analysis/data/artifacts_case_studies_raw.csv` — main raw case-study catalogue used in the study
+- `uip_analysis/data/manual_interaction_counts.csv` — manually curated interaction counts used as the validation reference for RQ1
 
 ## Analysis workflow
 
