@@ -19,6 +19,63 @@ The catalogue covers domains such as:
 - smart cities
 - aerospace
 
+## Repository contents
+
+The repository now includes both the dataset and a reproducible analysis pipeline for the paper.
+
+### Core dataset
+
+- `artifacts_case_studies_raw.csv` — main raw case-study catalogue used for the study.
+- `uip_analysis/data/artifacts_case_studies_raw_ORIGINAL.csv` — original source version retained for reference.
+- `uip_analysis/data/artifacts_case_studies_raw_corrected.csv` — corrected version aligned with the manuscript and domain summaries.
+- `uip_analysis/data/manual_interaction_counts.csv` — manually curated counts used to validate the analysis.
+
+### Analysis scripts
+
+The `uip_analysis/` folder contains the scripts used to reproduce the analysis for the paper's research questions:
+
+- `uip_analysis/README.md` — notes on the analysis pipeline, validation criteria, and reproducibility.
+- `uip_analysis/common.py` — shared data-loading and validation helpers.
+- `uip_analysis/coding.py` — automatic coding logic for uncertainty interaction categories.
+- `uip_analysis/paper_reported.py` — reported values from the paper used for validation checks.
+- `uip_analysis/rq1.py` — analysis for RQ1 (interaction categories and distribution).
+- `uip_analysis/rq2.py` — analysis for RQ2 (causal mechanisms and source types).
+- `uip_analysis/rq3.py` — analysis for RQ3 (impact and quality dimensions).
+- `uip_analysis/rq4.py` — analysis for RQ4 (preparedness, applicability, lifecycle, and trade-offs).
+- `uip_analysis/run_all.py` — runs the full analysis pipeline and generates the reports.
+
+### Generated outputs
+
+The generated output artifacts are stored in `uip_analysis/output/`:
+
+- `rq1_category_by_domain.csv`
+- `rq1_category_counts.csv`
+- `rq1_domain_distribution.csv`
+- `rq1_interaction_coding_per_case.csv`
+- `rq1_manual_flags.csv`
+- `rq1_nature_by_domain.csv`
+- `rq2_abstraction_by_domain.csv`
+- `rq2_mechanisms_per_case.csv`
+- `rq2_source_categories_per_case.csv`
+- `rq2_source_counts.csv`
+- `rq2_source_types_per_case.csv`
+- `rq3_impact_class_by_domain.csv`
+- `rq3_impact_coding_per_case.csv`
+- `rq3_quality_dimensions.csv`
+- `rq4_applicability_keywords_per_case.csv`
+- `rq4_lifecycle_per_case.csv`
+- `rq4_preparedness_per_case.csv`
+- `rq4_solution_space_coverage.csv`
+- `rq4_strategy_per_case.csv`
+- `rq4_table11_comparison.csv`
+- `rq4_table12_comparison.csv`
+- `rq4_table8_comparison.csv`
+- `rq4_table9_comparison.csv`
+- `rq4_tradeoffs_keywords_per_case.csv`
+- `rq1_fig_categories.png`
+- `rq1_fig_domains.png`
+- `full_report.txt`
+
 ## Purpose of the dataset
 
 The spreadsheet captures the structure and content of the empirical catalog used in the paper. Each row corresponds to one case study and describes:
