@@ -2,15 +2,11 @@
 
 Repository for the paper: "Uncertainty in the Wild: A Cross-Domain Catalogue of Uncertainty Interactions in Autonomous and Self-Adaptive Systems".
 
+This repository contains the empirical catalogue used in the study, together with the Python analysis pipeline that reproduces the paper's research-question analyses (RQ1–RQ4).
+
 ## Overview
 
-This repository contains the curated catalogue of uncertainty-interaction exemplars used in the study. The main artifact is the spreadsheet:
-
-- `artifacts_case_studies_raw.csv`
-
-It documents a cross-domain collection of case studies in which multiple sources of uncertainty interact within autonomous, self-adaptive, cyber-physical, and AI-enabled systems.
-
-The catalogue covers domains such as:
+The project studies how uncertainty sources interact across autonomous, self-adaptive, cyber-physical, and AI-enabled systems. The main artifact is the case-study catalogue in `artifacts_case_studies_raw.csv`, which records a cross-domain set of scenarios spanning domains such as:
 
 - AI-enabled cloud infrastructure
 - automotive systems
@@ -19,131 +15,108 @@ The catalogue covers domains such as:
 - smart cities
 - aerospace
 
-## Data and analysis
+The repository is organized around two major components:
 
-The processed data and analysis artifacts used in this study are stored in the `uip_analysis/` directory. This folder contains the cleaned and normalized dataset, together with the scripts used to prepare the catalogue and analyze it to answer the study's research questions.
+1. the raw and curated case-study dataset
+2. the reproducible analysis scripts in `uip_analysis/`
 
-## Repository contents
+## Repository structure
 
-The repository includes both the dataset and a reproducible analysis pipeline for the paper.
+```text
+uncertainty-in-the-wild/
+├── LICENSE
+├── README.md
+├── artifacts_case_studies_raw.csv
+├── uip_analysis/
+│   ├── README.md
+│   ├── common.py
+│   ├── coding.py
+│   ├── paper_reported.py
+│   ├── rq1.py
+│   ├── rq2.py
+│   ├── rq3.py
+│   ├── rq4.py
+│   ├── run_all.py
+│   ├── data/
+│   │   ├── artifacts_case_studies_raw_ORIGINAL.csv
+│   │   ├── artifacts_case_studies_raw_corrected.csv
+│   │   └── manual_interaction_counts.csv
+│   └── output/
+└── ...
+```
 
-### Core dataset
+## Core dataset
 
-- `artifacts_case_studies_raw.csv` — main raw case-study catalogue used for the study.
-- `uip_analysis/data/artifacts_case_studies_raw_ORIGINAL.csv` — original source version retained for reference.
-- `uip_analysis/data/artifacts_case_studies_raw_corrected.csv` — corrected version aligned with the manuscript and domain summaries.
-- `uip_analysis/data/manual_interaction_counts.csv` — manually curated counts used to validate the analysis.
+The repository includes the following key dataset files:
 
-### Analysis scripts
+- `artifacts_case_studies_raw.csv` — primary raw catalogue used in the study
+- `uip_analysis/data/artifacts_case_studies_raw_ORIGINAL.csv` — original source export retained for traceability
+- `uip_analysis/data/artifacts_case_studies_raw_corrected.csv` — corrected version aligned with the manuscript and analysis workflow
+- `uip_analysis/data/manual_interaction_counts.csv` — manually curated counts used as the validation ground truth for RQ1
 
-The `uip_analysis/` folder contains the scripts used to prepare, validate, and analyze the dataset in support of the study's research questions:
+## Analysis workflow
 
-- `uip_analysis/README.md` — overview of the analysis workflow and validation approach.
-- `uip_analysis/common.py` — shared data-loading and validation helpers.
-- `uip_analysis/coding.py` — coding logic used to classify the case-study evidence.
-- `uip_analysis/rq1.py` to `uip_analysis/rq4.py` — question-specific analyses aligned with the paper's research questions.
-- `uip_analysis/run_all.py` — executes the full analysis workflow.
+The analysis code is contained in `uip_analysis/` and implements the paper's quantitative and qualitative analyses:
 
-## Purpose of the dataset
+- `common.py` — shared CSV loading, validation, and helper logic
+- `coding.py` — rule-based coding for uncertainty interaction patterns
+- `paper_reported.py` — numbers and case lists as originally reported in the paper for validation
+- `rq1.py` — dominance/conflict/augmentation/independence analyses and related figures
+- `rq2.py` — cross-layer vs. same-level analysis and source/category breakdowns
+- `rq3.py` — impact analysis and quality-dimension summaries
+- `rq4.py` — preparedness, applicability, lifecycle, trade-offs, and strategy analyses
+- `run_all.py` — executes the complete analysis pipeline
 
-The spreadsheet captures the structure and content of the empirical catalog used in the paper. Each row corresponds to one case study and describes:
+## Quick start
 
-- the system under study,
-- the uncertainty sources involved,
-- the interaction type among those sources,
-- the abstraction levels involved,
-- the likely impact of the interaction,
-- the system's preparedness and mitigation strategy,
-- and the trade-offs considered.
+To reproduce the analysis locally:
 
-This dataset supports analysis of how uncertainties are not isolated phenomena, but often interact across levels of abstraction and affect multiple quality attributes simultaneously.
+```bash
+cd uip_analysis
+pip install pandas matplotlib
+python run_all.py
+```
 
-## Data file
+This script runs the analyses for RQ1–RQ4, prints the report, and writes results into the `output/` folder.
 
-### `artifacts_case_studies_raw.csv`
+## Data format and schema
 
-This file is a semicolon-delimited CSV because some free-text fields contain semicolons. Each case is represented as one row.
+The main raw file is a semicolon-delimited CSV because some free-text fields contain semicolons. Each row represents one case study.
 
-## Spreadsheet schema
+The catalogue includes fields such as:
 
-The dataset contains the following columns:
+1. `ID` — unique case-study identifier
+2. `Participant(s)` — contributors or researchers associated with the case
+3. `Case Study (Domains)` — domain and system under study
+4. `Summary` — short description of the scenario
+5. `Uncertainty Sources (verbatim)` — detailed description of uncertainty sources
+6. `Uncertainty Interaction Category` — relationship among uncertainties
+7. `Uncertainty Nature` — type of uncertainty involved
+8. `Abstraction Gap` — whether the interaction spans abstraction levels
+9. `Impact` — consequences of the uncertainty interaction
+10. `Level of Preparedness` — detection/representation/mitigation readiness
+11. `Applicability Conditions` — contextual conditions for use or mitigation
+12. `Lifecycle Stage` — design-time, runtime, or both
+13. `Trade-offs` — expected trade-offs of mitigation strategies
+14. `Strategy` — detection, reasoning, or mitigation approach
 
-1. `ID`  
-   Unique case-study identifier (e.g., `CS1`, `CS2`, ... `CS18`).
+## Interpretation notes
 
-2. `Participant(s)`  
-   Researchers or contributors associated with the case.
-
-3. `Case Study (Domains)`  
-   Domain and system name.
-
-4. `Summary`  
-   Short description of the system and the scenario under analysis.
-
-5. `Uncertainty Sources (verbatim)`  
-   Free-text description of the uncertainty sources, often including the source type, category, and examples.
-
-6. `Uncertainty Interaction Category`  
-   Relationship among uncertainties, such as dominance, conflict, augmentation, or independence.
-
-7. `Uncertainty Nature`  
-   The nature of the uncertainty, such as occurrence, behavior, measurement, belief, design, or spatio-temporal.
-
-8. `Abstraction Gap`  
-   Whether the uncertainty interaction spans multiple abstraction levels or system layers.
-
-9. `Impact`  
-   Consequences of the interaction, such as reliability issues, performance degradation, safety risks, instability, or missed goals.
-
-10. `Level of Preparedness`  
-    How prepared the system is to detect, represent, analyze, and mitigate the uncertainty.
-
-11. `Applicability Conditions`  
-    Contextual conditions under which the interaction or mitigation is relevant.
-
-12. `Lifecycle Stage`  
-    Whether the relevant management strategy is mainly design-time, runtime, or both.
-
-13. `Trade-offs`  
-    The expected trade-offs of mitigation or compensation strategies.
-
-14. `Strategy`  
-    The detection, representation, analysis, and mitigation approach used in the case.
-
-## Example interpretation
-
-A row may describe, for example:
-
-- a system in automotive or cloud computing,
-- multiple uncertainty sources such as sensing noise, stochastic behavior, model drift, or timing delay,
-- how one uncertainty amplifies or dominates another,
-- and what mitigation strategy is applied or recommended.
-
-## Data quality notes
-
-- The dataset is intentionally exploratory and descriptive rather than fully normalized.
-- Several fields are free-form text and may include rich narratives, examples, and multiple interaction types in the same cell.
-- Some cells are intentionally left blank in the raw export and should be treated as missing information rather than as values.
-- Because of the narrative nature of the catalog, interpretation often requires reading the full text of a case rather than relying only on the column names.
+The dataset is intentionally descriptive and exploratory rather than fully normalized. Several cells are free-form text and may contain multiple interacting factors in the same entry. As a result, interpretation often requires reading the full case description rather than relying solely on the column names.
 
 ## Intended use
 
 This repository is intended for:
 
-- qualitative analysis of uncertainty interactions,
-- cross-domain comparison of uncertainty management patterns,
-- empirical grounding for future representation and mitigation models,
-- and support for scripts or notebooks that analyze the catalogue.
+- qualitative analysis of uncertainty interaction patterns,
+- cross-domain comparison of uncertainty handling strategies,
+- empirical grounding for future models and mitigation approaches,
+- and reproducible analysis of the catalogue used in the paper.
 
-## Next steps
+## License
 
-The next stage is to build a reproducible analysis workflow using the processed data already available in the `uip_analysis/` directory to:
-
-- load the spreadsheet,
-- clean and normalize the dataset,
-- extract uncertainty categories and interaction patterns, and
-- synthesize the cross-case evidence supporting the paper.
+This project is distributed under the MIT License. See `LICENSE` for details.
 
 ## Repository status
 
-This repository is primarily a research artifact repository and data catalogue, not a software application repository.
+This repository is primarily a research artifact and data catalogue, with a Python-based analysis pipeline for reproducing the paper's findings.
