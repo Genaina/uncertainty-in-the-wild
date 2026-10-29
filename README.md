@@ -19,9 +19,13 @@ The catalogue covers domains such as:
 - smart cities
 - aerospace
 
+## Data and analysis
+
+The processed data and analysis artifacts used in this study are stored in the `uip_analysis/` directory. This folder contains the cleaned and normalized dataset, along with the derived outputs used to identify uncertainty categories, interaction patterns, and the cross-case evidence reported in the paper.
+
 ## Repository contents
 
-The repository now includes both the dataset and a reproducible analysis pipeline for the paper.
+The repository includes both the dataset and a reproducible analysis pipeline for the paper.
 
 ### Core dataset
 
@@ -169,14 +173,13 @@ This repository is intended for:
 
 ## Next steps
 
-The next stage will be to define a reproducible analysis script to:
+The next stage is to build a reproducible analysis workflow using the processed data already available in the `uip_analysis/` directory to:
 
 - load the spreadsheet,
 - clean and normalize the dataset,
-- extract uncertainty categories and interaction patterns,
-- and summarize the cross-case evidence behind the paper.
+- extract uncertainty categories and interaction patterns, and
+- synthesize the cross-case evidence supporting the paper.
 
 ## Repository status
 
 This repository is primarily a research artifact repository and data catalogue, not a software application repository.
-
