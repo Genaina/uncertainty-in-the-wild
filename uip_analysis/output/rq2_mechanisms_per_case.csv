@@ -1,0 +1,19 @@
+,Propagation,Amplification,Dominance,Trade-off / Conflict
+CS1,True,True,True,True
+CS2,False,True,True,True
+CS3,False,True,True,True
+CS4,False,True,True,True
+CS5,False,True,True,False
+CS6,False,True,False,False
+CS7,False,True,False,True
+CS8,False,True,True,True
+CS9,False,True,True,False
+CS10,False,False,False,True
+CS11,False,True,False,True
+CS12,False,True,True,True
+CS13,True,True,False,True
+CS14,False,True,True,True
+CS15,False,True,True,True
+CS16,False,True,True,True
+CS17,False,False,False,True
+CS18,False,True,True,True

@@ -1,0 +1,7 @@
+dimension,n_text,n_paper,jaccard,text_cases,paper_cases
+Safety,5,5,0.43,"CS6, CS9, CS11, CS16, CS18","CS11, CS12, CS16, CS17, CS18"
+Performance,8,4,0.5,"CS1, CS3, CS4, CS7, CS8, CS11, CS13, CS18","CS1, CS3, CS8, CS18"
+Reliability & Availability,7,3,0.43,"CS1, CS2, CS4, CS7, CS9, CS13, CS15","CS2, CS13, CS15"
+Mission Success,2,3,0.67,"CS5, CS11","CS5, CS11, CS12"
+Human Factors & Trust,2,2,1.0,"CS5, CS17","CS5, CS17"
+Resource Efficiency / Cost,3,4,0.4,"CS1, CS9, CS13","CS1, CS3, CS13, CS18"

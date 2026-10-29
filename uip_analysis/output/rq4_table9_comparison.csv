@@ -1,0 +1,7 @@
+dimension,n_calc,n_paper,jaccard,calc_cases,paper_cases
+Architectural Assumptions,4,4,0.6,"CS1, CS12, CS13, CS15","CS1, CS11, CS13, CS15"
+Infrastructure Requirements,4,3,0.75,"CS2, CS11, CS12, CS15","CS2, CS11, CS12"
+Observability Requirements,4,4,0.6,"CS4, CS12, CS16, CS18","CS11, CS12, CS16, CS18"
+Model Availability,2,2,0.33,"CS5, CS15","CS5, CS16"
+Adaptation Capability,7,4,0.57,"CS4, CS5, CS7, CS12, CS13, CS16, CS18","CS5, CS13, CS16, CS18"
+Operational Scope,3,3,1.0,"CS4, CS7, CS13","CS4, CS7, CS13"
