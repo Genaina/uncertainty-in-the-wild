@@ -24,10 +24,10 @@ uncertainty-in-the-wild/
 ├── LICENSE
 ├── README.md
 ├── uip_analysis/
+│   ├── COAUTHORS_NOTES.md
 │   ├── README.md
-│   ├── README_uip_analysis.md
-│   ├── common.py
 │   ├── coding.py
+│   ├── common.py
 │   ├── paper_reported.py
 │   ├── rq1.py
 │   ├── rq2.py
@@ -107,7 +107,7 @@ This repository is intended for:
 - qualitative analysis of uncertainty interaction patterns,
 - cross-domain comparison of uncertainty handling strategies,
 - empirical grounding for future models and mitigation approaches,
-- reprodcible analysis of the catalogue used in the paper.
+- reproducible analysis of the catalogue used in the paper.
 
 ## Citation
 
