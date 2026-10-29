@@ -130,24 +130,7 @@ U7 -> U5 -> U1: dominance + augmentation (?)";Heterogeneous interactions;Differe
 CS10;Ivana Dusparic;IT/Cloud Infrastructure;Risk-Averse Constrained Reinforcement Learning: Risk-averse constrained reinforcement learning aims to learn safe decision-making policies while minimizing catastrophic failures under uncertainty. A key challenge is balancing exploration and safety, since learning about rare events requires exploration that may increase exposure to unsafe situations, often resulting in conservative or suboptimal behavior.;"The source of uncertainty can be considered to be a mix between occurrence uncertainty and spatio-temporal uncertainty - we know that costly/catastrophic events we want to avoid can occur in the environment, but we don’t know how frequently, when or where will they occur. 
 
 Uncertainty source category can be considered to be both environment and adaptation functions (agent behaviour) - we don’t know if, when, where will environmental factor that increase cost/cause catastrophic event occur, but we also do not know when will agent behave in a risky manner (as determined by its risk level, or as required to explore the environment). ";"Uncertainty sources are in conflict; reducing uncertainty by exploring (in order to learn about frequency and/or locations of when/where uncertain events occur, further exposes the system to cost incurred by these uncertainties)";Homogeneous;;Impact described generically (template text);Field left blank.;Field left blank.;Field left blank.;Field left blank.;Field left blank.
-CS11;Genaina Rodrigues;Healthcare;The Body Sensor Network (BSN): A Body Sensor Network for Healthcare monitoring must detect medical emergencies while respecting patient privacy preferences. Reduced monitoring capability and unreliable sensor data create uncertainty, requiring the system to make safety-critical decisions under partial observability.;"Measurement uncertainty: Robot battery level
- Quantitative, continuous, probabilistic (sensor noise, estimation error)
-Occurrence uncertainty: Unexpected mission events (e.g., timeout, failure)
- ? Discrete event-based, stochastic
-Design uncertainty: Mission model completeness
- ? Epistemic (lack of knowledge at design time)
-Behavior uncertainty: Robot navigation performance under dynamic conditions
- ? Stochastic + non-deterministic
-Belief uncertainty: Robot belief about environment state
- ? Epistemic, inferential (belief-state based)
-Spatio-temporal uncertainty: Encountering obstacle
- ? Spatial ambiguity + temporal unpredictability";"Battery measurement × mission continuation
- ? Dominance (battery uncertainty dominates mission feasibility)
-Obstacle uncertainty × belief uncertainty
- ? Augmentation
-Battery optimization × exploration behavior
- ? Conflict";Heterogeneous;"Different levels: sensor, world model, mission goal;";"Triggers: low battery, obstacle, timeout;";Awareness: Yes. Prevention: Partial (redundancy, planning margins). Detectability: Yes (runtime monitoring). Representation: Yes (probabilistic + runtime models). Comprehension: Moderate. Mitigation: Yes (replanning, safe mode).;"Sufficient sensing capability; Defined safety thresholds; Adaptive control architecture.";Both stages.;Conservative thresholds ? safety ?, mission completion ?. Frequent replanning ? robustness ?, energy cost ?.;"Detection: Runtime monitoring; Threshold-based alerts. Representation: Probabilistic models; Runtime belief states. Analysis: Sensitivity analysis; Risk estimation. Mitigation: Replanning; Safe-mode activation; Energy-aware adaptation."
-CS12;Genaina Rodrigues;Robotics;The Lab Sample Logistics (from RoboMAX missions): A hospital delivery robot transports lab samples while navigating uncertain environments with dynamic obstacles and limited battery resources. Recovery decisions under uncertainty must balance navigation success, resource constraints, and mission continuity, as failures can have significant operational and Healthcare consequences.;"Measurement uncertainty: Vital signals
+CS11;Genaina Rodrigues;Healthcare;The Body Sensor Network (BSN): A Body Sensor Network for Healthcare monitoring must detect medical emergencies while respecting patient privacy preferences. Reduced monitoring capability and unreliable sensor data create uncertainty, requiring the system to make safety-critical decisions under partial observability.;"Measurement uncertainty: Vital signals
  ? Quantitative, probabilistic, noisy
 Occurrence uncertainty: Emergency occurrence
  ? Discrete, stochastic event uncertainty
@@ -164,6 +147,23 @@ Signal filtering × emergency detection
  ? Conflict
 Patient behavior × emergency occurrence
  ? Augmentation";Heterogeneous;signal, inference, clinical goal;"BSN triggers abnormal signals; metrics mission success, delay, safety, false positives.";Awareness: Yes. Prevention: Partial (sensor redundancy). Detectability: Yes (anomaly detection). Representation: Yes (Bayesian/diagnostic models). Comprehension: Moderate. Mitigation: Yes (alarm escalation, adaptive sampling).;"Multi-sensor availability; Known patient baseline; Reliable communication.";Both stages.;High sensitivity ? fewer missed emergencies, more false alarms. Strong filtering ? fewer false positives, risk of false negatives.;"Detection: Statistical anomaly detection; Multi-sensor consistency checking. Representation: Bayesian networks; Confidence intervals. Analysis: Risk scoring; Probabilistic inference. Mitigation: Alarm escalation; Adaptive sampling; Human-in-the-loop confirmation."
+CS12;Genaina Rodrigues;Robotics;The Lab Sample Logistics (from RoboMAX missions): A hospital delivery robot transports lab samples while navigating uncertain environments with dynamic obstacles and limited battery resources. Recovery decisions under uncertainty must balance navigation success, resource constraints, and mission continuity, as failures can have significant operational and Healthcare consequences.;"Measurement uncertainty: Robot battery level
+ Quantitative, continuous, probabilistic (sensor noise, estimation error)
+Occurrence uncertainty: Unexpected mission events (e.g., timeout, failure)
+ ? Discrete event-based, stochastic
+Design uncertainty: Mission model completeness
+ ? Epistemic (lack of knowledge at design time)
+Behavior uncertainty: Robot navigation performance under dynamic conditions
+ ? Stochastic + non-deterministic
+Belief uncertainty: Robot belief about environment state
+ ? Epistemic, inferential (belief-state based)
+Spatio-temporal uncertainty: Encountering obstacle
+ ? Spatial ambiguity + temporal unpredictability";"Battery measurement × mission continuation
+ ? Dominance (battery uncertainty dominates mission feasibility)
+Obstacle uncertainty × belief uncertainty
+ ? Augmentation
+Battery optimization × exploration behavior
+ ? Conflict";Heterogeneous;"Different levels: sensor, world model, mission goal;";"Triggers: low battery, obstacle, timeout;";Awareness: Yes. Prevention: Partial (redundancy, planning margins). Detectability: Yes (runtime monitoring). Representation: Yes (probabilistic + runtime models). Comprehension: Moderate. Mitigation: Yes (replanning, safe mode).;"Sufficient sensing capability; Defined safety thresholds; Adaptive control architecture.";Both stages.;Conservative thresholds ? safety ?, mission completion ?. Frequent replanning ? robustness ?, energy cost ?.;"Detection: Runtime monitoring; Threshold-based alerts. Representation: Probabilistic models; Runtime belief states. Analysis: Sensitivity analysis; Risk estimation. Mitigation: Replanning; Safe-mode activation; Energy-aware adaptation."
 CS13;Nelly Bencomo;IT/Cloud Infrastructure;Remote Data Mirroring (RDM): It dynamically adapts network topologies to balance reliability, cost, and performance objectives. Uncertainty originating from environmental disturbances propagates across system layers, affecting monitored metrics, adaptation decisions, and ultimately the satisfaction of system goals.;"Uncertainty 1
 Environmental Disturbances
 Packet loss, network degradation, and site failures affecting communication links.
