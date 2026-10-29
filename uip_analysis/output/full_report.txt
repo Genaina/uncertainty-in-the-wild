@@ -20,36 +20,41 @@ conflict          10       10     14                    16                  14.0
 augmentation       9       10     14                    15                  14.0
 independence       1        1      4                     4                   NaN
 
-[MANUAL] Per-exemplar counts from the authors' sheet:
-   dominance     13/18 = 72.2%   (original paper text = 17)
-   [DIFF] manual vs original text: dominance: paper=17  computed=13
-   conflict      14/18 = 77.8%   (original paper text = 16)
+[MANUAL] Per-exemplar counts from the authors' sheet (n = 18; evidence-checked for CS1, CS5, CS10, CS15).
+   Template-only answers kept in the counts (flagged, no case-specific text): CS4, CS7, CS8, CS14
+   dominance     11/18 = 61.1%   (original paper text = 17/18)
+   [DIFF] manual vs original text: dominance: paper=17  computed=11
+   conflict      14/18 = 77.8%   (original paper text = 16/18)
    [DIFF] manual vs original text: conflict: paper=16  computed=14
-   augmentation  14/18 = 77.8%   (original paper text = 15)
+   augmentation  14/18 = 77.8%   (original paper text = 15/18)
    [DIFF] manual vs original text: augmentation: paper=15  computed=14
-   independence   4/18 = 22.2%   (original paper text = 4)
+   independence   4/18 = 22.2%   (original paper text = 4/18)
    [OK ] manual vs original text: independence: paper=4  computed=4
+   Sensitivity -- excluding the template-only cases (n = 14): dominance 8/14, conflict 10/14, augmentation 10/14, independence 1/14
    Cases where the automatic rule ('paper' criterion) differs from the sheet:
-     dominance     CS10
-     conflict      CS1, CS15
-     augmentation  CS5, CS10
-     independence  CS14, CS15
+     dominance     CS1
+     conflict      -
+     augmentation  -
+     independence  -
 
-[Fig.3] Categories per domain (manual sheet):
+[Fig.3] Categories per domain (evidence-checked sheet):
             dominance  conflict  augmentation  independence
 domain                                                     
-Automotive          2         4             4             0
-IT/Cloud            6         5             5             3
-Robotics            3         2             2             0
+Automotive          2         4             4             1
+IT/Cloud            4         5             4             2
+Robotics            3         2             3             0
 Healthcare          0         1             1             0
 Smart City          1         1             1             1
 Aerospace           1         1             1             0
 
    Validation against the ORIGINAL pgfplots data of Fig. 3 (only differences are listed):
+   [DIFF] dominance/IT/Cloud: paper=6  computed=4
    [DIFF] dominance/Robotics: paper=1  computed=3
    [DIFF] dominance/Healthcare: paper=2  computed=0
+   [DIFF] augmentation/IT/Cloud: paper=5  computed=4
+   [DIFF] augmentation/Robotics: paper=2  computed=3
 
-   Cases with all 3 categories: 9 | 2: 5 | 1: 4 | 0: 0
+   Cases with all 3 categories: 7 | 2: 7 | 1: 4 | 0: 0
 
 [6.1.2 / Tab.4] Interaction nature per domain (computed):
 Uncertainty Nature  Heterogeneous  Homogeneous/Mixed

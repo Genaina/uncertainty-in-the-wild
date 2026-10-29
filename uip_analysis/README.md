@@ -8,7 +8,7 @@ and **validates every number against what was originally printed in the paper** 
   (Uncertainty Sources … Strategy) of rows CS11 and CS12 swapped, so that they match the Summary/domain columns
   (CS11 = Body Sensor Network, CS12 = Lab Sample Logistics). The original file is kept as `data/..._ORIGINAL.csv`.
 - `data/manual_interaction_counts.csv`: the authors' manual count of interaction categories per case
-  (CS11/CS12 rows already corrected). It is the ground truth for RQ1; the rule-based coder is only a cross-check.
+  (CS11/CS12 rows already corrected, evidence-checked against the raw text, with a `template_only` flag). It is the ground truth for RQ1; the rule-based coder is only a cross-check.
 
 ## Usage
 ```bash
@@ -46,8 +46,8 @@ so the report still shows `[DIFF]` at these points (expected).
 
 | # | Original divergence | Status | Resolution in the .tex files (`tex_marked/`) |
 |---|---|---|---|
-| 1 | Sec. 6.1.1 said 17/16/15/4 (dominance/conflict/augmentation/independence); Fig. 3 summed to 13/14/14 | **Resolved** | Text now 13 (72.2%), 14 (77.8%), 14 (77.8%), 4 (22.2%); "vast majority" → "most" (also in Lesson 1) |
-| 2 | Fig. 3, dominance: Robotics/Healthcare | **Resolved** | With CS5 under Robotics and CS11/CS12 content corrected: Robotics 3, Healthcare 0 (original: 1 and 2) |
+| 1 | Sec. 6.1.1 said 17/16/15/4 (dominance/conflict/augmentation/independence); Fig. 3 summed to 13/14/14 | **Resolved** | Counts from the authors' sheet, evidence-checked against the raw text, n = 18: dominance 11/18 (61.1%), conflict 14/18 (77.8%), augmentation 14/18 (77.8%), independence 4/18 (22.2%) |
+| 2 | Fig. 3 bars | **Resolved** | Dominance: Automotive 2, IT/Cloud 4, Robotics 3, Healthcare 0, Smart City 1, Aerospace 1 (original: 2, 6, 1, 2, 1, 1 in the printed order); augmentation: IT/Cloud 4, Robotics 3, Healthcare 1; conflict unchanged |
 | 3 | Tab. 4 summed to 15+3 (text: 16/2) | **Resolved** | Robotics 3/0 (the `\added{1}` was an editing leftover) |
 | 4 | Tab. 5 summed to 17 | **Resolved** | IT/Cloud 6/1, Robotics 3/0 (checked against the `%Cross-layer` comment in the .tex) |
 | 5 | Tab. 6 summed to 10/8 (text: 15/3) | **Resolved** | Automotive 4/1, IT 5/2, Robotics 3/0, Healthcare 1/0, Smart City 1/0, Aerospace 1/0. Commented impact list: generic = CS8, CS10, CS14 (the old list with CS3, CS4, CS6, CS7 was wrong: CS4 and CS7 were template-only in the interaction field, not in the impact field) |
@@ -55,8 +55,8 @@ so the report still shows `[DIFF]` at these points (expected).
 | 7 | CS5: dual domain Healthcare/Robotics | **Resolved** | Kept under Robotics; sentence added in Sec. 3.3, note in Sec. 5 and in Tab. 3 |
 | 8 | Fig. 1 rounding: 38.8% and 5.5% (summed to 99.8%) | **Resolved** | 38.9% and 5.6% in the text and in the pie data |
 | 9 | Tab. 8 Prevention and Tab. 11 Robustness vs Resource | **Resolved** | Added CS11 and CS12 (Prevention) and CS12 (Robustness vs Resource Consumption) |
-| 10 | Template-only answers (CS4, CS7, CS8, CS14) counted in the categories without case-specific evidence | **Open** | Authors' decision; `TODO(authors)` in Sec. 6.1.1 |
-| 11 | Codings to double-check: CS1 (conflict counted as dominance, but cited as conflict in 6.2.3), CS5 (no augmentation), CS10 (dominance/augmentation without support in the raw text), CS15 (independence and conflict counted despite "N/A"), CS14 (independence not counted) | **Open** | `TODO(authors)` in 6.1.1 and 6.2.3 |
-| 12 | CS12 under Responsiveness vs Stability (Tab. 11) | **Optional** | Not applied; debatable |
+| 10 | Template-only answers (CS4, CS7, CS8, CS14) have no case-specific text | **Resolved (final decision: keep)** | Decision: they stay in the counts (n = 18), as coded in the sheet; a sentence in Sec. 6.1.1 discloses that their categories are not backed by case-specific text. Sensitivity excluding them (n = 14): 8, 10, 10, 1 (printed by `rq1.py`). CS14 independence set to 1 for consistency with CS4 and CS8 |
+| 11 | Per-case codings vs the raw text | **Resolved (final decision: fix the inconsistencies)** | CS1: dominance removed, conflict counted (label "Conflict (dominant)"); CS10: dominance and augmentation removed (only conflict in the text); CS5: augmentation counted; CS15: independence and conflict removed ("N/A in this case"); CS9 dominance recorded as 2 instances |
+| 12 | CS12 under Responsiveness vs Stability (Tab. 11) | **Resolved (not applied)** | Decision: CS12 only concerns energy cost, so it stays under Robustness vs Resource Consumption (already added) and not under Responsiveness vs Stability |
 
 If the authors' own counting sheet (UC-Conflict etc.) still has rows CS11/CS12 as in the original CSV, they must be swapped there too.

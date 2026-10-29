@@ -44,25 +44,30 @@ def run(raw=None):
     print(tbl.to_string())
     tbl.to_csv(OUT / "rq1_category_counts.csv")
 
-    # ---- MANUAL CODING (authors' sheet) -> ground truth
+    # ---- MANUAL CODING (authors' sheet, evidence-checked against the raw text) -> ground truth
     man = pd.read_csv(BASE / "data" / "manual_interaction_counts.csv").set_index("ID")
+    tmpl = man["template_only"] == 1
     mflags = man[CATS] > 0
-    print("\n[MANUAL] Per-exemplar counts from the authors' sheet:")
+    print(f"\n[MANUAL] Per-exemplar counts from the authors' sheet (n = {n}; evidence-checked for CS1, CS5, CS10, CS15).")
+    print(f"   Template-only answers kept in the counts (flagged, no case-specific text): {cases_to_str(man.index[tmpl])}")
     for c in CATS:
         k = int(mflags[c].sum())
-        print(f"   {c:<13} {k:>2}/{n} = {pct(k, n)}   (original paper text = {RQ1_TEXT[c]})")
+        print(f"   {c:<13} {k:>2}/{n} = {pct(k, n)}   (original paper text = {RQ1_TEXT[c]}/18)")
         report_check(f"manual vs original text: {c}", RQ1_TEXT[c], k)
+    ex = mflags[~tmpl]
+    print(f"   Sensitivity -- excluding the template-only cases (n = {len(ex)}): " +
+          ", ".join(f"{c} {int(ex[c].sum())}/{len(ex)}" for c in CATS))
     auto = interaction_flags(coded, "paper")
     print("   Cases where the automatic rule ('paper' criterion) differs from the sheet:")
     for c in CATS:
         diff = cases_to_str(mflags.index[mflags[c] != auto[c]])
         print(f"     {c:<13} {diff or '-'}")
     mflags.to_csv(OUT / "rq1_manual_flags.csv")
-    f = mflags   # the manual sheet is used in the tables/figures below
+    f = mflags   # the evidence-checked sheet is used in the tables/figures below
 
     # ---- by domain (Fig. 3)
-    per_dom = pd.DataFrame({c: by_domain(f[c], dom, DOMAINS) for c in CATS})
-    print("\n[Fig.3] Categories per domain (manual sheet):")
+    per_dom = pd.DataFrame({c: by_domain(f[c], dom.loc[f.index], DOMAINS) for c in CATS})
+    print("\n[Fig.3] Categories per domain (evidence-checked sheet):")
     print(per_dom.to_string())
     per_dom.to_csv(OUT / "rq1_category_by_domain.csv")
     print("\n   Validation against the ORIGINAL pgfplots data of Fig. 3 (only differences are listed):")
