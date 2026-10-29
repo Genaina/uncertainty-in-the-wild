@@ -21,7 +21,7 @@ The catalogue covers domains such as:
 
 ## Data and analysis
 
-The processed data and analysis artifacts used in this study are stored in the `uip_analysis/` directory. This folder contains the cleaned and normalized dataset, along with the derived outputs used to identify uncertainty categories, interaction patterns, and the cross-case evidence reported in the paper.
+The processed data and analysis artifacts used in this study are stored in the `uip_analysis/` directory. This folder contains the cleaned and normalized dataset, together with the scripts used to prepare the catalogue and analyze it to answer the study's research questions.
 
 ## Repository contents
 
@@ -36,49 +36,13 @@ The repository includes both the dataset and a reproducible analysis pipeline fo
 
 ### Analysis scripts
 
-The `uip_analysis/` folder contains the scripts used to reproduce the analysis for the paper's research questions:
+The `uip_analysis/` folder contains the scripts used to prepare, validate, and analyze the dataset in support of the study's research questions:
 
-- `uip_analysis/README.md` — notes on the analysis pipeline, validation criteria, and reproducibility.
+- `uip_analysis/README.md` — overview of the analysis workflow and validation approach.
 - `uip_analysis/common.py` — shared data-loading and validation helpers.
-- `uip_analysis/coding.py` — automatic coding logic for uncertainty interaction categories.
-- `uip_analysis/paper_reported.py` — reported values from the paper used for validation checks.
-- `uip_analysis/rq1.py` — analysis for RQ1 (interaction categories and distribution).
-- `uip_analysis/rq2.py` — analysis for RQ2 (causal mechanisms and source types).
-- `uip_analysis/rq3.py` — analysis for RQ3 (impact and quality dimensions).
-- `uip_analysis/rq4.py` — analysis for RQ4 (preparedness, applicability, lifecycle, and trade-offs).
-- `uip_analysis/run_all.py` — runs the full analysis pipeline and generates the reports.
-
-### Generated outputs
-
-The generated output artifacts are stored in `uip_analysis/output/`:
-
-- `rq1_category_by_domain.csv`
-- `rq1_category_counts.csv`
-- `rq1_domain_distribution.csv`
-- `rq1_interaction_coding_per_case.csv`
-- `rq1_manual_flags.csv`
-- `rq1_nature_by_domain.csv`
-- `rq2_abstraction_by_domain.csv`
-- `rq2_mechanisms_per_case.csv`
-- `rq2_source_categories_per_case.csv`
-- `rq2_source_counts.csv`
-- `rq2_source_types_per_case.csv`
-- `rq3_impact_class_by_domain.csv`
-- `rq3_impact_coding_per_case.csv`
-- `rq3_quality_dimensions.csv`
-- `rq4_applicability_keywords_per_case.csv`
-- `rq4_lifecycle_per_case.csv`
-- `rq4_preparedness_per_case.csv`
-- `rq4_solution_space_coverage.csv`
-- `rq4_strategy_per_case.csv`
-- `rq4_table11_comparison.csv`
-- `rq4_table12_comparison.csv`
-- `rq4_table8_comparison.csv`
-- `rq4_table9_comparison.csv`
-- `rq4_tradeoffs_keywords_per_case.csv`
-- `rq1_fig_categories.png`
-- `rq1_fig_domains.png`
-- `full_report.txt`
+- `uip_analysis/coding.py` — coding logic used to classify the case-study evidence.
+- `uip_analysis/rq1.py` to `uip_analysis/rq4.py` — question-specific analyses aligned with the paper's research questions.
+- `uip_analysis/run_all.py` — executes the full analysis workflow.
 
 ## Purpose of the dataset
 
