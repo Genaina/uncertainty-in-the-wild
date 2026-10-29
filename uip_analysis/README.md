@@ -1,62 +1,88 @@
-# RQ1–RQ4 analysis scripts — "Uncertainty in the Wild"
+# Reproducing the RQ1–RQ4 analysis of "Uncertainty in the Wild"
 
-Reproduces, from `data/artifacts_case_studies_raw_corrected.csv`, the analyses of Sections 6.1–6.4 of the manuscript
-and **validates every number against what was originally printed in the paper** (`[OK]` / `[DIFF]`).
+This package reproduces the cross-case analysis (Sections 6.1–6.4) of *Uncertainty in the Wild: A Cross-Domain Catalogue of
+Uncertainty Interactions in Autonomous and Self-Adaptive Systems*. It takes the catalogue of 18 uncertainty-interaction
+exemplars (CS1–CS18), computes the frequencies, tables and figures of each research question, and checks every number
+against the values printed in the manuscript (`[OK]` / `[DIFF]` in the report).
 
-## Data
-- `data/artifacts_case_studies_raw_corrected.csv`: the original contributor sheet with the content columns
-  (Uncertainty Sources … Strategy) of rows CS11 and CS12 swapped, so that they match the Summary/domain columns
-  (CS11 = Body Sensor Network, CS12 = Lab Sample Logistics). The original file is kept as `data/..._ORIGINAL.csv`.
-- `data/manual_interaction_counts.csv`: the authors' manual count of interaction categories per case
-  (CS11/CS12 rows already corrected, evidence-checked against the raw text, with a `template_only` flag). It is the ground truth for RQ1; the rule-based coder is only a cross-check.
-
-## Usage
+## Quick start
 ```bash
-pip install pandas matplotlib
-python run_all.py        # runs RQ1..RQ4, prints the report and saves everything to output/
-python rq1.py            # or each RQ separately
+pip install pandas matplotlib      # Python 3.9+
+python run_all.py                  # runs RQ1..RQ4, prints the report, writes everything to output/
+python rq1.py                      # or run a single research question (rq1.py ... rq4.py)
 ```
+`output/full_report.txt` contains the complete printed report; every table is also saved as a CSV in `output/`.
 
-## Files
-| File | Content |
+## Package layout
+| Path | Content |
 |---|---|
-| `common.py` | CSV loading (`;`, cp1252), the paper's domain map, comparison helpers |
-| `coding.py` | automatic rule-based coding (Section 3.4 of the paper) |
-| `paper_reported.py` | numbers / case lists **as originally printed** in the paper, used only for validation |
-| `rq1.py` | interaction categories (dominance/conflict/augmentation/independence), heterogeneity, Fig. 1, Fig. 3, Tab. 4 |
-| `rq2.py` | cross-layer vs same-level (Tab. 5), source categories/types, causal mechanisms |
-| `rq3.py` | multi-dimensional vs generic impact (Tab. 6), quality dimensions (Tab. 7) |
-| `rq4.py` | preparedness (Tab. 8), applicability (Tab. 9), lifecycle (Tab. 10), trade-offs (Tab. 11), strategy (Tab. 12) |
+| `data/artifacts_case_studies.csv` | The catalogue: one row per exemplar, with the contributors' verbatim answers to the characterisation template |
+| `data/manual_interaction_counts.csv` | Authors' coding of the interaction categories per exemplar (used by RQ1, see below) |
+| `common.py` | CSV loading, domain map (Table 3 / Fig. 1), comparison helpers |
+| `coding.py` | Rule-based coding of the verbatim fields (follows the operational coding rules of Section 3.4) |
+| `paper_reported.py` | Numbers and case lists as printed in the manuscript, used only for validation |
+| `rq1.py` … `rq4.py` | One script per research question |
+| `run_all.py` | Runs the four scripts in order |
 
-## Three automatic criteria for interaction categories (RQ1 cross-check)
-- `strict`: explicit contributor evidence only
-- `lenient`: + tentative marks (`(?)`, `(Possible)`, `Conflict (dominant)`)
-- `paper`: + template-only answers (CS4, CS7, CS8, CS14 returned only the template definitions)
+## Input data
+**`artifacts_case_studies.csv`** — separator `;`, encoding cp1252. Columns: `ID`, `Participant(s)`, `Case Study (Domains)`, `Summary`,
+and the template fields `Uncertainty Sources (verbatim)`, `Uncertainty Interaction Category`, `Uncertainty Nature`, `Abstraction Gap`,
+`Impact`, `Level of Preparedness`, `Applicability Conditions`, `Lifecycle Stage`, `Trade-offs`, `Strategy`.
+The *problem space* (sources, interaction category, nature, abstraction gap, impact) feeds RQ1–RQ3; the *solution space*
+(preparedness, applicability, lifecycle, trade-offs, strategy) feeds RQ4. Empty or "not provided" fields are treated as
+**missing information, never as negative evidence** (Section 3.4).
 
-## What is fully reproducible and what is not
-- **Reproduced from the CSV**: heterogeneous/homogeneous (16/2), cross-layer/same (14/4), generic impact (15/3), lifecycle.
-  Interaction categories (RQ1) use the **manual sheet** as ground truth.
-- **Analyst-derived** (Tabs. 7, 9, 10, 11 and parts of 8 and 12): they depend on manual interpretation. The scripts provide a
-  keyword cross-check with Jaccard similarity; differences there indicate interpretation choices, not necessarily errors.
+**`manual_interaction_counts.csv`** — columns `ID, conflict, dominance, augmentation, independence, template_only`. Each value is the number
+of documented interaction instances of that category in the exemplar; a category counts once per exemplar when the value is ≥ 1
+(Section 3.4, rule 1). `template_only = 1` flags exemplars whose interaction field contains only the template definitions
+(CS4, CS7, CS8, CS14): they are counted as coded, and `rq1.py` also prints the counts without them as a sensitivity check.
 
-## Divergences found and status
+The **primary domain** of each exemplar follows Table 3 (six domains: Automotive, IT/Cloud, Robotics, Healthcare, Smart City, Aerospace).
+Exemplars spanning two domains are assigned to the one that characterises the system (e.g., CS5, a hospital service robot with a human in the loop, is Robotics).
 
-Computed values below use the manual sheet and the corrected CSV. `paper_reported.py` keeps the values **as originally printed**,
-so the report still shows `[DIFF]` at these points (expected).
+## What each script computes
 
-| # | Original divergence | Status | Resolution in the .tex files (`tex_marked/`) |
-|---|---|---|---|
-| 1 | Sec. 6.1.1 said 17/16/15/4 (dominance/conflict/augmentation/independence); Fig. 3 summed to 13/14/14 | **Resolved** | Counts from the authors' sheet, evidence-checked against the raw text, n = 18: dominance 11/18 (61.1%), conflict 14/18 (77.8%), augmentation 14/18 (77.8%), independence 4/18 (22.2%) |
-| 2 | Fig. 3 bars | **Resolved** | Dominance: Automotive 2, IT/Cloud 4, Robotics 3, Healthcare 0, Smart City 1, Aerospace 1 (original: 2, 6, 1, 2, 1, 1 in the printed order); augmentation: IT/Cloud 4, Robotics 3, Healthcare 1; conflict unchanged |
-| 3 | Tab. 4 summed to 15+3 (text: 16/2) | **Resolved** | Robotics 3/0 (the `\added{1}` was an editing leftover) |
-| 4 | Tab. 5 summed to 17 | **Resolved** | IT/Cloud 6/1, Robotics 3/0 (checked against the `%Cross-layer` comment in the .tex) |
-| 5 | Tab. 6 summed to 10/8 (text: 15/3) | **Resolved** | Automotive 4/1, IT 5/2, Robotics 3/0, Healthcare 1/0, Smart City 1/0, Aerospace 1/0. Commented impact list: generic = CS8, CS10, CS14 (the old list with CS3, CS4, CS6, CS7 was wrong: CS4 and CS7 were template-only in the interaction field, not in the impact field) |
-| 6 | CS11 × CS12 | **Resolved (reinterpreted)** | Tab. 3 and the Summary/domain columns are **correct** (CS11 = BSN, CS12 = Lab Sample). The error was in the CSV: the content columns of the two rows were swapped. CSV corrected; citations fixed in the text: energy (CS12), communication (CS11), BSN (CS11), battery (CS12), Tab. 9 Architectural (CS12), Tab. 11 Sensitivity (CS11) |
-| 7 | CS5: dual domain Healthcare/Robotics | **Resolved** | Kept under Robotics; sentence added in Sec. 3.3, note in Sec. 5 and in Tab. 3 |
-| 8 | Fig. 1 rounding: 38.8% and 5.5% (summed to 99.8%) | **Resolved** | 38.9% and 5.6% in the text and in the pie data |
-| 9 | Tab. 8 Prevention and Tab. 11 Robustness vs Resource | **Resolved** | Added CS11 and CS12 (Prevention) and CS12 (Robustness vs Resource Consumption) |
-| 10 | Template-only answers (CS4, CS7, CS8, CS14) have no case-specific text | **Resolved (final decision: keep)** | Decision: they stay in the counts (n = 18), as coded in the sheet; a sentence in Sec. 6.1.1 discloses that their categories are not backed by case-specific text. Sensitivity excluding them (n = 14): 8, 10, 10, 1 (printed by `rq1.py`). CS14 independence set to 1 for consistency with CS4 and CS8 |
-| 11 | Per-case codings vs the raw text | **Resolved (final decision: fix the inconsistencies)** | CS1: dominance removed, conflict counted (label "Conflict (dominant)"); CS10: dominance and augmentation removed (only conflict in the text); CS5: augmentation counted; CS15: independence and conflict removed ("N/A in this case"); CS9 dominance recorded as 2 instances |
-| 12 | CS12 under Responsiveness vs Stability (Tab. 11) | **Resolved (not applied)** | Decision: CS12 only concerns energy cost, so it stays under Robustness vs Resource Consumption (already added) and not under Responsiveness vs Stability |
+### RQ1 — What types of uncertainty interactions are observed? (`rq1.py`, Section 6.1)
+1. **Domain distribution** (Fig. 1).
+2. **Interaction categories** (dominance, conflict, augmentation, independence), counted per exemplar from `manual_interaction_counts.csv`,
+   in total (Section 6.1.1) and per domain (Fig. 3). As a cross-check, `coding.py` also codes the verbatim text automatically under three criteria:
+   *strict* (explicit evidence only), *lenient* (+ tentative marks such as `(?)`), *paper* (+ template-only answers). The script lists the cases where the automatic rule and the manual coding differ.
+3. **Interaction nature** (Section 6.1.2, Table 4): an exemplar is *heterogeneous* unless its `Uncertainty Nature` field says homogeneous.
 
-If the authors' own counting sheet (UC-Conflict etc.) still has rows CS11/CS12 as in the original CSV, they must be swapped there too.
+Expected result: dominance 11/18, conflict 14/18, augmentation 14/18, independence 4/18; heterogeneous 16/18.
+Outputs: `rq1_domain_distribution.csv`, `rq1_category_counts.csv`, `rq1_manual_flags.csv`, `rq1_category_by_domain.csv`, `rq1_nature_by_domain.csv`,
+`rq1_interaction_coding_per_case.csv`, `rq1_fig_domains.png`, `rq1_fig_categories.png`.
+
+### RQ2 — Which sources, abstraction levels and causal mechanisms participate? (`rq2.py`, Section 6.2)
+1. **Abstraction span** (Section 6.2.1, Table 5): *same/partial level* when the `Abstraction Gap` field says "same" or is empty, *cross-layer* otherwise.
+   Expected: 14 cross-layer, 4 same/partial (CS4, CS6, CS7, CS10).
+2. **Uncertainty sources** (Section 6.2.2): frequency of source *categories* (model, adaptation functions, goals, environment, resources, human) and *types*
+   (measurement, occurrence, design, behavior, belief, spatio-temporal) by keyword search over `Uncertainty Sources (verbatim)`, plus the most frequent co-occurring category pairs.
+3. **Causal mechanisms** (Section 6.2.3): propagation, amplification, dominance and trade-off/conflict are searched by keyword in the interaction, impact, trade-off and abstraction fields and compared with the exemplars cited in the text.
+
+Outputs: `rq2_abstraction_by_domain.csv`, `rq2_source_categories_per_case.csv`, `rq2_source_types_per_case.csv`, `rq2_source_counts.csv`, `rq2_mechanisms_per_case.csv`.
+Items 2 and 3 are **keyword heuristics**: they quantify what the verbatim text supports and do not replace the qualitative reading in the paper.
+
+### RQ3 — What operational impacts are associated with the interactions? (`rq3.py`, Section 6.3)
+1. **Impact characterisation** (Section 6.3.1, Table 6): *generic/template* when the `Impact` field is explicitly marked as generic or template text (CS8, CS10, CS14), *multi-dimensional* otherwise (Section 3.4, rule 4). Expected: 15 and 3.
+2. **Affected quality dimensions** (Section 6.3.2, Table 7): safety, performance, reliability & availability, mission success, human factors & trust, resource efficiency/cost, detected by keywords in the `Impact` field and compared (Jaccard similarity) with the case lists of Table 7, which is analyst-derived.
+
+Outputs: `rq3_impact_coding_per_case.csv`, `rq3_impact_class_by_domain.csv`, `rq3_quality_dimensions.csv`.
+
+### RQ4 — Which mechanisms address the interactions, and under what conditions? (`rq4.py`, Section 6.4)
+1. **Preparedness** (Table 8): the `Level of Preparedness` text is split on the labels Awareness, Prevention, Detectability, Representation, Comprehension (= Understanding) and Mitigation; a capability is *reported* when its segment has non-empty, non-negative content ("Limited"/"Partial" count as partial capability).
+2. **Strategy** (Table 12): the `Strategy` field is split on Detection / Representation / Analysis / Mitigation; entries such as "unknown" or "blank" are not counted.
+3. **Lifecycle stage** (Section 6.4.3): design-time, runtime or both, from the `Lifecycle Stage` field; Table 10 (lifecycle activities) is analyst-derived and its counts are only printed.
+4. **Applicability conditions** (Table 9) and **trade-offs** (Table 11): keyword cross-check against the manual analysis in the paper.
+5. **Coverage**: how many of the solution-space fields each exemplar filled in (relevant for the threats to validity).
+
+Outputs: `rq4_preparedness_per_case.csv`, `rq4_strategy_per_case.csv`, `rq4_lifecycle_per_case.csv`, `rq4_applicability_keywords_per_case.csv`,
+`rq4_tradeoffs_keywords_per_case.csv`, `rq4_solution_space_coverage.csv`, and the comparison files `rq4_table8/9/11/12_comparison.csv` (with Jaccard similarity per dimension).
+
+## How to read the validation report
+- **RQ1–RQ3 problem-space numbers** (Tables 4, 5, 6, the Fig. 3 series and the counts of Sections 6.1–6.3) are fully determined by the data and the coding rules, and should print `[OK]` (or no difference lines).
+- **Analyst-derived tables** (Tables 7–12) depend on the authors' interpretation of free text. The scripts reproduce what can be parsed mechanically and report the differences as `[DIFF]` with the cases on each side; these differences show where interpretation, not computation, drives the table.
+
+## Limitations
+The exemplars are purposively sampled contributor descriptions, so frequencies describe the catalogue and not the wider population of systems (Section 7).
+Several fields were answered in free text with varying detail; the rule-based coders are deliberately conservative and the manual coding of interaction categories is the reference for RQ1.
