@@ -2,13 +2,13 @@
 
 Repository for the paper: "Uncertainty in the Wild: A Cross-Domain Catalogue of Uncertainty Interactions in Autonomous and Self-Adaptive Systems".
 
-This repository contains the empirical catalogue used in the study, together with the Python analysis pipeline that reproduces the paper's research-question analyses (RQ1–RQ4).
+This repository contains the empirical catalogue used in the study and a Python-based analysis pipeline for reproducing the paper's research-question analyses (RQ1–RQ4).
 
 ## Overview
 
-The project studies how uncertainty sources interact across autonomous, self-adaptive, cyber-physical, and AI-enabled systems. The main artifact is the case-study catalogue in `uip_analysis/data/artifacts_case_studies_raw.csv`.
+The project studies how uncertainty sources interact across autonomous, self-adaptive, cyber-physical, and AI-enabled systems. The main artifact is the case-study catalogue stored in `uip_analysis/data/`, together with the scripts that compute the reported frequencies, comparisons, and figures.
 
-The catalogue covers domains such as:
+The catalogue spans multiple domains, including:
 
 - AI-enabled cloud infrastructure
 - automotive systems
@@ -16,11 +16,6 @@ The catalogue covers domains such as:
 - healthcare
 - smart cities
 - aerospace
-
-The repository is organized around two major components:
-
-1. the case-study dataset used for the empirical catalogue
-2. the reproducible analysis scripts in `uip_analysis/`
 
 ## Repository structure
 
@@ -48,23 +43,25 @@ uncertainty-in-the-wild/
 
 ## Core dataset
 
-The repository currently includes the following main data files in `uip_analysis/data/`:
+The repository includes the following main data files in `uip_analysis/data/`:
 
 - `uip_analysis/data/artifacts_case_studies_raw.csv` — main raw case-study catalogue used in the study
 - `uip_analysis/data/manual_interaction_counts.csv` — manually curated interaction counts used as the validation reference for RQ1
 
+Each row represents a case study or exemplar, with fields describing uncertainty sources, interaction types, impacts, lifecycle stage, mitigation strategies, and more.
+
 ## Analysis workflow
 
-The analysis code is contained in `uip_analysis/` and implements the paper's quantitative and qualitative analyses:
+The analysis code in `uip_analysis/` reproduces the paper's quantitative and qualitative findings:
 
-- `common.py` — shared CSV loading, validation, and helper logic
+- `common.py` — shared CSV loading and helper logic
 - `coding.py` — rule-based coding for uncertainty interaction patterns
-- `paper_reported.py` — numbers and case lists as originally reported in the paper for validation
-- `rq1.py` — dominance/conflict/augmentation/independence analyses and related figures
-- `rq2.py` — cross-layer vs. same-level analysis and source/category breakdowns
-- `rq3.py` — impact analysis and quality-dimension summaries
-- `rq4.py` — preparedness, applicability, lifecycle, trade-offs, and strategy analyses
-- `run_all.py` — executes the complete analysis pipeline
+- `paper_reported.py` — numbers and case lists reported in the paper for validation
+- `rq1.py` — interaction categories and cross-domain distributions
+- `rq2.py` — uncertainty sources, abstraction gaps, and causal mechanisms
+- `rq3.py` — impact characterisation and quality-dimension analysis
+- `rq4.py` — preparedness, strategy, lifecycle, applicability, and trade-offs
+- `run_all.py` — runs the complete analysis pipeline
 
 ## Quick start
 
@@ -76,11 +73,11 @@ pip install pandas matplotlib
 python run_all.py
 ```
 
-This script runs the analyses for RQ1–RQ4, prints the report, and writes results into the `output/` folder.
+This script runs the analyses for RQ1–RQ4, prints the validation report, and writes the results into the `output/` folder.
 
 ## Data format and schema
 
-The main raw file is a semicolon-delimited CSV because some free-text fields contain semicolons. Each row represents one case study.
+The main raw catalogue file uses semicolon-delimited CSV format, since some free-text cells contain semicolons. Each row corresponds to one case study.
 
 The catalogue includes fields such as:
 
@@ -93,7 +90,7 @@ The catalogue includes fields such as:
 7. `Uncertainty Nature` — type of uncertainty involved
 8. `Abstraction Gap` — whether the interaction spans abstraction levels
 9. `Impact` — consequences of the uncertainty interaction
-10. `Level of Preparedness` — detection/representation/mitigation readiness
+10. `Level of Preparedness` — awareness, detection, representation, and mitigation readiness
 11. `Applicability Conditions` — contextual conditions for use or mitigation
 12. `Lifecycle Stage` — design-time, runtime, or both
 13. `Trade-offs` — expected trade-offs of mitigation strategies
@@ -101,7 +98,7 @@ The catalogue includes fields such as:
 
 ## Interpretation notes
 
-The dataset is intentionally descriptive and exploratory rather than fully normalized. Several cells are free-form text and may contain multiple interacting factors in the same entry. As a result, interpretation often requires reading the full case description rather than relying solely on the column names.
+The dataset is intentionally descriptive and exploratory rather than fully normalized. Several cells contain free-form text, and some entries include multiple interacting factors in the same field. The repository therefore combines raw catalogue data with rule-based coding and validation scripts rather than relying on a single fully normalized schema.
 
 ## Intended use
 
@@ -110,7 +107,13 @@ This repository is intended for:
 - qualitative analysis of uncertainty interaction patterns,
 - cross-domain comparison of uncertainty handling strategies,
 - empirical grounding for future models and mitigation approaches,
-- and reproducible analysis of the catalogue used in the paper.
+- reprodcible analysis of the catalogue used in the paper.
+
+## Citation
+
+If you use this repository or its analysis in your work, please cite the associated paper:
+
+> Uncertainty in the Wild: A Cross-Domain Catalogue of Uncertainty Interactions in Autonomous and Self-Adaptive Systems.
 
 ## License
 
