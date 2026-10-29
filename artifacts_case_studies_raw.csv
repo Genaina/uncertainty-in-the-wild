@@ -1,0 +1,335 @@
+ID;Participant(s);Case Study (Domains);Summary;Uncertainty Sources (verbatim);Uncertainty Interaction Category;Uncertainty Nature;Abstraction Gap;Impact;Level of Preparedness;Applicability Conditions;Lifecycle Stage;Trade-offs;Strategy
+CS1;Danilo Pianini;IT/Cloud Infrastructure;Partition-induced collective-state divergence and oscillatory adaptation: In distributed and collective systems, uncertainties in network connectivity and system behavior can lead agents to maintain inconsistent views of the system state, causing coordination instability, oscillatory adaptation behavior, and temporary performance inefficiencies.;"Spatio-temporal uncertainty - environment/resources dynamic topology, partitions, temporary disconnections, varying neighborhood density.
+Occurrence uncertainty - resources/environment node failures, flaky join/leave, churn
+Behavior uncertainty - adaptation functions Some algorithms (e.g. bounded election) may amplify small topology uncertainties
+Measurement uncertainty (unsure) - model Propagation times and delays may induce inconsistent snapshots (the larger the snapshot area, the worse)";"Augmentation: improving responsiveness can decrease instability/overhead under assumptions of no network segmentation.
+Conflict (dominant): improving responsiveness (more frequent monitoring/replanning, aggressive leadership changes) can increase instability/overhead under intermittent connectivity (more oscillations, more inconsistent plans).";Heterogeneous;Different abstraction levels: physical mobility/connectivity, computational fields, mission-level coordination;Triggers: Environmental changes: temporary disconnections and partitions. System actions: coordination and plans changing due to segmentation. Impact scope: propagation waves. Metrics: number and overhead of replanning. Spectrum: from inefficiency to disruption.;Awareness: medium - can be collectively detected. Prevention: In most cases, total prevention is not possible (environmental origin). Detectability: Yes. Representation: Yes. One idea is measuring the computational field stability. Comprehension/analyzability: Partial, currently: via simulation. On HIL/real systems, there is a tooling gap (we would need flight recording and replay). Mitigation: Possible, maybe via stability aware adaptation.;Systems with no natural central coordinator nor connectivity guarantee, forcing collective decision making.;Both: stress test and parameterization through simulation, collective detection and dampening must occur at runtime.;Robustness vs overhead: more robustness typically implies more data to be exchanged, causing computational and network overhead. Responsiveness vs overhead: more responsiveness implies more exchanges and computation, too. Responsiveness vs stability: immediate response may cause unneeded/excessive adaptations under high churn.;"Detection: Collective “instability fields”: measure cluster churn rate, leader change rate, field convergence age, partition likelihood; Corner-case detectors. Representation: Extend aggregate programs with confidence/age annotations on shared state; represent partitions and stability regions as fields. Analysis: Simulation-driven Monte Carlo processes; adversarial corner cases. Mitigation: Hysteresis, exponential backoff, low-pass filtering, disruption prediction, partition tolerance, collective dampening."
+CS2;Christos Tsigkanos;Aerospace;Spacecraft FDIR and Redundancy: A nanosatellite system with redundant onboard computing uses fault detection and recovery mechanisms to monitor system health and maintain operation under failures. Uncertainties related to fault detection delays, unreliable telemetry, and recovery state transitions can affect the spacecraft’s ability to safely switch modes and activate redundant components.;"U1 Hardware Fault Occurrence Nature: Occurrence Category: Environment Managed System
+U2 Telemetry Accuracy Nature: Measurement Category: Resources Managed System
+U3 FDIR Response Latency Nature: Spatio-temporal Category: Adaptation Functions
+U4 Redundant Master Activation Delay Nature: Spatio-temporal Category: Resources Managed System
+U5 Operational Mode Estimation Nature: Belief Category: Model";"Dominance: U1 completely dominates U4; the uncertainty of the redundant master activation delay is strictly irrelevant unless a critical hardware fault actually occurs.
+Conflict: Mitigating U3 (FDIR Response Latency) requires assigning higher CPU scheduling priority to the active FDIRController thread, which incurs context-switching overhead that conflicts with the conservation of computing resources (related to U2).
+Augmentation: U1 highly augments U2; a severe hardware anomaly will intrinsically degrade the reliability of the telemetry data flowing from the compromised subsystem.";Heterogeneous;Low-level telemetry vs higher architectural state;Trigger(s): environmental disruption (e.g., radiation). Impact scope: system-wide safe mode or failure. Metrics: link availability, telemetry preserved, downtime. Spectrum: extremely high severity.;Detection: Hardware metrics are polled continuously, and non-responsive components trigger software watchdogs via the Health class. Representation: The FSM rigorously models valid transition logic within the Controller component. Mitigation: The system possesses highly structured mitigation routines executed by the FDIRController or cold redundancy handovers to the PDPU.;The shared CAN bus must remain physically intact to allow the PDPU to communicate with peripheral subsystems. The non-volatile FRAM must also remain uncorrupted to supply the last known operational state variables upon reboot.;Predominantly run-time (for autonomous anomaly detection and state transitions). However, mitigation strategies rely heavily on design-time component configuration and rigorous verification protocols.;Utilizing active components provides excellent temporal decoupling and responsiveness but increases memory utilization and context-switching overhead. FatalHandler achieves minimal delay and overhead but sacrifices granular state management.;Detection: Ping/Echo tactic utilizing software watchdogs. Analysis: Event filtering and categorization by ActiveLogger. Mitigation: State degradation governed by an FSM enforcing allowable transitions through guard functions.
+CS3;Gabriel Moreno;IT/Cloud Infrastructure;Self-Adaptive RUBiS: a self-adaptive multi-tier cloud web application that dynamically adjusts resources and service quality in response to changing workloads. Uncertainties such as fluctuating request rates, tactic delays, response times, and model parameters affect the system’s ability to maintain performance and optimize resource usage.;"U1. Request arrival rate: the number of requests from users arriving at the system per second Nature: measurement, behavior Category: environment, adaptation functions 
+U2. Estimated request arrival rate: estimation of arrival rates in the near future Nature: belief Category: model 
+U3. Service rate: the number of requests a server processes per second without contention. This cannot be directly measured at run time, it is affected by the behavior of unmodeled parts of the system (e.g., cache) and must be estimated with models. Nature: behavior, belief Category: managed system, model, adaptation functions 
+U4. Server utilization: the percentage of time a server is busy processing requests Nature: measurement Category: resources, managed system, adaptation functions 
+U5. Average response time: the average time it takes from the time a request arrives until its response is sent. Nature: measurement Category: adaptation functions 
+U6. Estimated average response time: the estimated average response time for a given environment and system state. Nature: belief Category: model 
+U7. Tactic latency: The time it takes between when a tactic is started and when its effect is produced. Nature: spatiotemporal Category: managed system, resources 
+U8. Utility: A measure of the goodness of the performance of the system with respect to its adaptation goal. Nature: belief, measurement Category: goals";"Independence: From the point of view of uncertainty interaction, U1 is independent from the rest. However, it can be affected by the behavior (not the uncertainty) of the system itself (e.g., high response time may cause users to leave the system, thus reducing the arrival rate).
+Dominance: U1 dominates U2; U4 and U2 dominate U3; U5 and U1 dominate U8; U7 and U2 dominate U6.
+Augmentation:
+Conflict: Reducing U7 by having the system try tactics to measure their latency, increases U4, U3, U6.";Homogeneous and heterogeneous interactions;Different levels of abstractions;Triggers: traffic increase, tactic adaptation. Impact: higher uncertainty in response time estimations.;Field left blank.;Field left blank.;Field left blank.;Field left blank.;Field left blank.
+CS4;Nicolas Cardozo, Ivana Dusparic;Smart City;TranCity Public Transport System: TranCity is a Smart City transportation monitoring system that continuously observes buses, stations, and road conditions and dynamically adapts to changing urban environments. Multiple concurrent events and constraint violations can interact in uncertain ways, creating challenges in selecting the most effective adaptation strategy to optimize system performance.;"Each uncertainty source involved in the interaction is described in terms of its:
+Uncertainty source nature [4]. 
+Occurrence uncertainty: Uncertainties take place unannounced and any/all of them may take place at any time during the system execution, in different parts of the system.
+Behavior uncertainty: Whenever a situation is triggered, the appropriate behavior to assure continuous and correct system execution is unknown, due to the combination of situations, which are unknown beforehand
+Spatio-temporal uncertainty: The behavior takes place independently and unannounced in time and space.
+
+Uncertainty source category [1]. 
+Adaptation functions: The way in which the system adapts to face specific situations is unknown
+Environment: The environment state in which a specific erroneous situation takes place is partially unknown 
+Resources: The available resources to deal with a situation are unknown";"Independence: no uncertainty from any source affects the the uncertainty from another source
+Dominance: one source of uncertainty dominates the other, and reducing the uncertainty from the dominant source necessarily reduces the other.
+Augmentation: uncertainties highly correlated with each other (no dominance). Reduction of one of them positively affects the reduction of the other. 
+Conflict: reduction of uncertainty from one source may increase uncertainty from another one.";Heterogeneous;All uncertainties at the same abstraction level;Triggers: violation of monitored variables. Impact metrics: number and duration of violations, fairness.;Awareness: Developers are aware of the uncertainties in the systems. Prevention: Some sources of uncertainty can be foreseen but possibly not prevented. Detectability: equip agents to detect specific situations. Representation: The uncertainty cannot be modeled. Comprehension/analyzability: Depending on the uncertainty type its effect could be analyzed. Mitigation: fine grained behavior to compose into more elaborate solutions.;Applicability restricted to the enabling scope of the uncertainty. So long a special situation is detected, the system will switch to a specific behavior until the system state returns to a safe state.;Run-time.;Detecting and mitigating an uncertainty is costly, requiring observation in multiple instances to learn the appropriate behavior. However, the solution seeks to increase fairness in the proposed correction.;Detection: continuously monitoring the environment state. Representation: self-adaptation and self-organization following context-oriented programming where uncertainties are represented as first-class system objects. Analysis: unknown. Mitigation: dampen the uncertainty through corrective behavior.
+CS5;Livia Lestingi;Healthcare/Robotics;Human-Machine Teaming in Healthcare Robotics: A hospital service-robot scenario where a robot assists patients and medical staff by escorting patients and transporting equipment through a sequence of Healthcare tasks. The mission involves coordinated navigation and task execution, where successful completion depends on the robot reliably performing all services in a dynamic environment.;"Human Behavior (Human-in-the-loop): Human behavior is intrinsically unpredictable. The human interacting with the robot may decide to stray from the plan (or be unable to follow it). Therefore, any model of human behavior must be either stochastic or capture this non-determinism/unpredictability in some way.
+Category: Environment
+Nature: Occurrence 
+Human Behavior (Model Drift/Abstraction/Incompleteness): Human “behavior” is also so vast that no model can realistically cover it exhaustively. This means that a drift between the model state and the real state of the phenomenon (i.e., the real state of the human) must be always taken into account.
+Category: Model
+Nature: Behavior
+Sensing/AI-in-the-loop: Even if an act of human behavior is properly modeled, sensors or AI modules detecting it (for example, cameras or speech recognition modules) are inherently imperfect.
+Category: Adaptation Functions
+Nature: Measurement
+";"Dominance: If an act of human behavior is not modeled, the model will fail to capture it even if it is probabilistic/non-deterministic: abstraction/incompleteness dominates human-in-the-loop
+Dominance: If an act of human behavior is not modeled, buying more reliable sensors or training more accurate AI models will not help: abstraction/incompleteness dominates sensing/AI-in-the-loop
+Augmentation: The more accurate the sensors/AI modules, the more accurate will be the model in aligning with human state (provided it is modeled):
+
+Triggers: 
+human ignores robot instruction
+fatigue increases faster than predicted (enabling scope: specific ranges of walking speed, fatigue, controller thresholds)
+predictor estimates low success probability (enabling scope: mission deadline)
+
+Impact metrics:
+probability of completing the mission within a deadline
+expected fatigue level
+precision/recall of ML predictors
+
+Spectrum:
+duration: mission execution
+severity (consequences): mission failure, excessive fatigue, loss of trust";Heterogeneous;Human level, model level, ML predictor level;Triggers: human ignores instruction, fatigue increases. Metrics: probability of completing mission, fatigue level. Spectrum: mission execution, failure, loss of trust.;mitigation level reached with proactive adaptation;"controllable factors exist; predictor model can be trained; formal model is available; time budget is sufficient for adaptation.";the solution spans from design-time (training the predictor) to runtime adaptation.;fast trigger detection and adaptation (between 2 and 9 seconds) but low guarantees because of AI-in-the-loop.;Detection: Threshold-based trigger on predicted success probability. Representation: SHA network with stochastic transitions, MITL properties, ML regression/classification models. Analysis: Statistical Model Checking, NSGA-II multi-objective optimization, Explainable AI (PDP + LIME). Mitigation: Modify controllable factors and asynchronous formal verification.
+CS6;Fuyuki Ishikawa;Automotive;Instruction-based Autonomous Driving Systems: Given the recent advancement of Vision-Language-Action models, there is active effort on autonomous driving systems that accept user instructions such as “speed up” and “move to the left lane”.;"Uncertainty of traffic scenarios
+Occurence-Environment
+The operational design domain is essentially underspecified in the open world and may contain situations that have not been analyzed/argued/verified in the development time or that are out of distribution of the training data
+Uncertainty of user instructions
+Occurrence-Goals/Environment
+User instructions may be given that have not been analyzed/argued/verified in the development time, in terms of what instructions come at what timing
+Uncertainty of behavior by end-to-end black-box model
+Design/Behavior-Model
+The core behavior of the system is implemented by an end-to-end learning: intermediate data such as sensing results are in the latent space and it is not possible to precisely capture the behavior characteristics including performance limitations
+What driving actions are taken in a specific traffic scenario, how much they are properly interpreted and processed
+What reactions (follow or reject) are taken to a given instruction in a specific traffic scenario, how much they are properly interpreted and processed
+(others common in cyber-physical systems such as uncertainty regarding sensing and actuating)
+";"Augmentation
+Decreasing uncertainty of traffic scenarios and user interactions allow for increasing confidence in testing coverage and helping reducing uncertainty of black-box behavior";Heterogeneous;No? same level in traffic descriptions;Trigger: exceptional scenario with vague instruction. Impact: crash or undesirable traffic behavior.;Awareness: In principle, V&V activities consider combinations of scenario factors. Prevention, detectability, representation, comprehension/analyzability, mitigation: “A lot of work on the traffic scenario + behavior part, especially testing and monitoring ... We started to work on the specific aspect of user instruction ... but we have not thought of the interaction aspect yet...”;Field left blank.;Both design time and run time solutions.;Field left blank.;Field left blank.
+CS7;Nicolas Cardozo;Automotive;Driving Assistant: A driving assistant system supports autonomous driving decisions on highways by detecting and responding to repeated driving behaviors. Uncertainty arising from varying environmental and vehicle conditions makes it difficult to predict and adapt to all possible driving situations and behavior combinations.;"Uncertainty source nature [4]. 
+Occurrence uncertainty: (Environment uncertainty) Specific situations in which uncertainties interact are unannounced (or happen independently). The points in the execution in which uncertainties come about are unpredictable. 
+Behavior uncertainty: (Environment) Three interacting conditions from teh environment can take It is infeasible to foresee the agent behavior for all different situations that may take place.
+Spatio-temporal uncertainty: The behavior takes places unannounced in time and space.";"Augmentation: uncertainties highly correlated with each other (no dominance). Reduction of one of them positively affects the reduction of the other. 
+Conflict: reduction of uncertainty from one source may increase uncertainty from another one.";Heterogeneous;Same abstraction level interaction agent-environment;Triggers: proximity to vehicle. Metrics: number of adaptations, violations. Spectrum: highly likely.;Awareness: Developers are aware of the uncertainties. Prevention: Some sources can be foreseen but possibly not prevented. Detectability: detect specific situations. Representation: The uncertainty could be modeled. Comprehension/analyzability: Depending on uncertainty type. Mitigation: equip assistant with fine grained behavior.;Restricted to the enabling scope of the uncertainty. System switches to specific behavior until it returns to a safe state.;Run time.;"Requires observation of multiple execution instances to learn appropriate behavior; the assistant may underperform/fail while the solution is generated.";Detection: continuous monitoring. Representation: context-oriented programming. Analysis: unknown. Mitigation: corrective behavior is triggered as soon as uncertainty is detected.
+CS8;Marin Litoiu;IT/Cloud Infrastructure;Adaptive Parallelism for LLM Serving: Modern LLM serving systems face uncertainty from highly variable workloads and unpredictable output generation, which affect memory usage, batching decisions, and latency. These uncertainties can significantly increase tail latency and become even more complex in agent-based AI systems where multiple LLMs interact and coordinate tasks.;"S1. User input 
+Unpredictable request arrival patterns
+Prompt content
+Prompt length
+Domain distribution (reasoning versus retrieval, e.g)
+S2. LLM itself
+Stochastic decoding
+Temperature sampling
+Output length variance
+Context window size
+LLM interactions pattern (parallel, serial, combination)
+S3. Environment
+Memory bandwidth saturation
+KV-cache pressure
+GPU contention ";"Independence: no uncertainty from any source affects the the uncertainty from another source
+Dominance: one source of uncertainty dominates the other, and reducing the uncertainty from the dominant source necessarily reduces the other.
+Augmentation: uncertainties highly correlated with each other (no dominance). Reduction of one of them positively affects the reduction of the other. 
+Conflict: reduction of uncertainty from one source may increase uncertainty from another one.";Heterogeneous;Different abstraction levels;Impact described generically (trigger scope metrics spectrum) describing system performance effects.;Field left blank.;Field left blank.;Field left blank.;Field left blank.;Not provided.
+CS9;Karthik Vaidhyanathan;IT/Cloud Infrastructure;Agentic CloudOps: CloudOps is an AI-driven cloud management system that automates operational tasks such as resource provisioning, compliance management, and incident response. The increasing complexity of cloud environments introduces uncertainty in managing large-scale operations, requiring adaptive and autonomous decision-making mechanisms.;"U1. LLM plan/trajectory variability: Non-deterministic reasoning changes tool choice and sequencing.
+Nature: behavior;
+Category: model/LLM, goals. 
+ 
+U2. Instruction and policy interpretation ambiguity: Natural-language policies can be interpreted differently; constraints may be incomplete.
+Nature: belief/design; 
+Category: behaviour  
+
+U3. Tool Selection: Involves selecting a tool for a given task. Similar tool descriptions or overlapping capabilities cause mis-selection.
+Nature: belief
+Category: model, behaviour
+
+U4. Tool execution and error uncertainty: API failures, rate limits, partial failures; error messages may be non-diagnostic.
+Nature: occurrence; 
+Category: belief/environment. 
+
+U5. Memory Staleness and retrieval gaps:  Stored context may be outdated; retrieval may be incomplete (low recall) even when precise.
+Nature: belief/behavior
+Category: managed system, model
+
+U6. Varying Request Arrival Rate
+Nature: measurement/behaviour
+Category: environment
+
+U7: Context Window Limitation: The bounded context window of LLM-based agents induces partial observability of system state and prior reasoning steps
+Nature: belief/structural
+Category: state, model";"U7 -> U5: dominance (?)
+U1 -> U5: augmentation (?)
+U7 -> U5 -> U1: dominance + augmentation (?)";Heterogeneous interactions;Different abstraction levels;Impact: reliability and safety, correctness, cost, sustainability impact.;Awareness: Instrument agents with tracing of tool calls, memory queries, policy checks, and environment state snapshots. Prevention: Enforce deterministic guardrails and constrain tools to safe subsets. Detectability: using static checks, memory retrieval accuracy, and LLM-as-judge score. Representation: (blank). Comprehension/analyzability: Correlate traces with environment events and perform failure attribution. Mitigation: Fallback strategies.;Not provided.;Design-time and run-time.;Not provided.;Detection: Traces, metrics and logs that appear from the agents and the LLM scores. Representation: blank. Analysis: blank. Mitigation: not specified beyond template prompt.
+CS10;Ivana Dusparic;IT/Cloud Infrastructure;Risk-Averse Constrained Reinforcement Learning: Risk-averse constrained reinforcement learning aims to learn safe decision-making policies while minimizing catastrophic failures under uncertainty. A key challenge is balancing exploration and safety, since learning about rare events requires exploration that may increase exposure to unsafe situations, often resulting in conservative or suboptimal behavior.;"The source of uncertainty can be considered to be a mix between occurrence uncertainty and spatio-temporal uncertainty - we know that costly/catastrophic events we want to avoid can occur in the environment, but we don’t know how frequently, when or where will they occur. 
+
+Uncertainty source category can be considered to be both environment and adaptation functions (agent behaviour) - we don’t know if, when, where will environmental factor that increase cost/cause catastrophic event occur, but we also do not know when will agent behave in a risky manner (as determined by its risk level, or as required to explore the environment). ";"Uncertainty sources are in conflict; reducing uncertainty by exploring (in order to learn about frequency and/or locations of when/where uncertain events occur, further exposes the system to cost incurred by these uncertainties)";Homogeneous;;Impact described generically (template text);Field left blank.;Field left blank.;Field left blank.;Field left blank.;Field left blank.
+CS11;Genaina Rodrigues;Healthcare;The Body Sensor Network (BSN): A Body Sensor Network for Healthcare monitoring must detect medical emergencies while respecting patient privacy preferences. Reduced monitoring capability and unreliable sensor data create uncertainty, requiring the system to make safety-critical decisions under partial observability.;"Measurement uncertainty: Robot battery level
+ Quantitative, continuous, probabilistic (sensor noise, estimation error)
+Occurrence uncertainty: Unexpected mission events (e.g., timeout, failure)
+ ? Discrete event-based, stochastic
+Design uncertainty: Mission model completeness
+ ? Epistemic (lack of knowledge at design time)
+Behavior uncertainty: Robot navigation performance under dynamic conditions
+ ? Stochastic + non-deterministic
+Belief uncertainty: Robot belief about environment state
+ ? Epistemic, inferential (belief-state based)
+Spatio-temporal uncertainty: Encountering obstacle
+ ? Spatial ambiguity + temporal unpredictability";"Battery measurement × mission continuation
+ ? Dominance (battery uncertainty dominates mission feasibility)
+Obstacle uncertainty × belief uncertainty
+ ? Augmentation
+Battery optimization × exploration behavior
+ ? Conflict";Heterogeneous;"Different levels: sensor, world model, mission goal;";"Triggers: low battery, obstacle, timeout;";Awareness: Yes. Prevention: Partial (redundancy, planning margins). Detectability: Yes (runtime monitoring). Representation: Yes (probabilistic + runtime models). Comprehension: Moderate. Mitigation: Yes (replanning, safe mode).;"Sufficient sensing capability; Defined safety thresholds; Adaptive control architecture.";Both stages.;Conservative thresholds ? safety ?, mission completion ?. Frequent replanning ? robustness ?, energy cost ?.;"Detection: Runtime monitoring; Threshold-based alerts. Representation: Probabilistic models; Runtime belief states. Analysis: Sensitivity analysis; Risk estimation. Mitigation: Replanning; Safe-mode activation; Energy-aware adaptation."
+CS12;Genaina Rodrigues;Robotics;The Lab Sample Logistics (from RoboMAX missions): A hospital delivery robot transports lab samples while navigating uncertain environments with dynamic obstacles and limited battery resources. Recovery decisions under uncertainty must balance navigation success, resource constraints, and mission continuity, as failures can have significant operational and Healthcare consequences.;"Measurement uncertainty: Vital signals
+ ? Quantitative, probabilistic, noisy
+Occurrence uncertainty: Emergency occurrence
+ ? Discrete, stochastic event uncertainty
+Design uncertainty: Diagnostic model adequacy
+ ? Epistemic (incomplete medical model assumptions)
+Behavior uncertainty: Patient movement variability
+ ? Stochastic, context-dependent
+Belief uncertainty: “Has the patient fallen?”
+ ? Epistemic, inferential, second-order
+Spatio-temporal uncertainty: Location and timing of medical event
+ ? Spatial imprecision + temporal latency.";"Vital signal uncertainty × fall detection belief
+ ? Augmentation
+Signal filtering × emergency detection
+ ? Conflict
+Patient behavior × emergency occurrence
+ ? Augmentation";Heterogeneous;signal, inference, clinical goal;"BSN triggers abnormal signals; metrics mission success, delay, safety, false positives.";Awareness: Yes. Prevention: Partial (sensor redundancy). Detectability: Yes (anomaly detection). Representation: Yes (Bayesian/diagnostic models). Comprehension: Moderate. Mitigation: Yes (alarm escalation, adaptive sampling).;"Multi-sensor availability; Known patient baseline; Reliable communication.";Both stages.;High sensitivity ? fewer missed emergencies, more false alarms. Strong filtering ? fewer false positives, risk of false negatives.;"Detection: Statistical anomaly detection; Multi-sensor consistency checking. Representation: Bayesian networks; Confidence intervals. Analysis: Risk scoring; Probabilistic inference. Mitigation: Alarm escalation; Adaptive sampling; Human-in-the-loop confirmation."
+CS13;Nelly Bencomo;IT/Cloud Infrastructure;Remote Data Mirroring (RDM): It dynamically adapts network topologies to balance reliability, cost, and performance objectives. Uncertainty originating from environmental disturbances propagates across system layers, affecting monitored metrics, adaptation decisions, and ultimately the satisfaction of system goals.;"Uncertainty 1
+Environmental Disturbances
+Packet loss, network degradation, and site failures affecting communication links.
+Nature: Occurrence uncertainty
+Category: Environment
+
+Uncertainty 2
+System Metric Variability
+Fluctuation in: Number of active links (reliability)
+Bandwidth consumption (cost)
+Time to write data (performance)
+Nature: Measurement uncertainty
+Category: Managed system / Resources
+
+Uncertainty 3
+
+Adaptation Model Uncertainty
+Uncertainty in selecting topology (MST vs RT) under dynamic and partially observable conditions.
+Nature:Belief uncertainty
+Category:Adaptation functions
+
+Uncertainty 4
+Goal Satisfaction Uncertainty
+Uncertainty regarding whether reliability, cost, and performance objectives are satisfied under evolving conditions.
+Nature:Behavior uncertainty
+Category:Goals
+";"Conflict:
+This interaction is not confined to one abstraction level. Occurrence uncertainty in the environment (U1) is transformed into measurement uncertainty in system metrics (U2). Metric variability influences belief uncertainty in adaptation decisions (U3). Decision uncertainty then affects uncertainty in goal satisfaction (U4). Alongside this transformation, conflict emerges because  reducing uncertainty in one objective (e.g., improving reliability via redundancy) increases uncertainty or volatility in other objectives (e.g., cost and performance). The example therefore exhibits both cross-layer transformation and multi-objective conflict.
+";Heterogeneous;Physical, monitoring, decision, goal levels;Triggers packet loss, failures. Impact reliability cost performance violations.;Awareness: Yes. Prevention: Limited. Detectability: Yes. Representation: Yes. Comprehension/analyzability: Partial. Mitigation: Yes.;"Self-adaptive systems with structural reconfiguration; systems balancing competing non-functional requirements; contexts with failure-driven environmental uncertainty.";Design-time and Runtime.;Improving reliability through redundancy increases operational cost and may reduce performance efficiency. Aggressive adaptation improves robustness but may increase instability in other quality dimensions. Propagation effects may amplify decision volatility.;Detection: Monitoring environmental events and system metrics. Representation: Explicit modeling of configurations and quality objectives. Analysis: Multi-objective reasoning under uncertainty. Mitigation: Adaptive topology reconfiguration and policy recalibration.
+CS14;Anne Koziolek, Ralf Reussner;Automotive;Brake System Uncertainty Examples: An Automotive braking system where uncertainty in brake friction, vehicle mass, and driver behavior affects braking performance and safety analysis. Adaptive and periodic braking strategies reduce uncertainty but introduce trade-offs among safety, energy efficiency, sustainability, and ease of assurance.;"Tribological modelling is a modelling uncertainty: The models are not able to capture the detailed physical behaviour. It is a behaviour uncertainty(?), but aleatory
+Human behaviour is an environmental uncertainty. Also a behaviour uncertainty
+Weight of the car is a managed system uncertainty(?) Weight of the car is a design uncertainty. If we consider the payload added by the user, it becomes a ?";"Independence: no uncertainty from any source affects the the uncertainty from another source
+Dominance: one source of uncertainty dominates the other, and reducing the uncertainty from the dominant source necessarily reduces the other.
+Augmentation: uncertainties highly correlated with each other (no dominance). Reduction of one of them positively affects the reduction of the other. 
+Conflict: reduction of uncertainty from one source may increase uncertainty from another one.";Heterogeneous;Different physical vs high level;Impact generic template text.;Field left blank.;Field left blank.;Field left blank.;Field left blank.;Field left blank.
+CS15;Norha Villegas, Gabriel Tamura;IT/Cloud Infrastructure;Proactive AIOps Using Digital Twins: An IT/cloud infrastructure system that uses Software Twins as virtual replicas of production environments to proactively identify operational risks. AI and LLM-driven simulations and analyses evaluate potential changes before deployment, helping prevent failures and support informed decision-making.;"Uncertainty 1 
+Incompleteness of the data measured about the variables that affect the system behaviour: Missing or partial telemetry data regarding the intricate network of services, components, and environmental variables that determine IT-Sys|Env dynamics.
+Nature: Measurement uncertainty (imperfect information in data streams) and Behavior uncertainty (lack of knowledge about the environment's full state).
+Category: Environment, Managed system
+
+Uncertainty 2
+Digital Twin (DT) Model Fidelity: Drift between the digital and real twins (the system that is being operated), potentially rendering DT insights ""delusive"".
+Nature: Behavior uncertainty, Design uncertainty.
+Category: Model.
+
+Uncertainty 3
+AI/LLM Reasoning Reliability: The probabilistic nature of LLMs, which may lead to ""hallucinations"" or incorrect troubleshooting guides when generating operational failure reports and suggested adaptation plans.
+Nature: Belief uncertainty, Behavior uncertainty.
+Category: Adaptation functions, Model";"Independence: no uncertainty from any source affects the uncertainty from another source
+N/A in this case
+Dominance: one source of uncertainty dominates the other, and reducing the uncertainty from the dominant source necessarily reduces the other.
+U1 (Incompleteness) dominates U2 (Fidelity) and U3 (AI Reliability). 
+If key variables affecting behavior are not measured, the ST cannot accurately mirror the RT regardless of modeling precision and LLMs could have higher levels of hallucination; reducing the ""completeness"" uncertainty necessarily improves the fidelity of the virtual replica and could improve LLMs reliability.
+
+Augmentation: uncertainties highly correlated with each other (no dominance). Reduction of one of them positively affects the reduction of the other. 
+U1 (Incompleteness) and U2 (Fidelity) are highly correlated since the incomplete identification of variables affect the fidelity of the model, and a low-quality model could lack relevant variables.
+
+Conflict: reduction of uncertainty from one source may increase uncertainty from another one.
+N/A in this case";Heterogeneous;Low-level telemetry to high-level AI;Triggers untracked configuration. Impact DT mismatch SLA violations.;"Awareness: Achieved through active monitoring and observability of both RT and ST. Detectability: Dynamic Knowledge Hypergraphs. Representation: hyperedges to capture design-time, runtime, and simulation-time knowledge. Comprehension/Analyzability: LLMs provide natural language explanations. Mitigation: Proactive risk assessment and quantification using ST experiments to define ""Viability Zones"".";Framework structured into five functional layers: Context Management, Data Storage, Model Management and Evolution, Experimentation Layer, and Control Layer.;Both. Design-time/Pre-release and Runtime.;Benefits: Increased autonomy, reduced human cognitive load, and enhanced explainability. Costs: Significant computational resources and high time investment for experiments.;"Detection: Graph convolutional neural networks. Representation: Hierarchical DSMLs or hypergraphs. Analysis: Identifying ""Viability Zones"". Mitigation: LLM-based decision-making to orchestrate self-healing actions and generate remediation plans."
+CS16;Matteo Camilli;Automotive;Adaptive Cruise Control vs Pedestrian Protection: An Automotive system where interacting driver-assistance features—Adaptive Cruise Control and Pedestrian Protection—compete for shared vehicle actuators. Environmental conditions and timing uncertainties can lead to conflicting adaptation decisions, potentially compromising safety.;"Pedestrian protection (detects pedestrians, issues braking commands)
+Nature
+measurement uncertainty (sensor noise, reduced visibility)
+belief uncertainty (imperfect perception output)
+Category
+environment (fog, pedestrian behavior)
+model (perception model accuracy)
+resources (actuator conditions)
+environment (road conditions)
+ACC control (reacts to vehicle dynamics, keep safe distance)
+Nature
+spatio-temporal (relative distance/speed over time)
+behavior (dynamic response of the vehicle)
+Category
+model (vehicle dynamics abstractions)
+environment (road conditions, behavior of other vehicles)
+Conflict resolution logic
+Nature
+spatio-temporal (trajectory evolution)
+design (incomplete/imperfect resolution rules)
+Category
+adaptation functions (prioritization of actuator commands)";"(Possible) Dominance
+If the resolution logic depends directly on perception confidence (e.g., “if pedestrian probability > threshold”), then reducing detection uncertainty improves decision quality. Improved perception necessarily improves conflict resolution uncertainty.
+Augmentation
+Poor visibility (fog) increases detection uncertainty. Road friction (e.g., wet surface) increases braking uncertainty. Both simultaneously increase pedestrian protection uncertainty. Reducing sensor noise (better detection) improves braking timing effectiveness. Improving braking (better actuators) reduces the impact of late detection.
+Conflict
+Reducing uncertainty in pedestrian detection (lower detection threshold, more conservative braking) may increase pedestrian safety, yet increasing ACC control uncertainty (sudden braking, violation of ACC safety distance, rear-end collision).
+Aggressive PP uncertainty reduction ? ACC control uncertainty increases (safety may degrade). Aggressive ACC control uncertainty reduction ? PP uncertainty increases (pedestrian safety degrades). Tradeoff emerges.";Heterogeneous;Requirements control logic feature logic perception physical;Triggers pedestrian crossing ACC acceleration. Impact collision risk.;Awareness: foreseeable interaction. Prevention: Partial prevention is possible. Detectability: achievable with scenario-based simulation testing and runtime monitoring. Representation: Probably yes, with multi-layer uncertainty models. Comprehension/analyzability: yes, by simulation and sensitivity analysis. Mitigation: feasible at multiple levels.;Solutions applicable when perception confidence metrics are available, environmental uncertainty can be quantified, system supports adaptive control policies.;Design-time: simulation, analysis, verification. Runtime: testing, monitoring, safety enforcement.;Verification of safety invariants: Strong prevention/Reduced flexibility. Runtime monitoring: Early detection/Compute overhead. Conservative emergency braking: Reduced pedestrian risk/Traffic instability. Formal modeling: Better analyzability/Modeling effort. Search-based testing: Reveals hidden scenarios/Computational cost.;Detection: search-based testing, adversarial scenario generation, time-to-collision monitoring. Representation: risk modeling, multi-layer uncertainty models, Bayesian networks. Analysis: adversarial perturbation testing, sensitivity analysis, fault injection. Mitigation: rule-based structural mitigation, adaptive conflict resolution, runtime safety envelopes.
+CS17;Jialong Li;Automotive;Adaptive Takeover Time Allocation: A Level 3 autonomous driving system dynamically adapts takeover time based on the driver’s condition and environmental complexity. Uncertainty in human readiness and environmental predictability creates challenges in safely transferring control between the autonomous system and the human driver.;"Source 1: Human State (Human Behavior & Belief Uncertainty)
+Nature: Measurement & Belief. Sensors monitoring eye-tracking or heart rate contain noise, and the system’s internal model of ""human readiness"" is inherently imprecise.
+Category: User
+
+Source 2: Environmental Evolution (Spatio-temporal & Environment Behavior Uncertainty)
+Nature: Spatio-temporal & Behavior. The trajectories of surrounding vehicles and road conditions are dynamic, making long-term environmental prediction highly uncertain.
+Category: Environment";"Conflict: There is a fundamental trade-off. To reduce the uncertainty of ""takeover failure"" (human-side), the system prefers a longer takeover time. However, a longer window requires the system to operate/predict further into the future, which significantly increases the uncertainty regarding environmental behavior. Reducing uncertainty in one domain inevitably increases it in the other.";Heterogeneous;Different levels cognitive vs physical;"Trigger ODD boundary; metrics takeover success workload; high severity.";Field blank.;Field blank.;Field blank.;Field blank.;"Analysis: Leveraging an empirical user study to analyze and model why a specific time window was allocated. Mitigation: Dynamic boundary adjustment; Escalate the intensity of HCI via haptic feedback."
+CS18;Papadopoulos;Robotics;ROS 2 Mobile-Robot MPC Stack: A self-adaptive mobile Robotics system must maintain safety and performance under interacting uncertainties arising from imperfect physical models, dynamic environments, and software execution effects. Mitigations for one uncertainty can amplify others, creating emergent failures that cannot be predicted through isolated analyses.;"U1. Parametric uncertainty (robot dynamics + contact): uncertain mass/payload, friction, wheel radius, actuator constants, slip parameters. 
+Nature: Design uncertainty (unknown parameter values/design assumptions in the model used for decision-making). 
+Category: Model + Managed system (the abstraction/model and the physical subsystem being controlled). 
+
+U2. Timing uncertainty (compute jitter, deadline misses): variable execution time of perception (NN inference), localization, planning (graph search/sampling), and control (MPC QP solve); OS scheduling jitter; garbage collection/allocator stalls; cache effects. 
+Nature: Spatio-temporal uncertainty (uncertainty about timing of events in the system). 
+Category: Adaptation functions + Resources (the loop’s functions depend on compute scheduling and available CPU/GPU). 
+
+U3. Delay uncertainty (sensing/actuation/communication latency): sensor pipeline latency (camera exposure + ISP + inference), time synchronization error, actuator command latency, ROS 2 DDS transport delay, Wi-Fi contention. 
+Nature: Spatio-temporal uncertainty. 
+Category: Adaptation functions + Resources + sometimes Environment (network conditions). 
+
+U4. External / exogenous disturbances: pushes from carts/humans, floor bumps, wind gusts (loading dock), sudden slip, unmodeled contact forces during docking or manipulation. 
+Nature: typically Behavior uncertainty (unknown/unpredictable environment dynamics) plus discrete Occurrence uncertainty for “event-like” disturbances (e.g., a sudden shove). 
+Category: Environment + Managed system (disturbances act through the plant). 
+
+U5. Concurrency uncertainty (nondeterminism in software execution): race conditions in shared state (e.g., costmap updates vs planner reads), callback interleavings, message reordering, clock skew across nodes, inconsistent snapshots (estimate/planner/controller using different “world states”). 
+Nature: Behavior uncertainty (lack of knowledge/predictability of system behavior under concurrency). 
+Category: Adaptation functions + Managed system (software subsystem behavior). 
+
+U6. Measurement uncertainty (sensor noise + calibration drift): IMU bias, wheel odometry noise, LiDAR range noise, camera depth error, miscalibration. 
+Nature: Measurement uncertainty (aleatory variation in measurements). 
+Category: Adaptation functions (monitoring/sensing). 
+
+U7. Environment uncertainty (scene dynamics + humans): unpredictable pedestrian motion, other robots’ policies, temporary obstacles, lighting changes. 
+Nature: Behavior uncertainty (+ Occurrence for appearance/disappearance of obstacles). 
+Category: Environment. 
+
+U8. Resource uncertainty (energy + compute availability): battery state-of-charge only indirectly observable; GPU contention; thermal throttling. 
+Nature: often Occurrence (availability) + Measurement (imperfect sensing of battery/thermal state). 
+Category: Resources. 
+
+U9. Goal/utility uncertainty (objective weights + trade-offs): how to weight safety vs speed vs energy, possibly changing by stakeholder/site policy (“busy hours”). 
+Nature: Belief uncertainty (stakeholders/operators disagree/are unsure). 
+Category: Goals.
+
+U10. Model abstraction uncertainty (map/costmap discretization, simplifications): grid resolution effects, unmodeled actuator saturation, simplified contact/friction model. 
+Nature: Design uncertainty (modeling choices/abstractions). 
+Category: Model.";"(1) Augmentation (positive coupling): Timing jitter (U2) and delay uncertainty (U3) jointly increase effective “state staleness,” which amplifies the impact of parametric uncertainty (U1) and disturbances (U4) on closed-loop stability and safety margins. Conceptually: jitter ? variable sensor age ? estimator lag ? controller uses an outdated/biased state; with model mismatch and disturbances, tracking error grows superlinearly. 
+
+(2) Conflict (trade-off via mitigation actions): Reducing measurement uncertainty (U6) by adding sensors / increasing perception rate (more camera frames, bigger NN) increases compute load, worsening timing uncertainty (U2) and sometimes communication delay (U3). The “fix” for one uncertainty increases another. 
+
+(3) Dominance (one uncertainty makes others irrelevant): In degraded lighting / heavy occlusion, environment/perception-driven uncertainty (U7 + U6) can dominate: until localization/perception becomes trustworthy, tightening dynamics parameters (U1) or fine-tuning control gains yields negligible benefit compared to restoring observability or switching to a safer operating mode. ";Heterogeneous;Multiple abstraction levels physical software policy;Triggers dense environment, mode changes. Metrics collision probability, tracking error, delays.;Awareness: High. Prevention: Medium. Detectability: High. Representation: Medium–High. Comprehension/analyzability: Medium. Mitigation: Medium.;"System can measure timing/delay/concurrency health; alternative configurations; degraded safe mode; bounded resource policies.";Both design time and run time.;Benefits: higher safety assurance, fewer emergent failures, predictable degradations. Costs: extra instrumentation and modeling effort, performance loss, engineering complexity. Payoff: dense human environments and highly variable compute/network conditions.;Detection: runtime monitors. Representation: multi-fidelity runtime models. Analysis: compositional what-if checks. Mitigation: dominance-aware, augmentation-aware, and conflict-aware mitigation.
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
