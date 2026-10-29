@@ -1,19 +1,19 @@
-"""Valores reportados no manuscrito (main.pdf / .tex) usados apenas para VALIDACAO cruzada."""
+"""Values reported in the manuscript (main.pdf / .tex), used only for cross-validation (as originally printed)."""
 DOMAINS = ["Automotive", "IT/Cloud", "Robotics", "Healthcare", "Smart City", "Aerospace"]
 
-# RQ1 -- texto (Sec. 6.1.1 / 6.1.2)
+# RQ1 -- text (Sec. 6.1.1 / 6.1.2)
 RQ1_TEXT = {"dominance": 17, "conflict": 16, "augmentation": 15, "independence": 4}
 RQ1_NATURE_TEXT = {"Heterogeneous": 16, "Homogeneous/Mixed": 2}
-# RQ1 -- dados do pgfplots da Fig. 3 (MetaAnalysis.tex), ordem DOMAINS
+# RQ1 -- pgfplots data of Fig. 3 (MetaAnalysis.tex), in DOMAINS order
 RQ1_FIG3 = {
     "dominance":    dict(zip(DOMAINS, [2, 6, 1, 2, 1, 1])),
     "conflict":     dict(zip(DOMAINS, [4, 5, 2, 1, 1, 1])),
     "augmentation": dict(zip(DOMAINS, [4, 5, 2, 1, 1, 1])),
 }
-# RQ1 -- Tabela 4 (het, hom/mixed)
+# RQ1 -- Table 4 (het, hom/mixed)
 RQ1_TABLE4 = dict(zip(DOMAINS, [(5, 0), (5, 2), (2, 1), (1, 0), (1, 0), (1, 0)]))
 
-# RQ2 -- Tabela 5 (cross, same/partial) e comentario do .tex
+# RQ2 -- Table 5 (cross, same/partial) and the .tex comment
 RQ2_TABLE5 = dict(zip(DOMAINS, [(3, 2), (5, 1), (2, 1), (1, 0), (0, 1), (1, 0)]))
 RQ2_CROSS_COMMENT = ["CS1", "CS2", "CS3", "CS5", "CS8", "CS9", "CS11", "CS12", "CS13",
                      "CS14", "CS15", "CS16", "CS17", "CS18"]
@@ -25,7 +25,7 @@ RQ2_MECHANISMS = {  # Sec. 6.2.3
     "Trade-off / Conflict": ["CS1", "CS7", "CS13", "CS16", "CS17"],
 }
 
-# RQ3 -- texto e Tabela 6 (multi, generico) + Tabela 7
+# RQ3 -- text and Table 6 (multi, generic) + Table 7
 RQ3_TEXT = {"Multi-dimensional": 15, "Generic/Template": 3}
 RQ3_TABLE6 = dict(zip(DOMAINS, [(2, 3), (4, 3), (2, 1), (1, 0), (0, 1), (1, 0)]))
 RQ3_TABLE7 = {
@@ -37,7 +37,7 @@ RQ3_TABLE7 = {
     "Resource Efficiency / Cost": ["CS1", "CS3", "CS13", "CS18"],
 }
 
-# RQ4 -- Tabelas 8-12
+# RQ4 -- Tables 8-12
 RQ4_TABLE8 = {
     "Awareness": ["CS1", "CS4", "CS5", "CS6", "CS7", "CS9", "CS11", "CS12", "CS13", "CS15", "CS16", "CS18"],
     "Detectability": ["CS1", "CS2", "CS4", "CS5", "CS7", "CS9", "CS11", "CS12", "CS15", "CS16", "CS18"],

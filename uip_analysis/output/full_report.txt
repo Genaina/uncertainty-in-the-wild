@@ -1,8 +1,8 @@
 ======================================================================== 
-RQ1 - Tipos de interacao de incerteza
+RQ1 - Types of uncertainty interaction
 ========================================================================
 
-[Fig.1] Casos por dominio:
+[Fig.1] Cases per domain:
    Automotive    5  (27.8%)
    IT/Cloud      7  (38.9%)
    Robotics      3  (16.7%)
@@ -10,38 +10,32 @@ RQ1 - Tipos de interacao de incerteza
    Smart City    1  (5.6%)
    Aerospace     1  (5.6%)
 
-[6.1.1] Categorias de interacao (contagem por exemplar), 3 criterios de codificacao:
-   strict  = so evidencia explicita do contribuidor
-   lenient = + marcacoes tentativas '(?)' / '(Possible)' / '(dominant)'
-   paper   = + respostas so-template (rotulo sem conteudo) contadas como presentes
-              strict  lenient  paper  paper_text  fig3_total
-dominance          6        9     12          17        13.0
-conflict          10       10     14          16        14.0
-augmentation       9       10     14          15        14.0
-independence       1        1      4           4         NaN
+[6.1.1] Interaction categories (count per exemplar), 3 automatic coding criteria:
+   strict  = explicit contributor evidence only
+   lenient = + tentative marks '(?)' / '(Possible)' / '(dominant)'
+   paper   = + template-only answers (label without content) counted as present
+              strict  lenient  paper  paper_text(original)  fig3_total(original)
+dominance          6        9     12                    17                  13.0
+conflict          10       10     14                    16                  14.0
+augmentation       9       10     14                    15                  14.0
+independence       1        1      4                     4                   NaN
 
-   Percentuais (criterio 'paper', n=18):
-   dominance     12/18 = 66.7%
-   conflict      14/18 = 77.8%
-   augmentation  14/18 = 77.8%
-   independence   4/18 = 22.2%
-
-[MANUAL] Contagem por exemplar a partir da planilha do autor:
-   dominance     13/18 = 72.2%   (paper texto=17)
-   [DIFF] manual vs texto: dominance: paper=17  calculado=13
-   conflict      14/18 = 77.8%   (paper texto=16)
-   [DIFF] manual vs texto: conflict: paper=16  calculado=14
-   augmentation  14/18 = 77.8%   (paper texto=15)
-   [DIFF] manual vs texto: augmentation: paper=15  calculado=14
-   independence   4/18 = 22.2%   (paper texto=4)
-   [OK ] manual vs texto: independence: paper=4  calculado=4
-   Casos em que a regra automatica ('paper') difere da planilha:
+[MANUAL] Per-exemplar counts from the authors' sheet:
+   dominance     13/18 = 72.2%   (original paper text = 17)
+   [DIFF] manual vs original text: dominance: paper=17  computed=13
+   conflict      14/18 = 77.8%   (original paper text = 16)
+   [DIFF] manual vs original text: conflict: paper=16  computed=14
+   augmentation  14/18 = 77.8%   (original paper text = 15)
+   [DIFF] manual vs original text: augmentation: paper=15  computed=14
+   independence   4/18 = 22.2%   (original paper text = 4)
+   [OK ] manual vs original text: independence: paper=4  computed=4
+   Cases where the automatic rule ('paper' criterion) differs from the sheet:
      dominance     CS10
      conflict      CS1, CS15
      augmentation  CS5, CS10
      independence  CS14, CS15
 
-[Fig.3] Categorias por dominio (planilha manual):
+[Fig.3] Categories per domain (manual sheet):
             dominance  conflict  augmentation  independence
 domain                                                     
 Automotive          2         4             4             0
@@ -51,19 +45,13 @@ Healthcare          0         1             1             0
 Smart City          1         1             1             1
 Aerospace           1         1             1             0
 
-   Validacao contra dados do pgfplots da Fig. 3:
-   [DIFF] dominance/Robotics: paper=1  calculado=3
-   [DIFF] dominance/Healthcare: paper=2  calculado=0
-   (so divergencias sao listadas acima)
-   Validacao contra o TEXTO da Sec. 6.1.1:
-   [DIFF] dominance: paper=17  calculado=13
-   [DIFF] conflict: paper=16  calculado=14
-   [DIFF] augmentation: paper=15  calculado=14
-   [OK ] independence: paper=4  calculado=4
+   Validation against the ORIGINAL pgfplots data of Fig. 3 (only differences are listed):
+   [DIFF] dominance/Robotics: paper=1  computed=3
+   [DIFF] dominance/Healthcare: paper=2  computed=0
 
-   Casos com 3 categorias simultaneas: 9 | 2: 5 | 1: 4 | 0: 0
+   Cases with all 3 categories: 9 | 2: 5 | 1: 4 | 0: 0
 
-[6.1.2 / Tab.4] Natureza da interacao por dominio (calculado):
+[6.1.2 / Tab.4] Interaction nature per domain (computed):
 Uncertainty Nature  Heterogeneous  Homogeneous/Mixed
 domain                                              
 Automotive                      5                  0
@@ -75,16 +63,16 @@ Aerospace                       1                  0
    Heterogeneous: 16/18 = 88.9%
    Homogeneous/Mixed: 2/18 = 11.1%
    Homogeneous/Mixed: CS3, CS10
-   Validacao Tab.4 / texto:
-   [DIFF] Tab.4 Robotics: paper=(2, 1)  calculado=(3, 0)
-   [OK ] texto Heterogeneous: paper=16  calculado=16
-   [OK ] texto Homogeneous/Mixed: paper=2  calculado=2
-   Soma da Tab.4 no manuscrito: 15 het + 3 hom = 18 (esperado 18)
+   Validation against the ORIGINAL Table 4 / text:
+   [DIFF] Tab.4 Robotics: paper=(2, 1)  computed=(3, 0)
+   [OK ] text Heterogeneous: paper=16  computed=16
+   [OK ] text Homogeneous/Mixed: paper=2  computed=2
+   Original Table 4 sums to: 15 het + 3 hom = 18 (expected 18)
 ======================================================================== 
-RQ2 - Fontes, niveis de abstracao e mecanismos causais
+RQ2 - Sources, abstraction levels and causal mechanisms
 ========================================================================
 
-[Tab.5] Abstraction span por dominio (calculado):
+[Tab.5] Abstraction span per domain (computed):
 Abstraction Gap  Cross-layer  Same/Partial
 domain                                    
 Automotive                 3             2
@@ -96,15 +84,15 @@ Aerospace                  1             0
    Cross-layer: 14/18 = 77.8%
    Same/Partial: 4/18 = 22.2%
 
-   Validacao contra o comentario %Cross-layer / %Same do .tex:
+   Validation against the %Cross-layer / %Same comment in the .tex:
    [OK  ] cross-layer: CS1, CS2, CS3, CS5, CS8, CS9, CS11, CS12, CS13, CS14, CS15, CS16, CS17, CS18
    [OK  ] same/partial: CS4, CS6, CS7, CS10
-   Validacao contra a Tab.5 impressa:
-   [DIFF] Tab.5 IT/Cloud: paper=(5, 1)  calculado=(6, 1)
-   [DIFF] Tab.5 Robotics: paper=(2, 1)  calculado=(3, 0)
-   Soma Tab.5 impressa: 17 casos (esperado 18)
+   Validation against the ORIGINAL printed Table 5:
+   [DIFF] Tab.5 IT/Cloud: paper=(5, 1)  computed=(6, 1)
+   [DIFF] Tab.5 Robotics: paper=(2, 1)  computed=(3, 0)
+   Original Table 5 sums to 17 cases (expected 18)
 
-[6.2.2] Fontes por CATEGORIA (casos que mencionam; heuristica de palavras-chave):
+[6.2.2] Sources by CATEGORY (cases that mention it; keyword heuristic):
    Environment            17/18  CS1, CS2, CS3, CS4, CS5, CS6, CS7, CS8, CS9, CS10, CS12, CS13, CS14, CS15, CS16, CS17, CS18
    Model                  14/18  CS1, CS2, CS3, CS5, CS6, CS9, CS11, CS12, CS13, CS14, CS15, CS16, CS17, CS18
    Resources              11/18  CS1, CS2, CS3, CS4, CS9, CS12, CS13, CS14, CS15, CS16, CS18
@@ -112,7 +100,7 @@ Aerospace                  1             0
    Human                   8/18  CS3, CS5, CS6, CS8, CS11, CS14, CS17, CS18
    Goals                   5/18  CS3, CS6, CS9, CS13, CS18
 
-   Fontes por TIPO (natureza):
+   Sources by TYPE (nature):
    Behavior               16/18  CS1, CS3, CS4, CS5, CS6, CS7, CS9, CS10, CS11, CS12, CS13, CS14, CS15, CS16, CS17, CS18
    Measurement            12/18  CS1, CS2, CS3, CS5, CS9, CS11, CS12, CS13, CS15, CS16, CS17, CS18
    Occurrence             12/18  CS1, CS2, CS4, CS5, CS6, CS7, CS9, CS10, CS11, CS12, CS13, CS18
@@ -120,7 +108,7 @@ Aerospace                  1             0
    Belief                 10/18  CS2, CS3, CS9, CS11, CS12, CS13, CS15, CS16, CS17, CS18
    Design                  8/18  CS6, CS9, CS11, CS12, CS14, CS15, CS16, CS18
 
-   Pares de categorias de fonte que mais co-ocorrem no mesmo caso:
+   Pairs of source categories that most often co-occur in the same case:
    Model x Environment: 13
    Environment x Resources: 11
    Model x Resources: 10
@@ -130,23 +118,23 @@ Aerospace                  1             0
    Model x Human: 7
    Environment x Human: 7
 
-[6.2.3] Mecanismos causais: evidencia textual automatica vs casos citados no paper
-   Propagation: 2 casos com evidencia textual; paper cita 4; citados SEM evidencia textual: CS15, CS18
-   Amplification: 16 casos com evidencia textual; paper cita 4; citados SEM evidencia textual: -
-   Dominance: 12 casos com evidencia textual; paper cita 4; citados SEM evidencia textual: CS11
-   Trade-off / Conflict: 15 casos com evidencia textual; paper cita 5; citados SEM evidencia textual: -
+[6.2.3] Causal mechanisms: automatic textual evidence vs cases cited in the paper
+   Propagation: 2 cases with textual evidence; paper cites 4; cited WITHOUT textual evidence: CS15, CS18
+   Amplification: 16 cases with textual evidence; paper cites 4; cited WITHOUT textual evidence: -
+   Dominance: 12 cases with textual evidence; paper cites 4; cited WITHOUT textual evidence: CS11
+   Trade-off / Conflict: 15 cases with textual evidence; paper cites 5; cited WITHOUT textual evidence: -
 ======================================================================== 
-RQ3 - Impactos operacionais
+RQ3 - Operational impacts
 ========================================================================
 
-[6.3.1] Impacto multi-dimensional vs generico/template (regra Sec. 3.4 #4):
+[6.3.1] Multi-dimensional vs generic/template impact (Sec. 3.4 rule #4):
    Multi-dimensional: 15/18 = 83.3%
    Generic/Template: 3/18 = 16.7%
-   Generico/Template: CS8, CS10, CS14
-   [OK ] texto Multi-dimensional: paper=15  calculado=15
-   [OK ] texto Generic/Template: paper=3  calculado=3
+   Generic/Template cases: CS8, CS10, CS14
+   [OK ] text Multi-dimensional: paper=15  computed=15
+   [OK ] text Generic/Template: paper=3  computed=3
 
-[Tab.6] por dominio (calculado):
+[Tab.6] per domain (computed):
 impact_class  Multi-dimensional  Generic/Template
 domain                                           
 Automotive                    4                 1
@@ -155,156 +143,156 @@ Robotics                      3                 0
 Healthcare                    1                 0
 Smart City                    1                 0
 Aerospace                     1                 0
-   [DIFF] Tab.6 Automotive: paper=(2, 3)  calculado=(4, 1)
-   [DIFF] Tab.6 IT/Cloud: paper=(4, 3)  calculado=(5, 2)
-   [DIFF] Tab.6 Robotics: paper=(2, 1)  calculado=(3, 0)
-   [DIFF] Tab.6 Smart City: paper=(0, 1)  calculado=(1, 0)
-   Soma Tab.6 impressa: multi=10, generico=8 (texto diz 15 / 3)
+   [DIFF] Tab.6 Automotive: paper=(2, 3)  computed=(4, 1)
+   [DIFF] Tab.6 IT/Cloud: paper=(4, 3)  computed=(5, 2)
+   [DIFF] Tab.6 Robotics: paper=(2, 1)  computed=(3, 0)
+   [DIFF] Tab.6 Smart City: paper=(0, 1)  computed=(1, 0)
+   Original Table 6 sums to: multi=10, generic=8 (text says 15 / 3)
 
-[Tab.7] Dimensoes de qualidade afetadas -- palavras-chave sobre o campo Impact
-   (Tab.7 do paper e analyst-derived; aqui mostramos o que o TEXTO bruto sustenta)
-   Safety                       texto= 5  paper= 5  Jaccard=0.43
-      citados no paper sem evidencia textual: CS12, CS17
-   Performance                  texto= 8  paper= 4  Jaccard=0.50
-      citados no paper sem evidencia textual: -
-   Reliability & Availability   texto= 7  paper= 3  Jaccard=0.43
-      citados no paper sem evidencia textual: -
-   Mission Success              texto= 2  paper= 3  Jaccard=0.67
-      citados no paper sem evidencia textual: CS12
-   Human Factors & Trust        texto= 2  paper= 2  Jaccard=1.00
-      citados no paper sem evidencia textual: -
-   Resource Efficiency / Cost   texto= 3  paper= 4  Jaccard=0.40
-      citados no paper sem evidencia textual: CS3, CS18
+[Tab.7] Affected quality dimensions -- keywords over the Impact field
+   (Table 7 of the paper is analyst-derived; here we show what the RAW text supports)
+   Safety                       text= 5  paper= 5  Jaccard=0.43
+      cited in the paper without textual evidence: CS12, CS17
+   Performance                  text= 8  paper= 4  Jaccard=0.50
+      cited in the paper without textual evidence: -
+   Reliability & Availability   text= 7  paper= 3  Jaccard=0.43
+      cited in the paper without textual evidence: -
+   Mission Success              text= 2  paper= 3  Jaccard=0.67
+      cited in the paper without textual evidence: CS12
+   Human Factors & Trust        text= 2  paper= 2  Jaccard=1.00
+      cited in the paper without textual evidence: -
+   Resource Efficiency / Cost   text= 3  paper= 4  Jaccard=0.40
+      cited in the paper without textual evidence: CS3, CS18
 
-   Qualidades distintas por caso (palavras-chave): media=1.5, casos com >=2: 8/18
+   Distinct qualities per case (keywords): mean=1.5, cases with >=2: 8/18
 ======================================================================== 
 RQ4 - Solution space
 ========================================================================
 
-[Tab.8] Preparedness -- n de casos com a capacidade reportada (calculado):
+[Tab.8] Preparedness -- number of cases reporting the capability (computed):
    Mitigation      12/18 = 66.7%
    Awareness       11/18 = 61.1%
    Detectability   11/18 = 61.1%
    Representation  10/18 = 55.6%
    Understanding   10/18 = 55.6%
    Prevention       9/18 = 50.0%
-   Casos que preencheram o campo Preparedness: 17/18 (ausentes: CS17)
+   Cases that filled in the Preparedness field: 17/18 (missing: CS17)
 
-   Comparacao com a Tab.8 do paper:
+   Comparison with the ORIGINAL Table 8:
    [DIFF] Awareness (calc=11, paper=12):
           paper    = CS1, CS4, CS5, CS6, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18
-          calculado= CS1, CS4, CS6, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18
-          so no paper = CS5 | so no calculo = -
+          computed = CS1, CS4, CS6, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18
+          only in paper = CS5 | only in computed = -
    [DIFF] Detectability (calc=11, paper=11):
           paper    = CS1, CS2, CS4, CS5, CS7, CS9, CS11, CS12, CS15, CS16, CS18
-          calculado= CS1, CS2, CS4, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18
-          so no paper = CS5 | so no calculo = CS13
+          computed = CS1, CS2, CS4, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18
+          only in paper = CS5 | only in computed = CS13
    [DIFF] Representation (calc=10, paper=10):
           paper    = CS1, CS2, CS4, CS5, CS11, CS12, CS13, CS15, CS16, CS18
-          calculado= CS1, CS2, CS4, CS7, CS11, CS12, CS13, CS15, CS16, CS18
-          so no paper = CS5 | so no calculo = CS7
+          computed = CS1, CS2, CS4, CS7, CS11, CS12, CS13, CS15, CS16, CS18
+          only in paper = CS5 | only in computed = CS7
    [DIFF] Prevention (calc=9, paper=5):
           paper    = CS1, CS4, CS7, CS13, CS16
-          calculado= CS1, CS4, CS7, CS9, CS11, CS12, CS13, CS16, CS18
-          so no paper = - | so no calculo = CS9, CS11, CS12, CS18
+          computed = CS1, CS4, CS7, CS9, CS11, CS12, CS13, CS16, CS18
+          only in paper = - | only in computed = CS9, CS11, CS12, CS18
    [DIFF] Understanding (calc=10, paper=8):
           paper    = CS1, CS5, CS11, CS12, CS13, CS15, CS16, CS18
-          calculado= CS1, CS4, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18
-          so no paper = CS5 | so no calculo = CS4, CS7, CS9
+          computed = CS1, CS4, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18
+          only in paper = CS5 | only in computed = CS4, CS7, CS9
    [DIFF] Mitigation (calc=12, paper=11):
           paper    = CS1, CS2, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS18
-          calculado= CS1, CS2, CS4, CS5, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18
-          so no paper = - | so no calculo = CS9
+          computed = CS1, CS2, CS4, CS5, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18
+          only in paper = - | only in computed = CS9
 
-[Tab.12] Strategy -- casos com estrategia reportada (calculado):
+[Tab.12] Strategy -- cases reporting a strategy (computed):
    Detection       12/18
    Representation  10/18
    Analysis        10/18
    Mitigation      12/18
 
-   Comparacao com a Tab.12 do paper:
+   Comparison with the ORIGINAL Table 12:
    [DIFF] Detection (calc=12, paper=8):
           paper    = CS1, CS2, CS5, CS9, CS11, CS12, CS15, CS18
-          calculado= CS1, CS2, CS4, CS5, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18
-          so no paper = - | so no calculo = CS4, CS7, CS13, CS16
+          computed = CS1, CS2, CS4, CS5, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18
+          only in paper = - | only in computed = CS4, CS7, CS13, CS16
    [DIFF] Representation (calc=10, paper=8):
           paper    = CS1, CS2, CS5, CS11, CS12, CS13, CS15, CS16
-          calculado= CS1, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS18
-          so no paper = CS2 | so no calculo = CS4, CS7, CS18
+          computed = CS1, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS18
+          only in paper = CS2 | only in computed = CS4, CS7, CS18
    [DIFF] Analysis (calc=10, paper=8):
           paper    = CS1, CS5, CS11, CS12, CS13, CS15, CS16, CS18
-          calculado= CS1, CS2, CS5, CS11, CS12, CS13, CS15, CS16, CS17, CS18
-          so no paper = - | so no calculo = CS2, CS17
+          computed = CS1, CS2, CS5, CS11, CS12, CS13, CS15, CS16, CS17, CS18
+          only in paper = - | only in computed = CS2, CS17
    [DIFF] Mitigation (calc=12, paper=11):
           paper    = CS1, CS2, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS18
-          calculado= CS1, CS2, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS17, CS18
-          so no paper = - | so no calculo = CS17
+          computed = CS1, CS2, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS17, CS18
+          only in paper = - | only in computed = CS17
 
-[6.4.3] Lifecycle stage (campo bruto):
+[6.4.3] Lifecycle stage (raw field):
    both          11/18  CS1, CS2, CS5, CS6, CS9, CS11, CS12, CS13, CS15, CS16, CS18
    not reported   5/18  CS3, CS8, CS10, CS14, CS17
    runtime        2/18  CS4, CS7
-   Entre os 13 casos que reportam: both = 11, runtime-only = 2, design-only = 0
-   Tab.10 (atividades de ciclo de vida) e analyst-derived; contagens do paper:
-   Modeling                    4 casos
-   Analysis & Verification     5 casos
-   Monitoring                  9 casos
-   Runtime Decision-Making     6 casos
-   Mitigation & Adaptation    11 casos
+   Among the 13 cases that report it: both = 11, runtime-only = 2, design-only = 0
+   Table 10 (lifecycle activities) is analyst-derived; counts as printed in the paper:
+   Modeling                    4 cases
+   Analysis & Verification     5 cases
+   Monitoring                  9 cases
+   Runtime Decision-Making     6 cases
+   Mitigation & Adaptation    11 cases
 
 
-[Tab.9] Applicability conditions (cross-check por palavras-chave; referencia = analise manual do paper):
+[Tab.9] Applicability conditions (keyword cross-check; reference = the paper's manual analysis):
    [DIFF] Architectural Assumptions (calc=4, paper=4):
           paper    = CS1, CS11, CS13, CS15
-          calculado= CS1, CS12, CS13, CS15
-          so no paper = CS11 | so no calculo = CS12
+          computed = CS1, CS12, CS13, CS15
+          only in paper = CS11 | only in computed = CS12
    [DIFF] Infrastructure Requirements (calc=4, paper=3):
           paper    = CS2, CS11, CS12
-          calculado= CS2, CS11, CS12, CS15
-          so no paper = - | so no calculo = CS15
+          computed = CS2, CS11, CS12, CS15
+          only in paper = - | only in computed = CS15
    [DIFF] Observability Requirements (calc=4, paper=4):
           paper    = CS11, CS12, CS16, CS18
-          calculado= CS4, CS12, CS16, CS18
-          so no paper = CS11 | so no calculo = CS4
+          computed = CS4, CS12, CS16, CS18
+          only in paper = CS11 | only in computed = CS4
    [DIFF] Model Availability (calc=2, paper=2):
           paper    = CS5, CS16
-          calculado= CS5, CS15
-          so no paper = CS16 | so no calculo = CS15
+          computed = CS5, CS15
+          only in paper = CS16 | only in computed = CS15
    [DIFF] Adaptation Capability (calc=7, paper=4):
           paper    = CS5, CS13, CS16, CS18
-          calculado= CS4, CS5, CS7, CS12, CS13, CS16, CS18
-          so no paper = - | so no calculo = CS4, CS7, CS12
+          computed = CS4, CS5, CS7, CS12, CS13, CS16, CS18
+          only in paper = - | only in computed = CS4, CS7, CS12
    [OK  ] Operational Scope (calc=3, paper=3): CS4, CS7, CS13
-   Casos com campo Applicability preenchido: 16/18
+   Cases with the Applicability field filled in: 16/18
 
 
-[Tab.11] Trade-offs (cross-check por palavras-chave):
+[Tab.11] Trade-offs (keyword cross-check):
    [DIFF] Robustness vs Resource Consumption (calc=8, paper=3):
           paper    = CS1, CS2, CS13
-          calculado= CS1, CS2, CS4, CS12, CS13, CS15, CS16, CS18
-          so no paper = - | so no calculo = CS4, CS12, CS15, CS16, CS18
+          computed = CS1, CS2, CS4, CS12, CS13, CS15, CS16, CS18
+          only in paper = - | only in computed = CS4, CS12, CS15, CS16, CS18
    [DIFF] Safety vs Performance (calc=3, paper=3):
           paper    = CS11, CS12, CS16
-          calculado= CS12, CS16, CS18
-          so no paper = CS11 | so no calculo = CS18
+          computed = CS12, CS16, CS18
+          only in paper = CS11 | only in computed = CS18
    [DIFF] Responsiveness vs Stability (calc=5, paper=2):
           paper    = CS1, CS16
-          calculado= CS1, CS2, CS12, CS13, CS16
-          so no paper = - | so no calculo = CS2, CS12, CS13
+          computed = CS1, CS2, CS12, CS13, CS16
+          only in paper = - | only in computed = CS2, CS12, CS13
    [DIFF] Autonomy vs Assurance (calc=3, paper=2):
           paper    = CS5, CS15
-          calculado= CS5, CS15, CS18
-          so no paper = - | so no calculo = CS18
+          computed = CS5, CS15, CS18
+          only in paper = - | only in computed = CS18
    [DIFF] Sensitivity vs False Positives (calc=1, paper=1):
           paper    = CS12
-          calculado= CS11
-          so no paper = CS12 | so no calculo = CS11
-   Casos com campo Trade-offs preenchido: 16/18 (sem preenchimento: CS9, CS17)
+          computed = CS11
+          only in paper = CS12 | only in computed = CS11
+   Cases with the Trade-offs field filled in: 16/18 (not filled in: CS9, CS17)
 
-[Cobertura] Campos do solution-space preenchidos por caso:
+[Coverage] Solution-space fields filled in per case:
 n_fields
 1     1
 3     5
 4     1
 5    11
-   Casos com 0-1 campos: CS17
+   Cases with 0-1 fields: CS17

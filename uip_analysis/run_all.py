@@ -1,4 +1,4 @@
-"""Executa RQ1-RQ4 em sequencia. Uso: python run_all.py  (saidas em ./output)"""
+"""Runs RQ1-RQ4 in sequence. Usage: python run_all.py  (outputs in ./output)"""
 import sys, io, contextlib
 import rq1, rq2, rq3, rq4
 from common import load_raw, OUT

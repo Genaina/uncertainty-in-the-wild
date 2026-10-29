@@ -1,14 +1,14 @@
-"""Codificacao automatica (baseada em regras) dos campos brutos do CSV.
+"""Automatic (rule-based) coding of the raw CSV fields.
 
-Cada funcao recebe o DataFrame bruto (indexado por ID) e devolve um DataFrame/Series
-codificado. As regras seguem a Secao 3.4 do paper (Operational Coding Rules) e sao
-deliberadamente conservadoras: evidencia ausente NAO e tratada como evidencia negativa.
+Each function takes the raw DataFrame (indexed by ID) and returns a coded
+DataFrame/Series. The rules follow Section 3.4 of the paper (Operational Coding Rules) and are
+deliberately conservative: missing evidence is NOT treated as negative evidence.
 """
 import re
 import pandas as pd
 from common import is_blank
 
-# ----------------------------------------------------------------- interacoes
+# ----------------------------------------------------------------- interactions
 CATS = ["dominance", "conflict", "augmentation", "independence"]
 STEMS = {
     "dominance": r"dominan\w*|dominat\w*",
@@ -34,12 +34,12 @@ def _strip_template(text: str) -> str:
 
 
 def code_interactions(raw: pd.DataFrame) -> pd.DataFrame:
-    """Retorna, por caso e categoria, um de: 'explicit', 'tentative', 'template', ''.
+    """Returns, per case and category, one of: 'explicit', 'tentative', 'template', ''.
 
-    - explicit  : a categoria aparece seguida de conteudo especifico do caso
-    - tentative : marcada com '(?)', '(Possible)' ou usada so como adjetivo, ex. 'Conflict (dominant)'
-    - template  : o contribuidor so devolveu as definicoes do template (rotulo sem conteudo)
-    - ''        : sem evidencia (ou marcada 'N/A in this case')
+    - explicit  : the category appears followed by case-specific content
+    - tentative : marked with '(?)', '(Possible)' or used only as an adjective, e.g. 'Conflict (dominant)'
+    - template  : the contributor only returned the template definitions (label without content)
+    - ''        : no evidence (or marked 'N/A in this case')
     """
     label_re = re.compile(r"(?:\(\d\)\s*)?(?:independence|dominance|augmentation|conflict)\b", re.I)
     rank = {"": 0, "template": 0, "tentative": 1, "explicit": 2}
@@ -56,7 +56,7 @@ def code_interactions(raw: pd.DataFrame) -> pd.DataFrame:
                 if re.match(r"n/?a\b", tail, re.I):
                     continue
                 if tail == "" or label_re.match(tail):
-                    # rotulo vazio; excecao: '<A> x <B> ? Label' (conteudo vem ANTES do rotulo)
+                    # empty label; exception: '<A> x <B> ? Label' (content comes BEFORE the label)
                     if tail == "" and "\u00d7" in before + t[max(0, m.start() - 80):m.start()]:
                         state = "explicit"
                     elif re.match(r"^\s*\(\?\)", window):
@@ -70,7 +70,7 @@ def code_interactions(raw: pd.DataFrame) -> pd.DataFrame:
                     state = "tentative" if tentative else "explicit"
                 if rank[state] > rank[res[cat]]:
                     res[cat] = state
-        if not any(res[c] for c in CATS):          # so rotulos vazios -> resposta de template
+        if not any(res[c] for c in CATS):          # only empty labels -> template-only answer
             for c in empty:
                 res[c] = "template"
         rows[cid] = res
@@ -84,7 +84,7 @@ def interaction_flags(coded: pd.DataFrame, mode: str) -> pd.DataFrame:
     return coded.isin(ok)
 
 
-# ------------------------------------------------------------- heterogeneidade
+# ------------------------------------------------------------- heterogeneity
 def code_nature(raw: pd.DataFrame) -> pd.Series:
     def f(t):
         t = str(t).lower()
@@ -98,10 +98,10 @@ def code_nature(raw: pd.DataFrame) -> pd.Series:
 
 # ---------------------------------------------------------------------- span
 def code_abstraction(raw: pd.DataFrame) -> pd.Series:
-    """Cross-layer vs Same/Partial (Sec. 3.4, regra 3)."""
+    """Cross-layer vs Same/Partial (Sec. 3.4, rule 3)."""
     def f(t):
         if is_blank(t):
-            return "Same/Partial"          # CS10: sem campo -> mesmo nivel (ver %comentario do .tex)
+            return "Same/Partial"          # CS10: empty field -> same level (see the % comment in the .tex)
         s = str(t).lower()
         if re.search(r"\bsame\b", s):
             return "Same/Partial"
@@ -109,7 +109,7 @@ def code_abstraction(raw: pd.DataFrame) -> pd.Series:
     return raw["Abstraction Gap"].map(f)
 
 
-# -------------------------------------------------------------------- impacto
+# --------------------------------------------------------------------- impact
 IMPACT_DIMS = {
     "Safety": r"collision|safety|false (alarm|positive)|emergenc|catastroph|crash",
     "Performance": r"latenc|response time|throughput|replanning|tracking|performance|overhead|delay|number of adaptations|duration",
@@ -133,7 +133,7 @@ def code_impact(raw: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
-# --------------------------------------------------------- fontes de incerteza
+# --------------------------------------------------------- uncertainty sources
 SOURCE_TYPES = {
     "Measurement": r"measurement|measure", "Occurrence": r"occurr?ence",
     "Design": r"design", "Behavior": r"behaviou?r", "Belief": r"belief|epistemic",
@@ -156,7 +156,7 @@ def code_sources(raw: pd.DataFrame):
     return pd.DataFrame(types).T, pd.DataFrame(cats).T
 
 
-# ------------------------------------------------------------- mecanismos RQ2
+# ------------------------------------------------------------- RQ2 mechanisms
 MECHANISMS = {
     "Propagation": r"propagat|transform|cascad|flows? into|affects? .*(decision|goal)",
     "Amplification": r"amplif|reinforc|jointly increase|correlated|augment",
@@ -175,7 +175,7 @@ def code_mechanisms(raw: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows).T
 
 
-# ------------------------------------------------------------- preparedness RQ4
+# ------------------------------------------------------------- RQ4 preparedness
 PREP_LABELS = {
     "Awareness": r"awareness", "Prevention": r"prevention",
     "Detectability": r"detect(?:ability|ion)", "Representation": r"representation",
@@ -198,10 +198,10 @@ def _prep_segments(text: str):
 
 
 def code_preparedness(raw: pd.DataFrame) -> pd.DataFrame:
-    """True se o contribuidor reporta a capacidade (conteudo nao-vazio e nao-negativo).
+    """True if the contributor reports the capability (non-empty, non-negative content).
 
-    'Limited'/'Partial' contam como presentes (capacidade parcial, como na Tabela 8).
-    Texto sem rotulos (CS5: 'mitigation level reached ...') -> so Mitigation.
+    'Limited'/'Partial' count as present (partial capability, as in Table 8).
+    Text without labels (CS5: 'mitigation level reached ...') -> Mitigation only.
     """
     neg = re.compile(NEGATIVE + r"|have not|not thought|not yet", re.I)
     rows = {}

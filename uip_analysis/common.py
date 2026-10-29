@@ -1,18 +1,18 @@
-"""Utilidades comuns: carga do CSV bruto, parsing de campos e codificacao automatica.
+"""Shared utilities: raw CSV loading, field parsing helpers and comparison helpers.
 
-O CSV bruto usa ';' como separador e codificacao cp1252. Ha linhas vazias no final.
+The raw CSV uses ';' as separator and cp1252 encoding. It has empty rows at the end.
 """
 import re
 from pathlib import Path
 import pandas as pd
 
 BASE = Path(__file__).parent
-RAW = BASE / "data" / "artifacts_case_studies_raw_corrected.csv"  # CS11/CS12 corrigidos (ver README)
+RAW = BASE / "data" / "artifacts_case_studies_raw_corrected.csv"  # CS11/CS12 corrected (see README)
 OUT = BASE / "output"
 OUT.mkdir(exist_ok=True)
 
-# Dominio PRIMARIO conforme Tabela 3 / Figura 1 do paper (o CSV bruto tem CS5 como
-# 'Healthcare/Robotics'; o paper o classifica como Robotics).
+# PRIMARY domain as in Table 3 / Figure 1 of the paper (the raw CSV has CS5 as
+# 'Healthcare/Robotics'; the paper classifies it as Robotics).
 PAPER_DOMAIN = {
     "CS1": "IT/Cloud", "CS2": "Aerospace", "CS3": "IT/Cloud", "CS4": "Smart City",
     "CS5": "Robotics", "CS6": "Automotive", "CS7": "Automotive", "CS8": "IT/Cloud",
@@ -21,7 +21,7 @@ PAPER_DOMAIN = {
     "CS17": "Automotive", "CS18": "Robotics",
 }
 
-TEMPLATE_DEFS = [  # frases-modelo copiadas do template de coleta
+TEMPLATE_DEFS = [  # template sentences copied from the collection template
     r"no uncertainty from any source affects the+ ?(?:uncertainty from )?(?:another|any other)? ?source",
     r"one source of uncertainty dominates the other, and reducing[^.]*\.",
     r"uncertainties highly correlated with each other \(no dominance\)\.?[^.]*\.",
@@ -56,11 +56,11 @@ def pct(n, d):
 
 def report_check(label, paper_value, computed_value):
     flag = "OK " if paper_value == computed_value else "DIFF"
-    print(f"   [{flag}] {label}: paper={paper_value}  calculado={computed_value}")
+    print(f"   [{flag}] {label}: paper={paper_value}  computed={computed_value}")
 
 
 def by_domain(flags: pd.Series, domain: pd.Series, domains):
-    """Conta casos com flag=True por dominio, na ordem 'domains'."""
+    """Count cases with flag=True per domain, in the order given by 'domains'."""
     s = flags.groupby(domain).sum().reindex(domains).fillna(0).astype(int)
     return s
 
@@ -71,5 +71,5 @@ def compare_sets(name, paper_ids, computed_ids):
         print(f"   [OK  ] {name}: {cases_to_str(c)}")
     else:
         print(f"   [DIFF] {name}:\n          paper    = {cases_to_str(p)}\n"
-              f"          calculado= {cases_to_str(c)}\n"
-              f"          so no paper = {cases_to_str(p - c) or '-'} | so no calculo = {cases_to_str(c - p) or '-'}")
+              f"          computed = {cases_to_str(c)}\n"
+              f"          only in paper = {cases_to_str(p - c) or '-'} | only in computed = {cases_to_str(c - p) or '-'}")
