@@ -33,6 +33,5 @@ If the shared counting sheet (UC-Conflict, …) still has CS11/CS12 as in the or
 - CS12 is **not** added under "Responsiveness vs Stability" (Tab. 11): it only concerns energy cost.
 - Impact lists in the .tex comments corrected: generic = CS8, CS10, CS14.
 
-## 4. Pending
+## 4. Pending to be discussed with Raffaela and Javier
 - Ask the contributors of CS4, CS7, CS8 and CS14 for the interaction text (CS8 and CS14 are also generic on impact and blank on the solution space), then replace the template-only codes with evidence-backed ones and delete the disclosure sentence.
-- Two files not reviewed per instructions: `LLMAnalysis.tex` and `Catalog-Javi.tex`.
