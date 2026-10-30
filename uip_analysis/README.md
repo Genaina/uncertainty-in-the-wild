@@ -10,8 +10,6 @@ Requirements: Python 3.9 or newer and `git`. The steps use a virtual environment
 `externally-managed-environment` error raised by system-managed Python installations (e.g., Homebrew).
 
 ```bash
-git clone https://github.com/Genaina/uncertainty-in-the-wild.git
-cd uncertainty-in-the-wild/uip_analysis
 
 python3 -m venv .venv                          # create the environment (once)
 source .venv/bin/activate                      # activate it (Windows PowerShell: .venv\Scripts\Activate.ps1)
