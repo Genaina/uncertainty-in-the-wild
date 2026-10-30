@@ -28,12 +28,12 @@ def run(raw=None):
     print("\n   Validation against the %Cross-layer / %Same comment in the .tex:")
     compare_sets("cross-layer", RQ2_CROSS_COMMENT, cross)
     compare_sets("same/partial", RQ2_SAME_COMMENT, same)
-    print("   Validation against the ORIGINAL printed Table 5:")
+    print("   Validation against the printed Table 5:")
     for d in DOMAINS:
         c = (int(tab.loc[d, "Cross-layer"]), int(tab.loc[d, "Same/Partial"]))
         if c != RQ2_TABLE5[d]:
             report_check(f"Tab.5 {d}", RQ2_TABLE5[d], c)
-    print(f"   Original Table 5 sums to {sum(a + b for a, b in RQ2_TABLE5.values())} cases (expected 18)")
+    print(f"   Table 5 sums to {sum(a + b for a, b in RQ2_TABLE5.values())} cases (expected 18)")
 
     # ---- 6.2.2 sources (type and category) -- keyword heuristic
     types, cats = code_sources(raw)

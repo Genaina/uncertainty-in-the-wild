@@ -1,5 +1,5 @@
 ,dominance,conflict,augmentation,independence
-CS1,tentative,explicit,explicit,
+CS1,,explicit,explicit,
 CS2,explicit,explicit,explicit,
 CS3,explicit,explicit,,explicit
 CS4,template,template,template,template

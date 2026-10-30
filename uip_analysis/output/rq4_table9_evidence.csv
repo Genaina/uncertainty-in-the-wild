@@ -1,0 +1,21 @@
+dimension,case,supported,evidence_excerpt
+Architectural Assumptions,CS1,True,"Systems with no natural central coordinator nor connectivity guarantee, forcing collective decisio"
+Architectural Assumptions,CS12,True,afety thresholds; Adaptive control architecture.
+Architectural Assumptions,CS13,True,f-adaptive systems with structural reconfiguration; systems balancing competing non-functional requiremen
+Architectural Assumptions,CS15,True,"rk structured into five functional layers: Context Management, Data Storage, Model Management an"
+Infrastructure Requirements,CS2,True,The shared CAN bus must remain physically intact to allow the PDPU to com
+Infrastructure Requirements,CS11,True,; Known patient baseline; Reliable communication.
+Infrastructure Requirements,CS12,True,Sufficient sensing capability; Defined safety thresholds; Adaptive control architect
+Observability Requirements,CS11,True,Multi-sensor availability; Known patient baseline; Reliable communi
+Observability Requirements,CS12,True,Sufficient sensing capability; Defined safety thresholds; Adaptive contro
+Observability Requirements,CS16,True,"lutions applicable when perception confidence metrics are available, environmental uncertainty can b"
+Observability Requirements,CS18,True,System can measure timing/delay/concurrency health; alternative configura
+Model Availability,CS5,True,trollable factors exist; predictor model can be trained; formal model is available; time budget
+Model Availability,CS16,True,", environmental uncertainty can be quantified, system supports adaptive control policies."
+Adaptation Capability,CS5,True,controllable factors exist; predictor model can be trained; formal
+Adaptation Capability,CS13,True,Self-adaptive systems with structural reconfiguration; systems balan
+Adaptation Capability,CS16,True,"can be quantified, system supports adaptive control policies."
+Adaptation Capability,CS18,True,e timing/delay/concurrency health; alternative configurations; degraded safe mode; bounded resource policies.
+Operational Scope,CS4,True,Applicability restricted to the enabling scope of the uncertainty. So long a sp
+Operational Scope,CS7,True,Restricted to the enabling scope of the uncertainty. System switc
+Operational Scope,CS13,True,eting non-functional requirements; contexts with failure-driven environmental uncertainty.

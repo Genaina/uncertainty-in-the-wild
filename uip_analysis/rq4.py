@@ -13,9 +13,10 @@ def _compare_table(title, computed: pd.DataFrame, paper: dict, n, rename=None):
         col = (rename or {}).get(dim, dim)
         got = set(computed.index[computed[col]]) if col in computed else set()
         pap = set(paper[dim])
-        j = len(got & pap) / max(1, len(got | pap))
-        rows.append({"dimension": dim, "n_calc": len(got), "n_paper": len(pap), "jaccard": round(j, 2),
-                     "calc_cases": cases_to_str(got), "paper_cases": cases_to_str(pap)})
+        cov = len(got & pap) / max(1, len(pap))      # share of the cited cases that the parsed text supports
+        rows.append({"dimension": dim, "n_cited_in_paper": len(pap), "n_parsed_from_text": len(got),
+                     "coverage": round(cov, 2), "cited_cases": cases_to_str(pap), "parsed_cases": cases_to_str(got),
+                     "cited_not_parsed": cases_to_str(pap - got), "parsed_not_cited": cases_to_str(got - pap)})
         compare_sets(f"{dim} (calc={len(got)}, paper={len(pap)})", pap, got)
     return pd.DataFrame(rows)
 
@@ -34,7 +35,7 @@ def run(raw=None):
     reported = raw["Level of Preparedness"].map(lambda t: isinstance(t, str) and "blank" not in t.lower()[:12])
     print(f"   Cases that filled in the Preparedness field: {int(reported.sum())}/{n} "
           f"(missing: {cases_to_str(raw.index[~reported])})")
-    t8 = _compare_table("   Comparison with the ORIGINAL Table 8:", prep, RQ4_TABLE8, n)
+    t8 = _compare_table("   Comparison with the Table 8:", prep, RQ4_TABLE8, n)
     t8.to_csv(OUT / "rq4_table8_comparison.csv", index=False)
 
     # ---- 6.4.5 strategy (Tab.12)
@@ -43,7 +44,7 @@ def run(raw=None):
     print("\n[Tab.12] Strategy -- cases reporting a strategy (computed):")
     for k, v in strat.sum().items():
         print(f"   {k:<15} {v:>2}/{n}")
-    t12 = _compare_table("   Comparison with the ORIGINAL Table 12:", strat, RQ4_TABLE12, n)
+    t12 = _compare_table("   Comparison with the Table 12:", strat, RQ4_TABLE12, n)
     t12.to_csv(OUT / "rq4_table12_comparison.csv", index=False)
 
     # ---- 6.4.3 lifecycle

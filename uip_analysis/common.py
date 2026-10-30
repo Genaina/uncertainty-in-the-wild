@@ -7,12 +7,12 @@ from pathlib import Path
 import pandas as pd
 
 BASE = Path(__file__).parent
-RAW = BASE / "data" / "artifacts_case_studies_raw_corrected.csv"  # CS11/CS12 corrected (see README)
+RAW = BASE / "data" / "artifacts_case_studies_raw.csv"
 OUT = BASE / "output"
 OUT.mkdir(exist_ok=True)
 
-# PRIMARY domain as in Table 3 / Figure 1 of the paper (the raw CSV has CS5 as
-# 'Healthcare/Robotics'; the paper classifies it as Robotics).
+# PRIMARY domain of each exemplar, as in Table 3 / Figure 1 of the paper. CS5 is tagged
+# 'Healthcare/Robotics' in the CSV; its primary domain is Robotics (see README).
 PAPER_DOMAIN = {
     "CS1": "IT/Cloud", "CS2": "Aerospace", "CS3": "IT/Cloud", "CS4": "Smart City",
     "CS5": "Robotics", "CS6": "Automotive", "CS7": "Automotive", "CS8": "IT/Cloud",

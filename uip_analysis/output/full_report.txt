@@ -10,34 +10,103 @@ RQ1 - Types of uncertainty interaction
    Smart City    1  (5.6%)
    Aerospace     1  (5.6%)
 
-[6.1.1] Interaction categories (count per exemplar), 3 automatic coding criteria:
+[6.1.1] Interaction categories (count per exemplar), 3 automatic coding criteria (cross-check only; the reference is the manual coding below):
    strict  = explicit contributor evidence only
-   lenient = + tentative marks '(?)' / '(Possible)' / '(dominant)'
+   lenient = + tentative marks '(?)' / '(Possible)'
    paper   = + template-only answers (label without content) counted as present
-              strict  lenient  paper  paper_text(original)  fig3_total(original)
-dominance          6        9     12                    17                  13.0
-conflict          10       10     14                    16                  14.0
-augmentation       9       10     14                    15                  14.0
-independence       1        1      4                     4                   NaN
+              strict  lenient  paper
+dominance          6        8     11
+conflict          10       10     14
+augmentation       9       10     14
+independence       1        1      4
 
-[MANUAL] Per-exemplar counts from the authors' sheet (n = 18; evidence-checked for CS1, CS5, CS10, CS15).
+[MANUAL] Per-exemplar counts from the manual coding (n = 18).
    Template-only answers kept in the counts (flagged, no case-specific text): CS4, CS7, CS8, CS14
-   dominance     11/18 = 61.1%   (original paper text = 17/18)
-   [DIFF] manual vs original text: dominance: paper=17  computed=11
-   conflict      14/18 = 77.8%   (original paper text = 16/18)
-   [DIFF] manual vs original text: conflict: paper=16  computed=14
-   augmentation  14/18 = 77.8%   (original paper text = 15/18)
-   [DIFF] manual vs original text: augmentation: paper=15  computed=14
-   independence   4/18 = 22.2%   (original paper text = 4/18)
-   [OK ] manual vs original text: independence: paper=4  computed=4
+   dominance     11/18 = 61.1%   (manuscript text = 11/18)
+   [OK ] manual vs manuscript text: dominance: paper=11  computed=11
+   conflict      14/18 = 77.8%   (manuscript text = 14/18)
+   [OK ] manual vs manuscript text: conflict: paper=14  computed=14
+   augmentation  14/18 = 77.8%   (manuscript text = 14/18)
+   [OK ] manual vs manuscript text: augmentation: paper=14  computed=14
+   independence   4/18 = 22.2%   (manuscript text = 4/18)
+   [OK ] manual vs manuscript text: independence: paper=4  computed=4
    Sensitivity -- excluding the template-only cases (n = 14): dominance 8/14, conflict 10/14, augmentation 10/14, independence 1/14
    Cases where the automatic rule ('paper' criterion) differs from the sheet:
-     dominance     CS1
+     dominance     -
      conflict      -
      augmentation  -
      independence  -
 
-[Fig.3] Categories per domain (evidence-checked sheet):
+[EVIDENCE] How each manual count is supported by the verbatim text
+   (layers: explicit text -> tentative mark -> template-only; the manuscript number is their union)
+
+   DOMINANCE  11/18 counted: CS2, CS3, CS4, CS5, CS8, CS9, CS12, CS14, CS15, CS16, CS18
+     explicit text   ( 6): CS2, CS3, CS5, CS12, CS15, CS18
+     tentative mark  ( 2): CS9, CS16
+     template-only   ( 3): CS4, CS8, CS14
+       CS2   [explicit text] Dominance: U1 completely dominates U4; the uncertainty of the redundant master activation delay is strictly ir...
+       CS3   [explicit text] Dominance: U1 dominates U2; U4 and U2 dominate U3; U5 and U1 dominate U8; U7 and U2 dominate U6. Augmentation:...
+       CS4   [template-only] (template definition only; no case-specific text)
+       CS5   [explicit text] Dominance: If an act of human behavior is not modeled, the model will fail to capture it even if it is probabi...
+       CS8   [template-only] (template definition only; no case-specific text)
+       CS9   [tentative mark] dominance (?) U1 -> U5: augmentation (?) U7 -> U5 -> U1: dominance + augmentation (?)
+       CS12  [explicit text] Battery measurement × mission continuation -> Dominance
+       CS14  [template-only] (template definition only; no case-specific text)
+       CS15  [explicit text] Dominance: U1 (Incompleteness) dominates U2 (Fidelity) and U3 (AI Reliability). If key variables affecting beh...
+       CS16  [tentative mark] Dominance If the resolution logic depends directly on perception confidence (e.g., “if pedestrian probability ...
+       CS18  [explicit text] Dominance (one uncertainty makes others irrelevant): In degraded lighting / heavy occlusion, environment/perce...
+
+   CONFLICT  14/18 counted: CS1, CS2, CS3, CS4, CS7, CS8, CS10, CS11, CS12, CS13, CS14, CS16, CS17, CS18
+     explicit text   (10): CS1, CS2, CS3, CS10, CS11, CS12, CS13, CS16, CS17, CS18
+     tentative mark  ( 0): -
+     template-only   ( 4): CS4, CS7, CS8, CS14
+       CS1   [explicit text] Conflict (dominant): improving responsiveness (more frequent monitoring/replanning, aggressive leadership chan...
+       CS2   [explicit text] Conflict: Mitigating U3 (FDIR Response Latency) requires assigning higher CPU scheduling priority to the activ...
+       CS3   [explicit text] Conflict: Reducing U7 by having the system try tactics to measure their latency, increases U4, U3, U6.
+       CS4   [template-only] (template definition only; no case-specific text)
+       CS7   [template-only] (template definition only; no case-specific text)
+       CS8   [template-only] (template definition only; no case-specific text)
+       CS10  [explicit text] conflict; reducing uncertainty by exploring (in order to learn about frequency and/or locations of when/where ...
+       CS11  [explicit text] Signal filtering × emergency detection -> Conflict
+       CS12  [explicit text] Battery optimization × exploration behavior -> Conflict
+       CS13  [explicit text] Conflict: This interaction is not confined to one abstraction level. Occurrence uncertainty in the environment...
+       CS14  [template-only] (template definition only; no case-specific text)
+       CS16  [explicit text] conflict resolution uncertainty. Augmentation Poor visibility (fog) increases detection uncertainty. Road fric...
+       CS17  [explicit text] Conflict: There is a fundamental trade-off. To reduce the uncertainty of "takeover failure" (human-side), the ...
+       CS18  [explicit text] Conflict (trade-off via mitigation actions): Reducing measurement uncertainty (U6) by adding sensors / increas...
+
+   AUGMENTATION  14/18 counted: CS1, CS2, CS4, CS5, CS6, CS7, CS8, CS9, CS11, CS12, CS14, CS15, CS16, CS18
+     explicit text   ( 9): CS1, CS2, CS5, CS6, CS11, CS12, CS15, CS16, CS18
+     tentative mark  ( 1): CS9
+     template-only   ( 4): CS4, CS7, CS8, CS14
+       CS1   [explicit text] Augmentation: improving responsiveness can decrease instability/overhead under assumptions of no network segme...
+       CS2   [explicit text] Augmentation: U1 highly augments U2; a severe hardware anomaly will intrinsically degrade the reliability of t...
+       CS4   [template-only] (template definition only; no case-specific text)
+       CS5   [explicit text] Augmentation: The more accurate the sensors/AI modules, the more accurate will be the model in aligning with h...
+       CS6   [explicit text] Augmentation Decreasing uncertainty of traffic scenarios and user interactions allow for increasing confidence...
+       CS7   [template-only] (template definition only; no case-specific text)
+       CS8   [template-only] (template definition only; no case-specific text)
+       CS9   [tentative mark] augmentation (?) U7 -> U5 -> U1: dominance + augmentation (?)
+       CS11  [explicit text] Vital signal uncertainty × fall detection belief -> Augmentation
+       CS12  [explicit text] Obstacle uncertainty × belief uncertainty -> Augmentation
+       CS14  [template-only] (template definition only; no case-specific text)
+       CS15  [explicit text] Augmentation: U1 (Incompleteness) and U2 (Fidelity) are highly correlated since the incomplete identification ...
+       CS16  [explicit text] Augmentation Poor visibility (fog) increases detection uncertainty. Road friction (e.g., wet surface) increase...
+       CS18  [explicit text] Augmentation (positive coupling): Timing jitter (U2) and delay uncertainty (U3) jointly increase effective “st...
+
+   INDEPENDENCE  4/18 counted: CS3, CS4, CS8, CS14
+     explicit text   ( 1): CS3
+     tentative mark  ( 0): -
+     template-only   ( 3): CS4, CS8, CS14
+       CS3   [explicit text] Independence: From the point of view of uncertainty interaction, U1 is independent from the rest. However, it ...
+       CS4   [template-only] (template definition only; no case-specific text)
+       CS8   [template-only] (template definition only; no case-specific text)
+       CS14  [template-only] (template definition only; no case-specific text)
+
+   Manual coding fully explained by the text (explicit + tentative + template-only): True
+   Full excerpts: output/rq1_interaction_evidence.csv
+
+[Fig.3] Categories per domain (manual coding):
             dominance  conflict  augmentation  independence
 domain                                                     
 Automotive          2         4             4             1
@@ -47,12 +116,7 @@ Healthcare          0         1             1             0
 Smart City          1         1             1             1
 Aerospace           1         1             1             0
 
-   Validation against the ORIGINAL pgfplots data of Fig. 3 (only differences are listed):
-   [DIFF] dominance/IT/Cloud: paper=6  computed=4
-   [DIFF] dominance/Robotics: paper=1  computed=3
-   [DIFF] dominance/Healthcare: paper=2  computed=0
-   [DIFF] augmentation/IT/Cloud: paper=5  computed=4
-   [DIFF] augmentation/Robotics: paper=2  computed=3
+   Validation against the pgfplots data of Fig. 3 (only differences are listed):
 
    Cases with all 3 categories: 7 | 2: 7 | 1: 4 | 0: 0
 
@@ -68,11 +132,10 @@ Aerospace                       1                  0
    Heterogeneous: 16/18 = 88.9%
    Homogeneous/Mixed: 2/18 = 11.1%
    Homogeneous/Mixed: CS3, CS10
-   Validation against the ORIGINAL Table 4 / text:
-   [DIFF] Tab.4 Robotics: paper=(2, 1)  computed=(3, 0)
+   Validation against the Table 4 / text:
    [OK ] text Heterogeneous: paper=16  computed=16
    [OK ] text Homogeneous/Mixed: paper=2  computed=2
-   Original Table 4 sums to: 15 het + 3 hom = 18 (expected 18)
+   Table 4 sums to: 16 het + 2 hom = 18 (expected 18)
 ======================================================================== 
 RQ2 - Sources, abstraction levels and causal mechanisms
 ========================================================================
@@ -92,10 +155,8 @@ Aerospace                  1             0
    Validation against the %Cross-layer / %Same comment in the .tex:
    [OK  ] cross-layer: CS1, CS2, CS3, CS5, CS8, CS9, CS11, CS12, CS13, CS14, CS15, CS16, CS17, CS18
    [OK  ] same/partial: CS4, CS6, CS7, CS10
-   Validation against the ORIGINAL printed Table 5:
-   [DIFF] Tab.5 IT/Cloud: paper=(5, 1)  computed=(6, 1)
-   [DIFF] Tab.5 Robotics: paper=(2, 1)  computed=(3, 0)
-   Original Table 5 sums to 17 cases (expected 18)
+   Validation against the printed Table 5:
+   Table 5 sums to 18 cases (expected 18)
 
 [6.2.2] Sources by CATEGORY (cases that mention it; keyword heuristic):
    Environment            17/18  CS1, CS2, CS3, CS4, CS5, CS6, CS7, CS8, CS9, CS10, CS12, CS13, CS14, CS15, CS16, CS17, CS18
@@ -126,7 +187,7 @@ Aerospace                  1             0
 [6.2.3] Causal mechanisms: automatic textual evidence vs cases cited in the paper
    Propagation: 2 cases with textual evidence; paper cites 4; cited WITHOUT textual evidence: CS15, CS18
    Amplification: 16 cases with textual evidence; paper cites 4; cited WITHOUT textual evidence: -
-   Dominance: 12 cases with textual evidence; paper cites 4; cited WITHOUT textual evidence: CS11
+   Dominance: 12 cases with textual evidence; paper cites 4; cited WITHOUT textual evidence: -
    Trade-off / Conflict: 15 cases with textual evidence; paper cites 5; cited WITHOUT textual evidence: -
 ======================================================================== 
 RQ3 - Operational impacts
@@ -148,28 +209,67 @@ Robotics                      3                 0
 Healthcare                    1                 0
 Smart City                    1                 0
 Aerospace                     1                 0
-   [DIFF] Tab.6 Automotive: paper=(2, 3)  computed=(4, 1)
-   [DIFF] Tab.6 IT/Cloud: paper=(4, 3)  computed=(5, 2)
-   [DIFF] Tab.6 Robotics: paper=(2, 1)  computed=(3, 0)
-   [DIFF] Tab.6 Smart City: paper=(0, 1)  computed=(1, 0)
-   Original Table 6 sums to: multi=10, generic=8 (text says 15 / 3)
+   Table 6 sums to: multi=15, generic=3 (text says 15 / 3)
 
-[Tab.7] Affected quality dimensions -- keywords over the Impact field
-   (Table 7 of the paper is analyst-derived; here we show what the RAW text supports)
-   Safety                       text= 5  paper= 5  Jaccard=0.43
-      cited in the paper without textual evidence: CS12, CS17
-   Performance                  text= 8  paper= 4  Jaccard=0.50
-      cited in the paper without textual evidence: -
-   Reliability & Availability   text= 7  paper= 3  Jaccard=0.43
-      cited in the paper without textual evidence: -
-   Mission Success              text= 2  paper= 3  Jaccard=0.67
-      cited in the paper without textual evidence: CS12
-   Human Factors & Trust        text= 2  paper= 2  Jaccard=1.00
-      cited in the paper without textual evidence: -
-   Resource Efficiency / Cost   text= 3  paper= 4  Jaccard=0.40
-      cited in the paper without textual evidence: CS3, CS18
+[Tab.7] Affected quality dimensions: evidence in the verbatim text
+   Table 7 is an analyst reading of each exemplar. For every dimension the script lists the cases cited in the paper
+   and what the text supports: 'impact' = the Impact field itself; 'trade-offs'/'summary' = secondary evidence.
 
-   Distinct qualities per case (keywords): mean=1.5, cases with >=2: 8/18
+   Agreement with Table 7, per dimension. Table 7 lists *supporting* (representative) cases, not every case that
+   shows the dimension, so the relevant measure is coverage = share of the CITED cases that the text supports.
+   dimension                    cited   impact  any field
+   Safety                           5    3 ( 60%)    5 (100%)
+   Performance                      4    4 (100%)    4 (100%)
+   Reliability & Availability       3    3 (100%)    3 (100%)
+   Mission Success                  3    2 ( 66%)    3 (100%)
+   Human Factors & Trust            2    2 (100%)    2 (100%)
+   Resource Efficiency / Cost       4    2 ( 50%)    4 (100%)
+
+   Case lists per dimension (impact = supported by the Impact field; secondary = Trade-offs/Summary):
+
+   Safety  (cited in paper: CS11, CS12, CS16, CS17, CS18)
+     cited, supported by the Impact field : CS11, CS16, CS18
+     cited, secondary evidence only       : CS12 (trade-offs), CS17 (summary)
+     cited, NO textual evidence           : -
+     not cited, Impact field supports it  : CS2, CS6, CS9
+     not cited, secondary evidence only   : CS10 (summary), CS14 (summary)
+
+   Performance  (cited in paper: CS1, CS3, CS8, CS18)
+     cited, supported by the Impact field : CS1, CS3, CS8, CS18
+     cited, secondary evidence only       : -
+     cited, NO textual evidence           : -
+     not cited, Impact field supports it  : CS7, CS11, CS13
+     not cited, secondary evidence only   : CS2 (trade-offs), CS4 (summary), CS12 (trade-offs), CS14 (summary)
+
+   Reliability & Availability  (cited in paper: CS2, CS13, CS15)
+     cited, supported by the Impact field : CS2, CS13, CS15
+     cited, secondary evidence only       : -
+     cited, NO textual evidence           : -
+     not cited, Impact field supports it  : CS1, CS9
+     not cited, secondary evidence only   : CS5 (summary), CS11 (summary)
+
+   Mission Success  (cited in paper: CS5, CS11, CS12)
+     cited, supported by the Impact field : CS5, CS11
+     cited, secondary evidence only       : CS12 (trade-offs)
+     cited, NO textual evidence           : -
+     not cited, Impact field supports it  : -
+     not cited, secondary evidence only   : -
+
+   Human Factors & Trust  (cited in paper: CS5, CS17)
+     cited, supported by the Impact field : CS5, CS17
+     cited, secondary evidence only       : -
+     cited, NO textual evidence           : -
+     not cited, Impact field supports it  : -
+     not cited, secondary evidence only   : CS3 (summary), CS8 (summary), CS15 (trade-offs)
+
+   Resource Efficiency / Cost  (cited in paper: CS1, CS3, CS13, CS18)
+     cited, supported by the Impact field : CS1, CS13
+     cited, secondary evidence only       : CS3 (summary), CS18 (trade-offs)
+     cited, NO textual evidence           : -
+     not cited, Impact field supports it  : CS9
+     not cited, secondary evidence only   : CS2 (trade-offs), CS8 (summary), CS12 (trade-offs), CS14 (summary), CS15 (trade-offs), CS16 (trade-offs)
+
+   Full excerpts: output/rq3_quality_dimension_evidence.csv
 ======================================================================== 
 RQ4 - Solution space
 ========================================================================
@@ -183,7 +283,7 @@ RQ4 - Solution space
    Prevention       9/18 = 50.0%
    Cases that filled in the Preparedness field: 17/18 (missing: CS17)
 
-   Comparison with the ORIGINAL Table 8:
+   Comparison with the Table 8:
    [DIFF] Awareness (calc=11, paper=12):
           paper    = CS1, CS4, CS5, CS6, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18
           computed = CS1, CS4, CS6, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18
@@ -196,10 +296,10 @@ RQ4 - Solution space
           paper    = CS1, CS2, CS4, CS5, CS11, CS12, CS13, CS15, CS16, CS18
           computed = CS1, CS2, CS4, CS7, CS11, CS12, CS13, CS15, CS16, CS18
           only in paper = CS5 | only in computed = CS7
-   [DIFF] Prevention (calc=9, paper=5):
-          paper    = CS1, CS4, CS7, CS13, CS16
+   [DIFF] Prevention (calc=9, paper=7):
+          paper    = CS1, CS4, CS7, CS11, CS12, CS13, CS16
           computed = CS1, CS4, CS7, CS9, CS11, CS12, CS13, CS16, CS18
-          only in paper = - | only in computed = CS9, CS11, CS12, CS18
+          only in paper = - | only in computed = CS9, CS18
    [DIFF] Understanding (calc=10, paper=8):
           paper    = CS1, CS5, CS11, CS12, CS13, CS15, CS16, CS18
           computed = CS1, CS4, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18
@@ -215,7 +315,7 @@ RQ4 - Solution space
    Analysis        10/18
    Mitigation      12/18
 
-   Comparison with the ORIGINAL Table 12:
+   Comparison with the Table 12:
    [DIFF] Detection (calc=12, paper=8):
           paper    = CS1, CS2, CS5, CS9, CS11, CS12, CS15, CS18
           computed = CS1, CS2, CS4, CS5, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18
@@ -247,10 +347,7 @@ RQ4 - Solution space
 
 
 [Tab.9] Applicability conditions (keyword cross-check; reference = the paper's manual analysis):
-   [DIFF] Architectural Assumptions (calc=4, paper=4):
-          paper    = CS1, CS11, CS13, CS15
-          computed = CS1, CS12, CS13, CS15
-          only in paper = CS11 | only in computed = CS12
+   [OK  ] Architectural Assumptions (calc=4, paper=4): CS1, CS12, CS13, CS15
    [DIFF] Infrastructure Requirements (calc=4, paper=3):
           paper    = CS2, CS11, CS12
           computed = CS2, CS11, CS12, CS15
@@ -272,10 +369,10 @@ RQ4 - Solution space
 
 
 [Tab.11] Trade-offs (keyword cross-check):
-   [DIFF] Robustness vs Resource Consumption (calc=8, paper=3):
-          paper    = CS1, CS2, CS13
+   [DIFF] Robustness vs Resource Consumption (calc=8, paper=4):
+          paper    = CS1, CS2, CS12, CS13
           computed = CS1, CS2, CS4, CS12, CS13, CS15, CS16, CS18
-          only in paper = - | only in computed = CS4, CS12, CS15, CS16, CS18
+          only in paper = - | only in computed = CS4, CS15, CS16, CS18
    [DIFF] Safety vs Performance (calc=3, paper=3):
           paper    = CS11, CS12, CS16
           computed = CS12, CS16, CS18
@@ -288,10 +385,7 @@ RQ4 - Solution space
           paper    = CS5, CS15
           computed = CS5, CS15, CS18
           only in paper = - | only in computed = CS18
-   [DIFF] Sensitivity vs False Positives (calc=1, paper=1):
-          paper    = CS12
-          computed = CS11
-          only in paper = CS12 | only in computed = CS11
+   [OK  ] Sensitivity vs False Positives (calc=1, paper=1): CS11
    Cases with the Trade-offs field filled in: 16/18 (not filled in: CS9, CS17)
 
 [Coverage] Solution-space fields filled in per case:

@@ -1,0 +1,73 @@
+ID,domain,category,manual_code,counted,text_support,evidence_excerpt
+CS1,IT/Cloud,dominance,0,False,no evidence,
+CS1,IT/Cloud,conflict,1,True,explicit text,"Conflict (dominant): improving responsiveness (more frequent monitoring/replanning, aggressive leadership changes) can increase instability/overhead under intermittent connectivi"
+CS1,IT/Cloud,augmentation,1,True,explicit text,Augmentation: improving responsiveness can decrease instability/overhead under assumptions of no network segmentation. Conflict (dominant): improving responsiveness (more frequent mo
+CS1,IT/Cloud,independence,0,False,no evidence,
+CS2,Aerospace,dominance,1,True,explicit text,Dominance: U1 completely dominates U4; the uncertainty of the redundant master activation delay is strictly irrelevant unless a critical hardware fault actually occurs. Conflict:
+CS2,Aerospace,conflict,1,True,explicit text,"Conflict: Mitigating U3 (FDIR Response Latency) requires assigning higher CPU scheduling priority to the active FDIRController thread, which incurs context-switching overhead tha"
+CS2,Aerospace,augmentation,1,True,explicit text,Augmentation: U1 highly augments U2; a severe hardware anomaly will intrinsically degrade the reliability of the telemetry data flowing from the compromised subsystem.
+CS2,Aerospace,independence,0,False,no evidence,
+CS3,IT/Cloud,dominance,4,True,explicit text,Dominance: U1 dominates U2; U4 and U2 dominate U3; U5 and U1 dominate U8; U7 and U2 dominate U6. Augmentation: Conflict: Reducing U7 by having the system try tactics to measure th
+CS3,IT/Cloud,conflict,3,True,explicit text,"Conflict: Reducing U7 by having the system try tactics to measure their latency, increases U4, U3, U6."
+CS3,IT/Cloud,augmentation,0,False,no evidence,
+CS3,IT/Cloud,independence,1,True,explicit text,"Independence: From the point of view of uncertainty interaction, U1 is independent from the rest. However, it can be affected by the behavior (not the uncertainty) of the system itse"
+CS4,Smart City,dominance,1,True,template-only,(template definition only; no case-specific text)
+CS4,Smart City,conflict,1,True,template-only,(template definition only; no case-specific text)
+CS4,Smart City,augmentation,1,True,template-only,(template definition only; no case-specific text)
+CS4,Smart City,independence,1,True,template-only,(template definition only; no case-specific text)
+CS5,Robotics,dominance,1,True,explicit text,"Dominance: If an act of human behavior is not modeled, the model will fail to capture it even if it is probabilistic/non-deterministic: abstraction/incompleteness dominates human-"
+CS5,Robotics,conflict,0,False,no evidence,
+CS5,Robotics,augmentation,1,True,explicit text,"Augmentation: The more accurate the sensors/AI modules, the more accurate will be the model in aligning with human state (provided it is modeled): Triggers: human ignores robot instr"
+CS5,Robotics,independence,0,False,no evidence,
+CS6,Automotive,dominance,0,False,no evidence,
+CS6,Automotive,conflict,0,False,no evidence,
+CS6,Automotive,augmentation,1,True,explicit text,Augmentation Decreasing uncertainty of traffic scenarios and user interactions allow for increasing confidence in testing coverage and helping reducing uncertainty of black-box behav
+CS6,Automotive,independence,0,False,no evidence,
+CS7,Automotive,dominance,0,False,no evidence,
+CS7,Automotive,conflict,1,True,template-only,(template definition only; no case-specific text)
+CS7,Automotive,augmentation,1,True,template-only,(template definition only; no case-specific text)
+CS7,Automotive,independence,0,False,no evidence,
+CS8,IT/Cloud,dominance,1,True,template-only,(template definition only; no case-specific text)
+CS8,IT/Cloud,conflict,1,True,template-only,(template definition only; no case-specific text)
+CS8,IT/Cloud,augmentation,1,True,template-only,(template definition only; no case-specific text)
+CS8,IT/Cloud,independence,1,True,template-only,(template definition only; no case-specific text)
+CS9,IT/Cloud,dominance,2,True,tentative mark,dominance (?) U1 -> U5: augmentation (?) U7 -> U5 -> U1: dominance + augmentation (?)
+CS9,IT/Cloud,conflict,0,False,no evidence,
+CS9,IT/Cloud,augmentation,1,True,tentative mark,augmentation (?) U7 -> U5 -> U1: dominance + augmentation (?)
+CS9,IT/Cloud,independence,0,False,no evidence,
+CS10,IT/Cloud,dominance,0,False,no evidence,
+CS10,IT/Cloud,conflict,1,True,explicit text,"conflict; reducing uncertainty by exploring (in order to learn about frequency and/or locations of when/where uncertain events occur, further exposes the system to cost incurred"
+CS10,IT/Cloud,augmentation,0,False,no evidence,
+CS10,IT/Cloud,independence,0,False,no evidence,
+CS11,Healthcare,dominance,0,False,no evidence,
+CS11,Healthcare,conflict,1,True,explicit text,Signal filtering × emergency detection -> Conflict
+CS11,Healthcare,augmentation,2,True,explicit text,Vital signal uncertainty × fall detection belief -> Augmentation
+CS11,Healthcare,independence,0,False,no evidence,
+CS12,Robotics,dominance,1,True,explicit text,Battery measurement × mission continuation -> Dominance
+CS12,Robotics,conflict,1,True,explicit text,Battery optimization × exploration behavior -> Conflict
+CS12,Robotics,augmentation,1,True,explicit text,Obstacle uncertainty × belief uncertainty -> Augmentation
+CS12,Robotics,independence,0,False,no evidence,
+CS13,IT/Cloud,dominance,0,False,no evidence,
+CS13,IT/Cloud,conflict,1,True,explicit text,Conflict: This interaction is not confined to one abstraction level. Occurrence uncertainty in the environment (U1) is transformed into measurement uncertainty in system metrics
+CS13,IT/Cloud,augmentation,0,False,no evidence,
+CS13,IT/Cloud,independence,0,False,no evidence,
+CS14,Automotive,dominance,1,True,template-only,(template definition only; no case-specific text)
+CS14,Automotive,conflict,1,True,template-only,(template definition only; no case-specific text)
+CS14,Automotive,augmentation,1,True,template-only,(template definition only; no case-specific text)
+CS14,Automotive,independence,1,True,template-only,(template definition only; no case-specific text)
+CS15,IT/Cloud,dominance,2,True,explicit text,"Dominance: U1 (Incompleteness) dominates U2 (Fidelity) and U3 (AI Reliability). If key variables affecting behavior are not measured, the ST cannot accurately mirror the RT rega"
+CS15,IT/Cloud,conflict,0,False,no evidence,
+CS15,IT/Cloud,augmentation,1,True,explicit text,"Augmentation: U1 (Incompleteness) and U2 (Fidelity) are highly correlated since the incomplete identification of variables affect the fidelity of the model, and a low-quality model"
+CS15,IT/Cloud,independence,0,False,no evidence,
+CS16,Automotive,dominance,1,True,tentative mark,"Dominance If the resolution logic depends directly on perception confidence (e.g., “if pedestrian probability > threshold”), then reducing detection uncertainty improves decision"
+CS16,Automotive,conflict,1,True,explicit text,"conflict resolution uncertainty. Augmentation Poor visibility (fog) increases detection uncertainty. Road friction (e.g., wet surface) increases braking uncertainty. Both simulta"
+CS16,Automotive,augmentation,1,True,explicit text,"Augmentation Poor visibility (fog) increases detection uncertainty. Road friction (e.g., wet surface) increases braking uncertainty. Both simultaneously increase pedestrian protectio"
+CS16,Automotive,independence,0,False,no evidence,
+CS17,Automotive,dominance,0,False,no evidence,
+CS17,Automotive,conflict,1,True,explicit text,"Conflict: There is a fundamental trade-off. To reduce the uncertainty of ""takeover failure"" (human-side), the system prefers a longer takeover time. However, a longer window requ"
+CS17,Automotive,augmentation,0,False,no evidence,
+CS17,Automotive,independence,0,False,no evidence,
+CS18,Robotics,dominance,1,True,explicit text,"Dominance (one uncertainty makes others irrelevant): In degraded lighting / heavy occlusion, environment/perception-driven uncertainty (U7 + U6) can dominate: until localization/p"
+CS18,Robotics,conflict,1,True,explicit text,"Conflict (trade-off via mitigation actions): Reducing measurement uncertainty (U6) by adding sensors / increasing perception rate (more camera frames, bigger NN) increases comput"
+CS18,Robotics,augmentation,1,True,explicit text,"Augmentation (positive coupling): Timing jitter (U2) and delay uncertainty (U3) jointly increase effective “state staleness,” which amplifies the impact of parametric uncertainty (U1"
+CS18,Robotics,independence,0,False,no evidence,

@@ -1,0 +1,14 @@
+dimension,case,supported,evidence_excerpt
+Robustness vs Resource Consumption,CS1,True,Robustness vs overhead: more robustness typically implies more da
+Robustness vs Resource Consumption,CS2,True,g and responsiveness but increases memory utilization and context-switching overhead. FatalHandl
+Robustness vs Resource Consumption,CS12,True,"ompletion ?. Frequent replanning ? robustness ?, energy cost ?."
+Robustness vs Resource Consumption,CS13,True,Improving reliability through redundancy increases operational cost and may reduce performanc
+Safety vs Performance,CS12,True,"Conservative thresholds ? safety ?, mission completion ?. Frequent"
+Safety vs Performance,CS16,True,Verification of safety invariants: Strong prevention/Reduced flexibility. Run
+Safety vs Performance,CS18,True,"Benefits: higher safety assurance, fewer emergent failures, predictable degrad"
+Responsiveness vs Stability,CS1,True,omputational and network overhead. Responsiveness vs overhead: more responsiveness implies more exchange
+Responsiveness vs Stability,CS13,True,proves robustness but may increase instability in other quality dimensions. Propagation effects ma
+Responsiveness vs Stability,CS16,True,g: Reduced pedestrian risk/Traffic instability. Formal modeling: Better analyzability/Modeling eff
+Autonomy vs Assurance,CS5,True,(between 2 and 9 seconds) but low guarantees because of AI-in-the-loop.
+Autonomy vs Assurance,CS15,True,"Benefits: Increased autonomy, reduced human cognitive load, and enhanced explainabi"
+Sensitivity vs False Positives,CS11,True,"High sensitivity ? fewer missed emergencies, more false alarms. Strong"

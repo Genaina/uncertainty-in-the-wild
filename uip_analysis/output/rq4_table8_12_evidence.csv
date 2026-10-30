@@ -1,0 +1,107 @@
+table,dimension,case,evidence
+[Tab.8] Preparedness,Awareness,CS1,Preparedness: 'medium - can be collectively detected.'
+[Tab.8] Preparedness,Awareness,CS4,Preparedness: 'Developers are aware of the uncertainties in the systems.'
+[Tab.8] Preparedness,Awareness,CS6,"Preparedness: 'In principle, V&V activities consider combinations of scenario factors. Prevention, detectability, repres...'"
+[Tab.8] Preparedness,Awareness,CS7,Preparedness: 'Developers are aware of the uncertainties.'
+[Tab.8] Preparedness,Awareness,CS9,"Preparedness: 'Instrument agents with tracing of tool calls, memory queries, policy checks, and environment state snapsh...'"
+[Tab.8] Preparedness,Awareness,CS11,Preparedness: 'Yes.'
+[Tab.8] Preparedness,Awareness,CS12,Preparedness: 'Yes.'
+[Tab.8] Preparedness,Awareness,CS13,Preparedness: 'Yes.'
+[Tab.8] Preparedness,Awareness,CS15,Preparedness: 'Achieved through active monitoring and observability of both RT and ST.'
+[Tab.8] Preparedness,Awareness,CS16,Preparedness: 'foreseeable interaction.'
+[Tab.8] Preparedness,Awareness,CS18,Preparedness: 'High.'
+[Tab.8] Preparedness,Prevention,CS1,"Preparedness: 'In most cases, total prevention is not possible (environmental origin).'"
+[Tab.8] Preparedness,Prevention,CS4,Preparedness: 'Some sources of uncertainty can be foreseen but possibly not prevented.'
+[Tab.8] Preparedness,Prevention,CS7,Preparedness: 'Some sources can be foreseen but possibly not prevented.'
+[Tab.8] Preparedness,Prevention,CS9,Preparedness: 'Enforce deterministic guardrails and constrain tools to safe subsets.'
+[Tab.8] Preparedness,Prevention,CS11,Preparedness: 'Partial (sensor redundancy).'
+[Tab.8] Preparedness,Prevention,CS12,"Preparedness: 'Partial (redundancy, planning margins).'"
+[Tab.8] Preparedness,Prevention,CS13,Preparedness: 'Limited.'
+[Tab.8] Preparedness,Prevention,CS16,Preparedness: 'Partial prevention is possible.'
+[Tab.8] Preparedness,Prevention,CS18,Preparedness: 'Medium.'
+[Tab.8] Preparedness,Detectability,CS1,Preparedness: 'Yes.'
+[Tab.8] Preparedness,Detectability,CS2,"Preparedness: 'Hardware metrics are polled continuously, and non-responsive components trigger software watchdogs via th...'"
+[Tab.8] Preparedness,Detectability,CS4,Preparedness: 'equip agents to detect specific situations.'
+[Tab.8] Preparedness,Detectability,CS7,Preparedness: 'detect specific situations.'
+[Tab.8] Preparedness,Detectability,CS9,"Preparedness: 'using static checks, memory retrieval accuracy, and LLM-as-judge score.'"
+[Tab.8] Preparedness,Detectability,CS11,Preparedness: 'Yes (anomaly detection).'
+[Tab.8] Preparedness,Detectability,CS12,Preparedness: 'Yes (runtime monitoring).'
+[Tab.8] Preparedness,Detectability,CS13,Preparedness: 'Yes.'
+[Tab.8] Preparedness,Detectability,CS15,Preparedness: 'Dynamic Knowledge Hypergraphs.'
+[Tab.8] Preparedness,Detectability,CS16,Preparedness: 'achievable with scenario-based simulation testing and runtime monitoring.'
+[Tab.8] Preparedness,Detectability,CS18,Preparedness: 'High.'
+[Tab.8] Preparedness,Representation,CS1,Preparedness: 'Yes. One idea is measuring the computational field stability.'
+[Tab.8] Preparedness,Representation,CS2,Preparedness: 'The FSM rigorously models valid transition logic within the Controller component.'
+[Tab.8] Preparedness,Representation,CS7,Preparedness: 'The uncertainty could be modeled.'
+[Tab.8] Preparedness,Representation,CS11,Preparedness: 'Yes (Bayesian/diagnostic models).'
+[Tab.8] Preparedness,Representation,CS12,Preparedness: 'Yes (probabilistic + runtime models).'
+[Tab.8] Preparedness,Representation,CS13,Preparedness: 'Yes.'
+[Tab.8] Preparedness,Representation,CS15,"Preparedness: 'hyperedges to capture design-time, runtime, and simulation-time knowledge.'"
+[Tab.8] Preparedness,Representation,CS16,"Preparedness: 'Probably yes, with multi-layer uncertainty models.'"
+[Tab.8] Preparedness,Representation,CS18,Preparedness: 'Medium–High.'
+[Tab.8] Preparedness,Understanding,CS1,"Preparedness: 'Partial, currently: via simulation. On HIL/real systems, there is a tooling gap (we would need flight rec...'"
+[Tab.8] Preparedness,Understanding,CS4,Preparedness: 'Depending on the uncertainty type its effect could be analyzed.'
+[Tab.8] Preparedness,Understanding,CS7,Preparedness: 'Depending on uncertainty type.'
+[Tab.8] Preparedness,Understanding,CS9,Preparedness: 'Correlate traces with environment events and perform failure attribution.'
+[Tab.8] Preparedness,Understanding,CS11,Preparedness: 'Moderate.'
+[Tab.8] Preparedness,Understanding,CS12,Preparedness: 'Moderate.'
+[Tab.8] Preparedness,Understanding,CS13,Preparedness: 'Partial.'
+[Tab.8] Preparedness,Understanding,CS15,Preparedness: 'LLMs provide natural language explanations.'
+[Tab.8] Preparedness,Understanding,CS16,"Preparedness: 'yes, by simulation and sensitivity analysis.'"
+[Tab.8] Preparedness,Understanding,CS18,Preparedness: 'Medium.'
+[Tab.8] Preparedness,Mitigation,CS1,"Preparedness: 'Possible, maybe via stability aware adaptation.'"
+[Tab.8] Preparedness,Mitigation,CS2,Preparedness: 'The system possesses highly structured mitigation routines executed by the FDIRController or cold redunda...'
+[Tab.8] Preparedness,Mitigation,CS4,Preparedness: 'fine grained behavior to compose into more elaborate solutions.'
+[Tab.8] Preparedness,Mitigation,CS5,Preparedness: 'mitigation level reached with proactive adaptation'
+[Tab.8] Preparedness,Mitigation,CS7,Preparedness: 'equip assistant with fine grained behavior.'
+[Tab.8] Preparedness,Mitigation,CS9,Preparedness: 'Fallback strategies.'
+[Tab.8] Preparedness,Mitigation,CS11,"Preparedness: 'Yes (alarm escalation, adaptive sampling).'"
+[Tab.8] Preparedness,Mitigation,CS12,"Preparedness: 'Yes (replanning, safe mode).'"
+[Tab.8] Preparedness,Mitigation,CS13,Preparedness: 'Yes.'
+[Tab.8] Preparedness,Mitigation,CS15,"Preparedness: 'Proactive risk assessment and quantification using ST experiments to define ""Viability Zones"".'"
+[Tab.8] Preparedness,Mitigation,CS16,Preparedness: 'feasible at multiple levels.'
+[Tab.8] Preparedness,Mitigation,CS18,Preparedness: 'Medium.'
+[Tab.12] Strategy,Detection,CS1,"Strategy: 'Collective “instability fields”: measure cluster churn rate, leader change rate, field convergence age, p...'"
+[Tab.12] Strategy,Detection,CS2,Strategy: 'Ping/Echo tactic utilizing software watchdogs.'
+[Tab.12] Strategy,Detection,CS4,Strategy: 'continuously monitoring the environment state.'
+[Tab.12] Strategy,Detection,CS5,Strategy: 'Threshold-based trigger on predicted success probability.'
+[Tab.12] Strategy,Detection,CS7,Strategy: 'continuous monitoring.'
+[Tab.12] Strategy,Detection,CS9,"Strategy: 'Traces, metrics and logs that appear from the agents and the LLM scores.'"
+[Tab.12] Strategy,Detection,CS11,Strategy: 'Statistical anomaly detection; Multi-sensor consistency checking.'
+[Tab.12] Strategy,Detection,CS12,Strategy: 'Runtime monitoring; Threshold-based alerts.'
+[Tab.12] Strategy,Detection,CS13,Strategy: 'Monitoring environmental events and system metrics.'
+[Tab.12] Strategy,Detection,CS15,Strategy: 'Graph convolutional neural networks.'
+[Tab.12] Strategy,Detection,CS16,"Strategy: 'search-based testing, adversarial scenario generation, time-to-collision monitoring.'"
+[Tab.12] Strategy,Detection,CS18,Strategy: 'runtime monitors.'
+[Tab.12] Strategy,Representation,CS1,Strategy: 'Extend aggregate programs with confidence/age annotations on shared state; represent partitions and stabi...'
+[Tab.12] Strategy,Representation,CS4,Strategy: 'self-adaptation and self-organization following context-oriented programming where uncertainties are repr...'
+[Tab.12] Strategy,Representation,CS5,"Strategy: 'SHA network with stochastic transitions, MITL properties, ML regression/classification models.'"
+[Tab.12] Strategy,Representation,CS7,Strategy: 'context-oriented programming.'
+[Tab.12] Strategy,Representation,CS11,Strategy: 'Bayesian networks; Confidence intervals.'
+[Tab.12] Strategy,Representation,CS12,Strategy: 'Probabilistic models; Runtime belief states.'
+[Tab.12] Strategy,Representation,CS13,Strategy: 'Explicit modeling of configurations and quality objectives.'
+[Tab.12] Strategy,Representation,CS15,Strategy: 'Hierarchical DSMLs or hypergraphs.'
+[Tab.12] Strategy,Representation,CS16,"Strategy: 'risk modeling, multi-layer uncertainty models, Bayesian networks.'"
+[Tab.12] Strategy,Representation,CS18,Strategy: 'multi-fidelity runtime models.'
+[Tab.12] Strategy,Analysis,CS1,Strategy: 'Simulation-driven Monte Carlo processes; adversarial corner cases.'
+[Tab.12] Strategy,Analysis,CS2,Strategy: 'Event filtering and categorization by ActiveLogger.'
+[Tab.12] Strategy,Analysis,CS5,"Strategy: 'Statistical Model Checking, NSGA-II multi-objective optimization, Explainable AI (PDP + LIME).'"
+[Tab.12] Strategy,Analysis,CS11,Strategy: 'Risk scoring; Probabilistic inference.'
+[Tab.12] Strategy,Analysis,CS12,Strategy: 'Sensitivity analysis; Risk estimation.'
+[Tab.12] Strategy,Analysis,CS13,Strategy: 'Multi-objective reasoning under uncertainty.'
+[Tab.12] Strategy,Analysis,CS15,"Strategy: 'Identifying ""Viability Zones"".'"
+[Tab.12] Strategy,Analysis,CS16,"Strategy: 'adversarial perturbation testing, sensitivity analysis, fault injection.'"
+[Tab.12] Strategy,Analysis,CS17,Strategy: 'Leveraging an empirical user study to analyze and model why a specific time window was allocated.'
+[Tab.12] Strategy,Analysis,CS18,Strategy: 'compositional what-if checks.'
+[Tab.12] Strategy,Mitigation,CS1,"Strategy: 'Hysteresis, exponential backoff, low-pass filtering, disruption prediction, partition tolerance, collecti...'"
+[Tab.12] Strategy,Mitigation,CS2,Strategy: 'State degradation governed by an FSM enforcing allowable transitions through guard functions.'
+[Tab.12] Strategy,Mitigation,CS4,Strategy: 'dampen the uncertainty through corrective behavior.'
+[Tab.12] Strategy,Mitigation,CS5,Strategy: 'Modify controllable factors and asynchronous formal verification.'
+[Tab.12] Strategy,Mitigation,CS7,Strategy: 'corrective behavior is triggered as soon as uncertainty is detected.'
+[Tab.12] Strategy,Mitigation,CS11,Strategy: 'Alarm escalation; Adaptive sampling; Human-in-the-loop confirmation.'
+[Tab.12] Strategy,Mitigation,CS12,Strategy: 'Replanning; Safe-mode activation; Energy-aware adaptation.'
+[Tab.12] Strategy,Mitigation,CS13,Strategy: 'Adaptive topology reconfiguration and policy recalibration.'
+[Tab.12] Strategy,Mitigation,CS15,Strategy: 'LLM-based decision-making to orchestrate self-healing actions and generate remediation plans.'
+[Tab.12] Strategy,Mitigation,CS16,"Strategy: 'rule-based structural mitigation, adaptive conflict resolution, runtime safety envelopes.'"
+[Tab.12] Strategy,Mitigation,CS17,Strategy: 'Dynamic boundary adjustment; Escalate the intensity of HCI via haptic feedback.'
+[Tab.12] Strategy,Mitigation,CS18,"Strategy: 'dominance-aware, augmentation-aware, and conflict-aware mitigation.'"

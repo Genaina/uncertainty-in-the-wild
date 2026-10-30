@@ -1,0 +1,5 @@
+dimension,n_cases,cases
+Detection,12,"CS1, CS2, CS4, CS5, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18"
+Representation,10,"CS1, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS18"
+Analysis,10,"CS1, CS2, CS5, CS11, CS12, CS13, CS15, CS16, CS17, CS18"
+Mitigation,12,"CS1, CS2, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS17, CS18"

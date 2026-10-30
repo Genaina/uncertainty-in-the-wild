@@ -33,21 +33,25 @@ def _strip_template(text: str) -> str:
     return t
 
 
-def code_interactions(raw: pd.DataFrame) -> pd.DataFrame:
+def code_interactions(raw: pd.DataFrame, return_evidence: bool = False):
     """Returns, per case and category, one of: 'explicit', 'tentative', 'template', ''.
 
+    With return_evidence=True it also returns a dict {(case_id, category): text excerpt} with the
+    verbatim text that supports each code.
+
     - explicit  : the category appears followed by case-specific content
-    - tentative : marked with '(?)', '(Possible)' or used only as an adjective, e.g. 'Conflict (dominant)'
+    - tentative : marked with '(?)' or '(Possible)'
     - template  : the contributor only returned the template definitions (label without content)
     - ''        : no evidence (or marked 'N/A in this case')
     """
     label_re = re.compile(r"(?:\(\d\)\s*)?(?:independence|dominance|augmentation|conflict)\b", re.I)
     rank = {"": 0, "template": 0, "tentative": 1, "explicit": 2}
-    rows = {}
+    rows, evidence = {}, {}
     for cid, text in raw["Uncertainty Interaction Category"].items():
         t = _strip_template(text)
         res = {c: "" for c in CATS}
         empty = set()
+        snip = {}
         for cat, stem in STEMS.items():
             for m in re.finditer(stem, t, flags=re.I):
                 window = t[m.end():m.end() + 80]
@@ -65,16 +69,30 @@ def code_interactions(raw: pd.DataFrame) -> pd.DataFrame:
                         empty.add(cat)
                         continue
                 else:
-                    tentative = bool(re.match(r"^\s*\(\?\)", window)) or "possible" in before.lower() \
-                        or before.rstrip().endswith("(")
+                    if before.rstrip().endswith("("):
+                        continue        # e.g. 'Conflict (dominant)': an adjective, not a separate category
+                    tentative = bool(re.match(r"^\s*\(\?\)", window)) or "possible" in before.lower()
                     state = "tentative" if tentative else "explicit"
                 if rank[state] > rank[res[cat]]:
                     res[cat] = state
+                    # '<A> x <B> -> Label' entries carry their content BEFORE the label
+                    pre = t[max(0, m.start() - 120):m.start()]
+                    lead = re.search(r"([^?\n]*\u00d7[^?]*)\?\s*$", pre)
+                    if lead:
+                        g = re.split(r"(?i)\b(?:independence|dominance|augmentation|conflict)\b", lead.group(1))[-1]
+                        g = re.sub(r"^\s*\([^)]*\)\s*", "", g)
+                        snip[cat] = re.sub(r"\s+", " ", g).strip() + " -> " + t[m.start():m.end()]
+                    else:
+                        snip[cat] = re.sub(r"\s+", " ", t[m.start():m.end() + 170]).strip()
         if not any(res[c] for c in CATS):          # only empty labels -> template-only answer
             for c in empty:
                 res[c] = "template"
+                snip[c] = "(template definition only; no case-specific text)"
         rows[cid] = res
-    return pd.DataFrame(rows).T[CATS]
+        for c in CATS:
+            evidence[(cid, c)] = snip.get(c, "")
+    out = pd.DataFrame(rows).T[CATS]
+    return (out, evidence) if return_evidence else out
 
 
 def interaction_flags(coded: pd.DataFrame, mode: str) -> pd.DataFrame:
@@ -101,7 +119,7 @@ def code_abstraction(raw: pd.DataFrame) -> pd.Series:
     """Cross-layer vs Same/Partial (Sec. 3.4, rule 3)."""
     def f(t):
         if is_blank(t):
-            return "Same/Partial"          # CS10: empty field -> same level (see the % comment in the .tex)
+            return "Same/Partial"          # no abstraction gap reported (e.g., CS10) -> treated as same level
         s = str(t).lower()
         if re.search(r"\bsame\b", s):
             return "Same/Partial"

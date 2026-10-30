@@ -1,0 +1,7 @@
+dimension,n_cases,cases
+Awareness,11,"CS1, CS4, CS6, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18"
+Prevention,9,"CS1, CS4, CS7, CS9, CS11, CS12, CS13, CS16, CS18"
+Detectability,11,"CS1, CS2, CS4, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18"
+Representation,9,"CS1, CS2, CS7, CS11, CS12, CS13, CS15, CS16, CS18"
+Understanding,10,"CS1, CS4, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18"
+Mitigation,12,"CS1, CS2, CS4, CS5, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18"

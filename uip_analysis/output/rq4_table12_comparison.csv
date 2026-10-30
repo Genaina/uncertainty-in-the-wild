@@ -1,5 +1,5 @@
-dimension,n_calc,n_paper,jaccard,calc_cases,paper_cases
-Detection,12,8,0.67,"CS1, CS2, CS4, CS5, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18","CS1, CS2, CS5, CS9, CS11, CS12, CS15, CS18"
-Representation,10,8,0.64,"CS1, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS18","CS1, CS2, CS5, CS11, CS12, CS13, CS15, CS16"
-Analysis,10,8,0.8,"CS1, CS2, CS5, CS11, CS12, CS13, CS15, CS16, CS17, CS18","CS1, CS5, CS11, CS12, CS13, CS15, CS16, CS18"
-Mitigation,12,11,0.92,"CS1, CS2, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS17, CS18","CS1, CS2, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS18"
+dimension,n_cited_in_paper,n_parsed_from_text,coverage,cited_cases,parsed_cases,cited_not_parsed,parsed_not_cited
+Detection,8,12,1.0,"CS1, CS2, CS5, CS9, CS11, CS12, CS15, CS18","CS1, CS2, CS4, CS5, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18",,"CS4, CS7, CS13, CS16"
+Representation,8,10,0.88,"CS1, CS2, CS5, CS11, CS12, CS13, CS15, CS16","CS1, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS18",CS2,"CS4, CS7, CS18"
+Analysis,8,10,1.0,"CS1, CS5, CS11, CS12, CS13, CS15, CS16, CS18","CS1, CS2, CS5, CS11, CS12, CS13, CS15, CS16, CS17, CS18",,"CS2, CS17"
+Mitigation,11,12,1.0,"CS1, CS2, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS18","CS1, CS2, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS17, CS18",,CS17
