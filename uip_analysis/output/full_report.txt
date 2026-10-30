@@ -10,35 +10,27 @@ RQ1 - Types of uncertainty interaction
    Smart City    1  (5.6%)
    Aerospace     1  (5.6%)
 
-[6.1.1] Interaction categories (count per exemplar), 3 automatic coding criteria (cross-check only; the reference is the manual coding below):
-   strict  = explicit contributor evidence only
+[6.1.1] Interaction categories, automatic cross-check (count per exemplar):
+   strict  = explicit case-specific text only
    lenient = + tentative marks '(?)' / '(Possible)'
-   paper   = + template-only answers (label without content) counted as present
-              strict  lenient  paper
-dominance          6        8     11
-conflict          10       10     14
-augmentation       9       10     14
-independence       1        1      4
+   full    = + template-only answers (label without content) counted as present
+              strict  lenient  full
+dominance          6        8    11
+conflict          10       10    14
+augmentation       9       10    14
+independence       1        1     4
 
-[MANUAL] Per-exemplar counts from the manual coding (n = 18).
+[MANUAL] Per-exemplar counts from the manual coding (n = 18):
+   dominance     11/18 = 61.1%
+   conflict      14/18 = 77.8%
+   augmentation  14/18 = 77.8%
+   independence   4/18 = 22.2%
    Template-only answers kept in the counts (flagged, no case-specific text): CS4, CS7, CS8, CS14
-   dominance     11/18 = 61.1%   (manuscript text = 11/18)
-   [OK ] manual vs manuscript text: dominance: paper=11  computed=11
-   conflict      14/18 = 77.8%   (manuscript text = 14/18)
-   [OK ] manual vs manuscript text: conflict: paper=14  computed=14
-   augmentation  14/18 = 77.8%   (manuscript text = 14/18)
-   [OK ] manual vs manuscript text: augmentation: paper=14  computed=14
-   independence   4/18 = 22.2%   (manuscript text = 4/18)
-   [OK ] manual vs manuscript text: independence: paper=4  computed=4
    Sensitivity -- excluding the template-only cases (n = 14): dominance 8/14, conflict 10/14, augmentation 10/14, independence 1/14
-   Cases where the automatic rule ('paper' criterion) differs from the sheet:
-     dominance     -
-     conflict      -
-     augmentation  -
-     independence  -
+   Cross-check: the automatic 'full' rule reproduces the manual coding for every exemplar and category: True
 
 [EVIDENCE] How each manual count is supported by the verbatim text
-   (layers: explicit text -> tentative mark -> template-only; the manuscript number is their union)
+   (layers: explicit text -> tentative mark -> template-only; the count is their union)
 
    DOMINANCE  11/18 counted: CS2, CS3, CS4, CS5, CS8, CS9, CS12, CS14, CS15, CS16, CS18
      explicit text   ( 6): CS2, CS3, CS5, CS12, CS15, CS18
@@ -103,7 +95,7 @@ independence       1        1      4
        CS8   [template-only] (template definition only; no case-specific text)
        CS14  [template-only] (template definition only; no case-specific text)
 
-   Manual coding fully explained by the text (explicit + tentative + template-only): True
+   Every manual code is explained by the text (explicit + tentative + template-only): True
    Full excerpts: output/rq1_interaction_evidence.csv
 
 [Fig.3] Categories per domain (manual coding):
@@ -116,11 +108,9 @@ Healthcare          0         1             1             0
 Smart City          1         1             1             1
 Aerospace           1         1             1             0
 
-   Validation against the pgfplots data of Fig. 3 (only differences are listed):
+   Exemplars with all 3 of dominance/conflict/augmentation: 7 | 2: 7 | 1: 4 | 0: 0
 
-   Cases with all 3 categories: 7 | 2: 7 | 1: 4 | 0: 0
-
-[6.1.2 / Tab.4] Interaction nature per domain (computed):
+[6.1.2 / Tab.4] Interaction nature per domain:
 Uncertainty Nature  Heterogeneous  Homogeneous/Mixed
 domain                                              
 Automotive                      5                  0
@@ -132,15 +122,11 @@ Aerospace                       1                  0
    Heterogeneous: 16/18 = 88.9%
    Homogeneous/Mixed: 2/18 = 11.1%
    Homogeneous/Mixed: CS3, CS10
-   Validation against the Table 4 / text:
-   [OK ] text Heterogeneous: paper=16  computed=16
-   [OK ] text Homogeneous/Mixed: paper=2  computed=2
-   Table 4 sums to: 16 het + 2 hom = 18 (expected 18)
 ======================================================================== 
 RQ2 - Sources, abstraction levels and causal mechanisms
 ========================================================================
 
-[Tab.5] Abstraction span per domain (computed):
+[Tab.5] Abstraction span per domain:
 Abstraction Gap  Cross-layer  Same/Partial
 domain                                    
 Automotive                 3             2
@@ -149,14 +135,15 @@ Robotics                   3             0
 Healthcare                 1             0
 Smart City                 0             1
 Aerospace                  1             0
-   Cross-layer: 14/18 = 77.8%
-   Same/Partial: 4/18 = 22.2%
+   Cross-layer: 14/18 = 77.8%  (CS1, CS2, CS3, CS5, CS8, CS9, CS11, CS12, CS13, CS14, CS15, CS16, CS17, CS18)
+   Same/Partial: 4/18 = 22.2%  (CS4, CS6, CS7, CS10)
+   Rule: 'Same/Partial' when the Abstraction Gap field says 'same' or is empty; 'Cross-layer' otherwise.
 
-   Validation against the %Cross-layer / %Same comment in the .tex:
-   [OK  ] cross-layer: CS1, CS2, CS3, CS5, CS8, CS9, CS11, CS12, CS13, CS14, CS15, CS16, CS17, CS18
-   [OK  ] same/partial: CS4, CS6, CS7, CS10
-   Validation against the printed Table 5:
-   Table 5 sums to 18 cases (expected 18)
+   Abstraction Gap text of the Same/Partial exemplars:
+     CS4   All uncertainties at the same abstraction level
+     CS6   No? same level in traffic descriptions
+     CS7   Same abstraction level interaction agent-environment
+     CS10  (empty field)
 
 [6.2.2] Sources by CATEGORY (cases that mention it; keyword heuristic):
    Environment            17/18  CS1, CS2, CS3, CS4, CS5, CS6, CS7, CS8, CS9, CS10, CS12, CS13, CS14, CS15, CS16, CS17, CS18
@@ -184,11 +171,11 @@ Aerospace                  1             0
    Model x Human: 7
    Environment x Human: 7
 
-[6.2.3] Causal mechanisms: automatic textual evidence vs cases cited in the paper
-   Propagation: 2 cases with textual evidence; paper cites 4; cited WITHOUT textual evidence: CS15, CS18
-   Amplification: 16 cases with textual evidence; paper cites 4; cited WITHOUT textual evidence: -
-   Dominance: 12 cases with textual evidence; paper cites 4; cited WITHOUT textual evidence: -
-   Trade-off / Conflict: 15 cases with textual evidence; paper cites 5; cited WITHOUT textual evidence: -
+[6.2.3] Causal mechanisms: cases whose interaction, impact, trade-off or abstraction text shows the mechanism (keyword search):
+   Propagation             2/18  CS1, CS13
+   Amplification          16/18  CS1, CS2, CS3, CS4, CS5, CS6, CS7, CS8, CS9, CS11, CS12, CS13, CS14, CS15, CS16, CS18
+   Dominance              12/18  CS1, CS2, CS3, CS4, CS5, CS8, CS9, CS12, CS14, CS15, CS16, CS18
+   Trade-off / Conflict   15/18  CS1, CS2, CS3, CS4, CS7, CS8, CS10, CS11, CS12, CS13, CS14, CS15, CS16, CS17, CS18
 ======================================================================== 
 RQ3 - Operational impacts
 ========================================================================
@@ -197,10 +184,12 @@ RQ3 - Operational impacts
    Multi-dimensional: 15/18 = 83.3%
    Generic/Template: 3/18 = 16.7%
    Generic/Template cases: CS8, CS10, CS14
-   [OK ] text Multi-dimensional: paper=15  computed=15
-   [OK ] text Generic/Template: paper=3  computed=3
+   Rule: generic/template when the Impact field is explicitly marked as generic or template text.
+     CS8   Impact described generically (trigger scope metrics spectrum) describing system performance effects.
+     CS10  Impact described generically (template text)
+     CS14  Impact generic template text.
 
-[Tab.6] per domain (computed):
+[Tab.6] per domain:
 impact_class  Multi-dimensional  Generic/Template
 domain                                           
 Automotive                    4                 1
@@ -209,183 +198,255 @@ Robotics                      3                 0
 Healthcare                    1                 0
 Smart City                    1                 0
 Aerospace                     1                 0
-   Table 6 sums to: multi=15, generic=3 (text says 15 / 3)
 
-[Tab.7] Affected quality dimensions: evidence in the verbatim text
-   Table 7 is an analyst reading of each exemplar. For every dimension the script lists the cases cited in the paper
-   and what the text supports: 'impact' = the Impact field itself; 'trade-offs'/'summary' = secondary evidence.
+[Tab.7] Affected quality dimensions: supporting text for each case assigned to a dimension
+   Table 7 is an analyst reading of each exemplar. For every assigned case the report shows the text that supports it:
+   'impact' = the Impact field itself (primary evidence); 'trade-offs' / 'summary' = secondary evidence.
 
-   Agreement with Table 7, per dimension. Table 7 lists *supporting* (representative) cases, not every case that
-   shows the dimension, so the relevant measure is coverage = share of the CITED cases that the text supports.
-   dimension                    cited   impact  any field
-   Safety                           5    3 ( 60%)    5 (100%)
-   Performance                      4    4 (100%)    4 (100%)
-   Reliability & Availability       3    3 (100%)    3 (100%)
-   Mission Success                  3    2 ( 66%)    3 (100%)
-   Human Factors & Trust            2    2 (100%)    2 (100%)
-   Resource Efficiency / Cost       4    2 ( 50%)    4 (100%)
+   dimension                    assigned   impact  any field
+   Safety                              5    3 ( 60%)    5 (100%)
+   Performance                         4    4 (100%)    4 (100%)
+   Reliability & Availability          3    3 (100%)    3 (100%)
+   Mission Success                     3    2 ( 66%)    3 (100%)
+   Human Factors & Trust               2    2 (100%)    2 (100%)
+   Resource Efficiency / Cost          4    2 ( 50%)    4 (100%)
 
-   Case lists per dimension (impact = supported by the Impact field; secondary = Trade-offs/Summary):
+   Supporting text per dimension:
 
-   Safety  (cited in paper: CS11, CS12, CS16, CS17, CS18)
-     cited, supported by the Impact field : CS11, CS16, CS18
-     cited, secondary evidence only       : CS12 (trade-offs), CS17 (summary)
-     cited, NO textual evidence           : -
-     not cited, Impact field supports it  : CS2, CS6, CS9
-     not cited, secondary evidence only   : CS10 (summary), CS14 (summary)
+   Safety
+     CS11  [impact] ignals; metrics mission success, delay, safety, false positives.
+     CS12  [trade-offs] Conservative thresholds ? safety ?, mission completion ?. Frequent replanning ? robustness ?
+     CS16  [impact] trian crossing ACC acceleration. Impact collision risk.
+     CS17  [summary] al predictability creates challenges in safely transferring control between the autonomous system an
+     CS18  [impact] ense environment, mode changes. Metrics collision probability, tracking error, delays.
 
-   Performance  (cited in paper: CS1, CS3, CS8, CS18)
-     cited, supported by the Impact field : CS1, CS3, CS8, CS18
-     cited, secondary evidence only       : -
-     cited, NO textual evidence           : -
-     not cited, Impact field supports it  : CS7, CS11, CS13
-     not cited, secondary evidence only   : CS2 (trade-offs), CS4 (summary), CS12 (trade-offs), CS14 (summary)
+   Performance
+     CS1   [impact] waves. Metrics: number and overhead of replanning. Spectrum: from inefficiency to disruption.
+     CS3   [impact] aptation. Impact: higher uncertainty in response time estimations.
+     CS8   [impact] ope metrics spectrum) describing system performance effects.
+     CS18  [impact] changes. Metrics collision probability, tracking error, delays.
 
-   Reliability & Availability  (cited in paper: CS2, CS13, CS15)
-     cited, supported by the Impact field : CS2, CS13, CS15
-     cited, secondary evidence only       : -
-     cited, NO textual evidence           : -
-     not cited, Impact field supports it  : CS1, CS9
-     not cited, secondary evidence only   : CS5 (summary), CS11 (summary)
+   Reliability & Availability
+     CS2   [impact] Trigger(s): environmental disruption (e.g., radiation). Impact scope: system-wide safe mode or f
+     CS13  [impact] Triggers packet loss, failures. Impact reliability cost performance violations.
+     CS15  [impact] acked configuration. Impact DT mismatch SLA violations.
 
-   Mission Success  (cited in paper: CS5, CS11, CS12)
-     cited, supported by the Impact field : CS5, CS11
-     cited, secondary evidence only       : CS12 (trade-offs)
-     cited, NO textual evidence           : -
-     not cited, Impact field supports it  : -
-     not cited, secondary evidence only   : -
+   Mission Success
+     CS5   [impact] ses. Metrics: probability of completing mission, fatigue level. Spectrum: mission execution, failure
+     CS11  [impact] BSN triggers abnormal signals; metrics mission success, delay, safety, false positives.
+     CS12  [trade-offs] Conservative thresholds ? safety ?, mission completion ?. Frequent replanning ? robustness ?, energy
 
-   Human Factors & Trust  (cited in paper: CS5, CS17)
-     cited, supported by the Impact field : CS5, CS17
-     cited, secondary evidence only       : -
-     cited, NO textual evidence           : -
-     not cited, Impact field supports it  : -
-     not cited, secondary evidence only   : CS3 (summary), CS8 (summary), CS15 (trade-offs)
+   Human Factors & Trust
+     CS5   [impact] Triggers: human ignores instruction, fatigue increases. Metrics: probability of completing mission, 
+     CS17  [impact] Trigger ODD boundary; metrics takeover success workload; high severity.
 
-   Resource Efficiency / Cost  (cited in paper: CS1, CS3, CS13, CS18)
-     cited, supported by the Impact field : CS1, CS13
-     cited, secondary evidence only       : CS3 (summary), CS18 (trade-offs)
-     cited, NO textual evidence           : -
-     not cited, Impact field supports it  : CS9
-     not cited, secondary evidence only   : CS2 (trade-offs), CS8 (summary), CS12 (trade-offs), CS14 (summary), CS15 (trade-offs), CS16 (trade-offs)
+   Resource Efficiency / Cost
+     CS1   [impact] propagation waves. Metrics: number and overhead of replanning. Spectrum: from inefficiency to disrup
+     CS3   [summary] eb application that dynamically adjusts resources and service quality in response to changing worklo
+     CS13  [impact] cket loss, failures. Impact reliability cost performance violations.
+     CS18  [trade-offs] ent failures, predictable degradations. Costs: extra instrumentation and modeling effort, performanc
 
    Full excerpts: output/rq3_quality_dimension_evidence.csv
 ======================================================================== 
 RQ4 - Solution space
 ========================================================================
 
-[Tab.8] Preparedness -- number of cases reporting the capability (computed):
+[Tab.8] Preparedness -- number of cases reporting the capability (parsed from the text):
    Mitigation      12/18 = 66.7%
    Awareness       11/18 = 61.1%
    Detectability   11/18 = 61.1%
-   Representation  10/18 = 55.6%
    Understanding   10/18 = 55.6%
    Prevention       9/18 = 50.0%
+   Representation   9/18 = 50.0%
    Cases that filled in the Preparedness field: 17/18 (missing: CS17)
 
-   Comparison with the Table 8:
-   [DIFF] Awareness (calc=11, paper=12):
-          paper    = CS1, CS4, CS5, CS6, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18
-          computed = CS1, CS4, CS6, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18
-          only in paper = CS5 | only in computed = -
-   [DIFF] Detectability (calc=11, paper=11):
-          paper    = CS1, CS2, CS4, CS5, CS7, CS9, CS11, CS12, CS15, CS16, CS18
-          computed = CS1, CS2, CS4, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18
-          only in paper = CS5 | only in computed = CS13
-   [DIFF] Representation (calc=10, paper=10):
-          paper    = CS1, CS2, CS4, CS5, CS11, CS12, CS13, CS15, CS16, CS18
-          computed = CS1, CS2, CS4, CS7, CS11, CS12, CS13, CS15, CS16, CS18
-          only in paper = CS5 | only in computed = CS7
-   [DIFF] Prevention (calc=9, paper=7):
-          paper    = CS1, CS4, CS7, CS11, CS12, CS13, CS16
-          computed = CS1, CS4, CS7, CS9, CS11, CS12, CS13, CS16, CS18
-          only in paper = - | only in computed = CS9, CS18
-   [DIFF] Understanding (calc=10, paper=8):
-          paper    = CS1, CS5, CS11, CS12, CS13, CS15, CS16, CS18
-          computed = CS1, CS4, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18
-          only in paper = CS5 | only in computed = CS4, CS7, CS9
-   [DIFF] Mitigation (calc=12, paper=11):
-          paper    = CS1, CS2, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS18
-          computed = CS1, CS2, CS4, CS5, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18
-          only in paper = - | only in computed = CS9
+[Tab.8] Preparedness: cases that report each capability, with the supporting entry
+   Awareness: 11/18 cases  (CS1, CS4, CS6, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18)
+          CS1   Preparedness: 'medium - can be collectively detected.'
+          CS4   Preparedness: 'Developers are aware of the uncertainties in the systems.'
+          CS6   Preparedness: 'In principle, V&V activities consider combinations of scenario factors. Prevention, detectability, repres...'
+          CS7   Preparedness: 'Developers are aware of the uncertainties.'
+          CS9   Preparedness: 'Instrument agents with tracing of tool calls, memory queries, policy checks, and environment state snapsh...'
+          CS11  Preparedness: 'Yes.'
+          CS12  Preparedness: 'Yes.'
+          CS13  Preparedness: 'Yes.'
+          CS15  Preparedness: 'Achieved through active monitoring and observability of both RT and ST.'
+          CS16  Preparedness: 'foreseeable interaction.'
+          CS18  Preparedness: 'High.'
+   Prevention: 9/18 cases  (CS1, CS4, CS7, CS9, CS11, CS12, CS13, CS16, CS18)
+          CS1   Preparedness: 'In most cases, total prevention is not possible (environmental origin).'
+          CS4   Preparedness: 'Some sources of uncertainty can be foreseen but possibly not prevented.'
+          CS7   Preparedness: 'Some sources can be foreseen but possibly not prevented.'
+          CS9   Preparedness: 'Enforce deterministic guardrails and constrain tools to safe subsets.'
+          CS11  Preparedness: 'Partial (sensor redundancy).'
+          CS12  Preparedness: 'Partial (redundancy, planning margins).'
+          CS13  Preparedness: 'Limited.'
+          CS16  Preparedness: 'Partial prevention is possible.'
+          CS18  Preparedness: 'Medium.'
+   Detectability: 11/18 cases  (CS1, CS2, CS4, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18)
+          CS1   Preparedness: 'Yes.'
+          CS2   Preparedness: 'Hardware metrics are polled continuously, and non-responsive components trigger software watchdogs via th...'
+          CS4   Preparedness: 'equip agents to detect specific situations.'
+          CS7   Preparedness: 'detect specific situations.'
+          CS9   Preparedness: 'using static checks, memory retrieval accuracy, and LLM-as-judge score.'
+          CS11  Preparedness: 'Yes (anomaly detection).'
+          CS12  Preparedness: 'Yes (runtime monitoring).'
+          CS13  Preparedness: 'Yes.'
+          CS15  Preparedness: 'Dynamic Knowledge Hypergraphs.'
+          CS16  Preparedness: 'achievable with scenario-based simulation testing and runtime monitoring.'
+          CS18  Preparedness: 'High.'
+   Representation: 9/18 cases  (CS1, CS2, CS7, CS11, CS12, CS13, CS15, CS16, CS18)
+          CS1   Preparedness: 'Yes. One idea is measuring the computational field stability.'
+          CS2   Preparedness: 'The FSM rigorously models valid transition logic within the Controller component.'
+          CS7   Preparedness: 'The uncertainty could be modeled.'
+          CS11  Preparedness: 'Yes (Bayesian/diagnostic models).'
+          CS12  Preparedness: 'Yes (probabilistic + runtime models).'
+          CS13  Preparedness: 'Yes.'
+          CS15  Preparedness: 'hyperedges to capture design-time, runtime, and simulation-time knowledge.'
+          CS16  Preparedness: 'Probably yes, with multi-layer uncertainty models.'
+          CS18  Preparedness: 'Medium–High.'
+   Understanding: 10/18 cases  (CS1, CS4, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18)
+          CS1   Preparedness: 'Partial, currently: via simulation. On HIL/real systems, there is a tooling gap (we would need flight rec...'
+          CS4   Preparedness: 'Depending on the uncertainty type its effect could be analyzed.'
+          CS7   Preparedness: 'Depending on uncertainty type.'
+          CS9   Preparedness: 'Correlate traces with environment events and perform failure attribution.'
+          CS11  Preparedness: 'Moderate.'
+          CS12  Preparedness: 'Moderate.'
+          CS13  Preparedness: 'Partial.'
+          CS15  Preparedness: 'LLMs provide natural language explanations.'
+          CS16  Preparedness: 'yes, by simulation and sensitivity analysis.'
+          CS18  Preparedness: 'Medium.'
+   Mitigation: 12/18 cases  (CS1, CS2, CS4, CS5, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18)
+          CS1   Preparedness: 'Possible, maybe via stability aware adaptation.'
+          CS2   Preparedness: 'The system possesses highly structured mitigation routines executed by the FDIRController or cold redunda...'
+          CS4   Preparedness: 'fine grained behavior to compose into more elaborate solutions.'
+          CS5   Preparedness: 'mitigation level reached with proactive adaptation'
+          CS7   Preparedness: 'equip assistant with fine grained behavior.'
+          CS9   Preparedness: 'Fallback strategies.'
+          CS11  Preparedness: 'Yes (alarm escalation, adaptive sampling).'
+          CS12  Preparedness: 'Yes (replanning, safe mode).'
+          CS13  Preparedness: 'Yes.'
+          CS15  Preparedness: 'Proactive risk assessment and quantification using ST experiments to define "Viability Zones".'
+          CS16  Preparedness: 'feasible at multiple levels.'
+          CS18  Preparedness: 'Medium.'
 
-[Tab.12] Strategy -- cases reporting a strategy (computed):
+[Tab.12] Strategy -- cases reporting a strategy (parsed from the text):
    Detection       12/18
    Representation  10/18
    Analysis        10/18
    Mitigation      12/18
 
-   Comparison with the Table 12:
-   [DIFF] Detection (calc=12, paper=8):
-          paper    = CS1, CS2, CS5, CS9, CS11, CS12, CS15, CS18
-          computed = CS1, CS2, CS4, CS5, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18
-          only in paper = - | only in computed = CS4, CS7, CS13, CS16
-   [DIFF] Representation (calc=10, paper=8):
-          paper    = CS1, CS2, CS5, CS11, CS12, CS13, CS15, CS16
-          computed = CS1, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS18
-          only in paper = CS2 | only in computed = CS4, CS7, CS18
-   [DIFF] Analysis (calc=10, paper=8):
-          paper    = CS1, CS5, CS11, CS12, CS13, CS15, CS16, CS18
-          computed = CS1, CS2, CS5, CS11, CS12, CS13, CS15, CS16, CS17, CS18
-          only in paper = - | only in computed = CS2, CS17
-   [DIFF] Mitigation (calc=12, paper=11):
-          paper    = CS1, CS2, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS18
-          computed = CS1, CS2, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS17, CS18
-          only in paper = - | only in computed = CS17
+[Tab.12] Strategy: cases that report each strategy category, with the supporting entry
+   Detection: 12/18 cases  (CS1, CS2, CS4, CS5, CS7, CS9, CS11, CS12, CS13, CS15, CS16, CS18)
+          CS1   Strategy: 'Collective “instability fields”: measure cluster churn rate, leader change rate, field convergence age, p...'
+          CS2   Strategy: 'Ping/Echo tactic utilizing software watchdogs.'
+          CS4   Strategy: 'continuously monitoring the environment state.'
+          CS5   Strategy: 'Threshold-based trigger on predicted success probability.'
+          CS7   Strategy: 'continuous monitoring.'
+          CS9   Strategy: 'Traces, metrics and logs that appear from the agents and the LLM scores.'
+          CS11  Strategy: 'Statistical anomaly detection; Multi-sensor consistency checking.'
+          CS12  Strategy: 'Runtime monitoring; Threshold-based alerts.'
+          CS13  Strategy: 'Monitoring environmental events and system metrics.'
+          CS15  Strategy: 'Graph convolutional neural networks.'
+          CS16  Strategy: 'search-based testing, adversarial scenario generation, time-to-collision monitoring.'
+          CS18  Strategy: 'runtime monitors.'
+   Representation: 10/18 cases  (CS1, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS18)
+          CS1   Strategy: 'Extend aggregate programs with confidence/age annotations on shared state; represent partitions and stabi...'
+          CS4   Strategy: 'self-adaptation and self-organization following context-oriented programming where uncertainties are repr...'
+          CS5   Strategy: 'SHA network with stochastic transitions, MITL properties, ML regression/classification models.'
+          CS7   Strategy: 'context-oriented programming.'
+          CS11  Strategy: 'Bayesian networks; Confidence intervals.'
+          CS12  Strategy: 'Probabilistic models; Runtime belief states.'
+          CS13  Strategy: 'Explicit modeling of configurations and quality objectives.'
+          CS15  Strategy: 'Hierarchical DSMLs or hypergraphs.'
+          CS16  Strategy: 'risk modeling, multi-layer uncertainty models, Bayesian networks.'
+          CS18  Strategy: 'multi-fidelity runtime models.'
+   Analysis: 10/18 cases  (CS1, CS2, CS5, CS11, CS12, CS13, CS15, CS16, CS17, CS18)
+          CS1   Strategy: 'Simulation-driven Monte Carlo processes; adversarial corner cases.'
+          CS2   Strategy: 'Event filtering and categorization by ActiveLogger.'
+          CS5   Strategy: 'Statistical Model Checking, NSGA-II multi-objective optimization, Explainable AI (PDP + LIME).'
+          CS11  Strategy: 'Risk scoring; Probabilistic inference.'
+          CS12  Strategy: 'Sensitivity analysis; Risk estimation.'
+          CS13  Strategy: 'Multi-objective reasoning under uncertainty.'
+          CS15  Strategy: 'Identifying "Viability Zones".'
+          CS16  Strategy: 'adversarial perturbation testing, sensitivity analysis, fault injection.'
+          CS17  Strategy: 'Leveraging an empirical user study to analyze and model why a specific time window was allocated.'
+          CS18  Strategy: 'compositional what-if checks.'
+   Mitigation: 12/18 cases  (CS1, CS2, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS17, CS18)
+          CS1   Strategy: 'Hysteresis, exponential backoff, low-pass filtering, disruption prediction, partition tolerance, collecti...'
+          CS2   Strategy: 'State degradation governed by an FSM enforcing allowable transitions through guard functions.'
+          CS4   Strategy: 'dampen the uncertainty through corrective behavior.'
+          CS5   Strategy: 'Modify controllable factors and asynchronous formal verification.'
+          CS7   Strategy: 'corrective behavior is triggered as soon as uncertainty is detected.'
+          CS11  Strategy: 'Alarm escalation; Adaptive sampling; Human-in-the-loop confirmation.'
+          CS12  Strategy: 'Replanning; Safe-mode activation; Energy-aware adaptation.'
+          CS13  Strategy: 'Adaptive topology reconfiguration and policy recalibration.'
+          CS15  Strategy: 'LLM-based decision-making to orchestrate self-healing actions and generate remediation plans.'
+          CS16  Strategy: 'rule-based structural mitigation, adaptive conflict resolution, runtime safety envelopes.'
+          CS17  Strategy: 'Dynamic boundary adjustment; Escalate the intensity of HCI via haptic feedback.'
+          CS18  Strategy: 'dominance-aware, augmentation-aware, and conflict-aware mitigation.'
 
 [6.4.3] Lifecycle stage (raw field):
    both          11/18  CS1, CS2, CS5, CS6, CS9, CS11, CS12, CS13, CS15, CS16, CS18
    not reported   5/18  CS3, CS8, CS10, CS14, CS17
    runtime        2/18  CS4, CS7
    Among the 13 cases that report it: both = 11, runtime-only = 2, design-only = 0
-   Table 10 (lifecycle activities) is analyst-derived; counts as printed in the paper:
-   Modeling                    4 cases
-   Analysis & Verification     5 cases
-   Monitoring                  9 cases
-   Runtime Decision-Making     6 cases
-   Mitigation & Adaptation    11 cases
+   Table 10 (lifecycle activities) is analyst-derived; cases assigned to each activity:
+   Modeling                    4 cases  (CS5, CS13, CS15, CS16)
+   Analysis & Verification     5 cases  (CS1, CS5, CS13, CS15, CS16)
+   Monitoring                  9 cases  (CS1, CS2, CS4, CS7, CS9, CS11, CS12, CS15, CS18)
+   Runtime Decision-Making     6 cases  (CS5, CS11, CS12, CS13, CS16, CS18)
+   Mitigation & Adaptation    11 cases  (CS1, CS2, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS18)
 
+[Tab.9] Applicability conditions: supporting text for each assigned case
+   Architectural Assumptions: 4/4 assigned cases have supporting text
+          CS1   Systems with no natural central coordinator nor connectivity guarantee, forcing collective deci...
+          CS12  afety thresholds; Adaptive control architecture.
+          CS13  f-adaptive systems with structural reconfiguration; systems balancing competing non-functional ...
+          CS15  rk structured into five functional layers: Context Management, Data Storage, Model Management a...
+   Infrastructure Requirements: 3/3 assigned cases have supporting text
+          CS2   The shared CAN bus must remain physically intact to allow the PDPU to com
+          CS11  ; Known patient baseline; Reliable communication.
+          CS12  Sufficient sensing capability; Defined safety thresholds; Adaptive control architect
+   Observability Requirements: 4/4 assigned cases have supporting text
+          CS11  Multi-sensor availability; Known patient baseline; Reliable communi
+          CS12  Sufficient sensing capability; Defined safety thresholds; Adaptive contro
+          CS16  lutions applicable when perception confidence metrics are available, environmental uncertainty ...
+          CS18  System can measure timing/delay/concurrency health; alternative configura
+   Model Availability: 2/2 assigned cases have supporting text
+          CS5   trollable factors exist; predictor model can be trained; formal model is available; time budget
+          CS16  , environmental uncertainty can be quantified, system supports adaptive control policies.
+   Adaptation Capability: 4/4 assigned cases have supporting text
+          CS5   controllable factors exist; predictor model can be trained; formal
+          CS13  Self-adaptive systems with structural reconfiguration; systems balan
+          CS16  can be quantified, system supports adaptive control policies.
+          CS18  e timing/delay/concurrency health; alternative configurations; degraded safe mode; bounded reso...
+   Operational Scope: 3/3 assigned cases have supporting text
+          CS4   Applicability restricted to the enabling scope of the uncertainty. So long a sp
+          CS7   Restricted to the enabling scope of the uncertainty. System switc
+          CS13  eting non-functional requirements; contexts with failure-driven environmental uncertainty.
 
-[Tab.9] Applicability conditions (keyword cross-check; reference = the paper's manual analysis):
-   [OK  ] Architectural Assumptions (calc=4, paper=4): CS1, CS12, CS13, CS15
-   [DIFF] Infrastructure Requirements (calc=4, paper=3):
-          paper    = CS2, CS11, CS12
-          computed = CS2, CS11, CS12, CS15
-          only in paper = - | only in computed = CS15
-   [DIFF] Observability Requirements (calc=4, paper=4):
-          paper    = CS11, CS12, CS16, CS18
-          computed = CS4, CS12, CS16, CS18
-          only in paper = CS11 | only in computed = CS4
-   [DIFF] Model Availability (calc=2, paper=2):
-          paper    = CS5, CS16
-          computed = CS5, CS15
-          only in paper = CS16 | only in computed = CS15
-   [DIFF] Adaptation Capability (calc=7, paper=4):
-          paper    = CS5, CS13, CS16, CS18
-          computed = CS4, CS5, CS7, CS12, CS13, CS16, CS18
-          only in paper = - | only in computed = CS4, CS7, CS12
-   [OK  ] Operational Scope (calc=3, paper=3): CS4, CS7, CS13
+[Tab.11] Trade-offs: supporting text for each assigned case
+   Robustness vs Resource Consumption: 4/4 assigned cases have supporting text
+          CS1   Robustness vs overhead: more robustness typically implies more da
+          CS2   g and responsiveness but increases memory utilization and context-switching overhead. FatalHand...
+          CS12  ompletion ?. Frequent replanning ? robustness ?, energy cost ?.
+          CS13  Improving reliability through redundancy increases operational cost and may reduce performanc
+   Safety vs Performance: 3/3 assigned cases have supporting text
+          CS12  Conservative thresholds ? safety ?, mission completion ?. Frequent
+          CS16  Verification of safety invariants: Strong prevention/Reduced flexibility. Run
+          CS18  Benefits: higher safety assurance, fewer emergent failures, predictable degrad
+   Responsiveness vs Stability: 3/3 assigned cases have supporting text
+          CS1   omputational and network overhead. Responsiveness vs overhead: more responsiveness implies more...
+          CS13  proves robustness but may increase instability in other quality dimensions. Propagation effects...
+          CS16  g: Reduced pedestrian risk/Traffic instability. Formal modeling: Better analyzability/Modeling ...
+   Autonomy vs Assurance: 2/2 assigned cases have supporting text
+          CS5   (between 2 and 9 seconds) but low guarantees because of AI-in-the-loop.
+          CS15  Benefits: Increased autonomy, reduced human cognitive load, and enhanced explainabi
+   Sensitivity vs False Positives: 1/1 assigned cases have supporting text
+          CS11  High sensitivity ? fewer missed emergencies, more false alarms. Strong
+
    Cases with the Applicability field filled in: 16/18
-
-
-[Tab.11] Trade-offs (keyword cross-check):
-   [DIFF] Robustness vs Resource Consumption (calc=8, paper=4):
-          paper    = CS1, CS2, CS12, CS13
-          computed = CS1, CS2, CS4, CS12, CS13, CS15, CS16, CS18
-          only in paper = - | only in computed = CS4, CS15, CS16, CS18
-   [DIFF] Safety vs Performance (calc=3, paper=3):
-          paper    = CS11, CS12, CS16
-          computed = CS12, CS16, CS18
-          only in paper = CS11 | only in computed = CS18
-   [DIFF] Responsiveness vs Stability (calc=5, paper=2):
-          paper    = CS1, CS16
-          computed = CS1, CS2, CS12, CS13, CS16
-          only in paper = - | only in computed = CS2, CS12, CS13
-   [DIFF] Autonomy vs Assurance (calc=3, paper=2):
-          paper    = CS5, CS15
-          computed = CS5, CS15, CS18
-          only in paper = - | only in computed = CS18
-   [OK  ] Sensitivity vs False Positives (calc=1, paper=1): CS11
    Cases with the Trade-offs field filled in: 16/18 (not filled in: CS9, CS17)
 
 [Coverage] Solution-space fields filled in per case:

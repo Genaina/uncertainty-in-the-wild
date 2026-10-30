@@ -96,9 +96,9 @@ def code_interactions(raw: pd.DataFrame, return_evidence: bool = False):
 
 
 def interaction_flags(coded: pd.DataFrame, mode: str) -> pd.DataFrame:
-    """mode='strict': so 'explicit'; 'lenient': explicit+tentative; 'paper': +template."""
+    """mode='strict': so 'explicit'; 'lenient': explicit+tentative; 'full': +template-only answers."""
     ok = {"strict": {"explicit"}, "lenient": {"explicit", "tentative"},
-          "paper": {"explicit", "tentative", "template"}}[mode]
+          "full": {"explicit", "tentative", "template"}}[mode]
     return coded.isin(ok)
 
 
@@ -221,7 +221,7 @@ def code_preparedness(raw: pd.DataFrame) -> pd.DataFrame:
     'Limited'/'Partial' count as present (partial capability, as in Table 8).
     Text without labels (CS5: 'mitigation level reached ...') -> Mitigation only.
     """
-    neg = re.compile(NEGATIVE + r"|have not|not thought|not yet", re.I)
+    neg = re.compile(NEGATIVE + r"|have not|not thought|not yet|\bcannot\b", re.I)
     rows = {}
     for cid, t in raw["Level of Preparedness"].items():
         res = {k: False for k in PREP_LABELS}
@@ -260,25 +260,6 @@ def code_strategy(raw: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows).T[STRAT_LABELS]
 
 
-# -------------------------------------------------------------- applicability
-APPLIC = {
-    "Architectural Assumptions": r"architectur|decentrali|central coordinator|reconfiguration|layers?\b|control architecture|framework structured",
-    "Infrastructure Requirements": r"bus|fram|communication|infrastructure|sensing capab|multi-sensor|storage",
-    "Observability Requirements": r"observab|sensing|measur|metrics are available|detect|monitor|confidence",
-    "Model Availability": r"model",
-    "Adaptation Capability": r"adaptive|adaptation|controllable|alternative configurations|switch|reconfig|safe mode",
-    "Operational Scope": r"enabling scope|failure-driven|contexts|restricted",
-}
-
-
-def code_applicability(raw: pd.DataFrame) -> pd.DataFrame:
-    rows = {}
-    for cid, t in raw["Applicability Conditions"].items():
-        rows[cid] = {k: (False if is_blank(t) or "not provided" in str(t).lower()
-                         else bool(re.search(p, str(t), re.I))) for k, p in APPLIC.items()}
-    return pd.DataFrame(rows).T
-
-
 # ------------------------------------------------------------------ lifecycle
 def code_lifecycle(raw: pd.DataFrame) -> pd.Series:
     def f(t):
@@ -291,21 +272,3 @@ def code_lifecycle(raw: pd.DataFrame) -> pd.Series:
             return "both"
         return "design-time" if d else ("runtime" if r else "not reported")
     return raw["Lifecycle Stage"].map(f)
-
-
-# ------------------------------------------------------------------ trade-offs
-TRADEOFFS = {
-    "Robustness vs Resource Consumption": r"robustness|redundan|overhead|resource|memory utili|computational|energy cost|cost",
-    "Safety vs Performance": r"safety|mission completion|conservative|flexibility|traffic instab",
-    "Responsiveness vs Stability": r"responsiveness|stability|instabil|oscillat|replanning|adaptation frequency|volatility",
-    "Autonomy vs Assurance": r"autonomy|assurance|guarantee|explainab",
-    "Sensitivity vs False Positives": r"false (alarm|positive)|sensitivity|filtering",
-}
-
-
-def code_tradeoffs(raw: pd.DataFrame) -> pd.DataFrame:
-    rows = {}
-    for cid, t in raw["Trade-offs"].items():
-        rows[cid] = {k: (False if is_blank(t) or "not provided" in str(t).lower()
-                         else bool(re.search(p, str(t), re.I))) for k, p in TRADEOFFS.items()}
-    return pd.DataFrame(rows).T

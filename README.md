@@ -30,7 +30,7 @@ python run_all.py                              # run RQ1..RQ4: prints the report
 | `data/artifacts_case_studies_raw.csv` | The catalogue: one row per exemplar with the contributors' verbatim answers to the characterisation template |
 | `data/manual_interaction_counts.csv` | Manual coding of the interaction categories per exemplar (used by RQ1) |
 | `requirements.txt` | Python dependencies (pandas, matplotlib) |
-| `common.py` | CSV loading, domain map (Table 3 / Fig. 1), comparison helpers |
+| `common.py` | CSV loading, domain map (Table 3 / Fig. 1) and small formatting helpers |
 | `coding.py` | Rule-based coding of the verbatim fields (follows the operational coding rules of Section 3.4) |
 | `analyst_assignments.py` | The case assignments of the analyst-derived tables (Tables 7, 9, 10, 11), used as input; the scripts show the text that supports each one |
 | `rq1.py` … `rq4.py` | One script per research question |
@@ -71,8 +71,8 @@ is tagged `Healthcare/Robotics` in the CSV and counted as Robotics.
 1. **Domain distribution** (Fig. 1).
 2. **Interaction categories** (dominance, conflict, augmentation, independence), counted per exemplar from `manual_interaction_counts.csv`,
    in total (Section 6.1.1) and per domain (Fig. 3). As a cross-check, `coding.py` codes the verbatim text automatically under three criteria:
-   *strict* (explicit evidence only), *lenient* (+ tentative marks such as `(?)`), *full* (+ template-only answers); the script lists the cases where the
-   automatic rule and the manual coding differ. The *full* criterion reproduces the manual coding exactly (11/14/14/4); *strict* and *lenient* show how many
+   *strict* (explicit evidence only), *lenient* (+ tentative marks such as `(?)`), *full* (+ template-only answers); the script reports whether the
+   automatic rule reproduces the manual coding. The *full* criterion reproduces the manual coding exactly (11/14/14/4); *strict* and *lenient* show how many
    category codes rest on explicit case-specific text (6/10/9/1 and 8/10/10/1), the difference being the four template-only exemplars.
    The report then prints an **evidence section**: for every category, the cases counted, split into *explicit text*, *tentative mark* and *template-only*, with the
    verbatim excerpt that supports each code, and it confirms that the manual coding is fully explained by these three layers (`rq1_interaction_evidence.csv` holds the full excerpts).

@@ -2,7 +2,7 @@
 CS1,True,True,True,True,True,True
 CS2,False,False,True,True,False,True
 CS3,False,False,False,False,False,False
-CS4,True,True,True,True,True,True
+CS4,True,True,True,False,True,True
 CS5,False,False,False,False,False,True
 CS6,True,False,False,False,False,False
 CS7,True,True,True,True,True,True

@@ -13,7 +13,7 @@ OUT.mkdir(exist_ok=True)
 
 # PRIMARY domain of each exemplar, as in Table 3 / Figure 1 of the paper. CS5 is tagged
 # 'Healthcare/Robotics' in the CSV; its primary domain is Robotics (see README).
-PAPER_DOMAIN = {
+PRIMARY_DOMAIN = {
     "CS1": "IT/Cloud", "CS2": "Aerospace", "CS3": "IT/Cloud", "CS4": "Smart City",
     "CS5": "Robotics", "CS6": "Automotive", "CS7": "Automotive", "CS8": "IT/Cloud",
     "CS9": "IT/Cloud", "CS10": "IT/Cloud", "CS11": "Healthcare", "CS12": "Robotics",
@@ -34,7 +34,7 @@ def load_raw() -> pd.DataFrame:
     df = df.dropna(subset=["ID"]).copy()
     df["ID"] = df["ID"].str.strip()
     df = df.set_index("ID")
-    df["domain"] = pd.Series(PAPER_DOMAIN)
+    df["domain"] = pd.Series(PRIMARY_DOMAIN)
     return df
 
 
@@ -54,22 +54,9 @@ def pct(n, d):
     return f"{100 * n / d:.1f}%"
 
 
-def report_check(label, paper_value, computed_value):
-    flag = "OK " if paper_value == computed_value else "DIFF"
-    print(f"   [{flag}] {label}: paper={paper_value}  computed={computed_value}")
-
 
 def by_domain(flags: pd.Series, domain: pd.Series, domains):
     """Count cases with flag=True per domain, in the order given by 'domains'."""
     s = flags.groupby(domain).sum().reindex(domains).fillna(0).astype(int)
     return s
 
-
-def compare_sets(name, paper_ids, computed_ids):
-    p, c = set(paper_ids), set(computed_ids)
-    if p == c:
-        print(f"   [OK  ] {name}: {cases_to_str(c)}")
-    else:
-        print(f"   [DIFF] {name}:\n          paper    = {cases_to_str(p)}\n"
-              f"          computed = {cases_to_str(c)}\n"
-              f"          only in paper = {cases_to_str(p - c) or '-'} | only in computed = {cases_to_str(c - p) or '-'}")

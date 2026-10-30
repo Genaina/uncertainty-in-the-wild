@@ -1,109 +1,22 @@
-ID,dimension,in_paper_table7,support,evidence_excerpt
-CS1,Safety,False,none,
-CS1,Performance,True,impact,waves. Metrics: number and overhead of replanning. Spectrum: from inefficiency to disruption.
-CS1,Reliability & Availability,False,impact,lanning. Spectrum: from inefficiency to disruption.
-CS1,Mission Success,False,none,
-CS1,Human Factors & Trust,False,none,
-CS1,Resource Efficiency / Cost,True,impact,propagation waves. Metrics: number and overhead of replanning. Spectrum: from inefficiency to disruption.
-CS2,Safety,False,impact,", radiation). Impact scope: system-wide safe mode or failure. Metrics: link availability, telemetry preserved"
-CS2,Performance,False,trade-offs,overhead. FatalHandler achieves minimal delay and overhead but sacrifices granular state management.
-CS2,Reliability & Availability,True,impact,"Trigger(s): environmental disruption (e.g., radiation). Impact scope: system-wide safe mode or f"
-CS2,Mission Success,False,none,
-CS2,Human Factors & Trust,False,none,
-CS2,Resource Efficiency / Cost,False,trade-offs,upling and responsiveness but increases memory utilization and context-switching overhead. FatalHandler ac
-CS3,Safety,False,none,
-CS3,Performance,True,impact,aptation. Impact: higher uncertainty in response time estimations.
-CS3,Reliability & Availability,False,none,
-CS3,Mission Success,False,none,
-CS3,Human Factors & Trust,False,summary,"service quality in response to changing workloads. Uncertainties such as fluctuating request rates, tactic d"
-CS3,Resource Efficiency / Cost,True,summary,eb application that dynamically adjusts resources and service quality in response to changing workloads. Unc
-CS4,Safety,False,none,
-CS4,Performance,False,summary,adaptation strategy to optimize system performance.
-CS4,Reliability & Availability,False,none,
-CS4,Mission Success,False,none,
-CS4,Human Factors & Trust,False,none,
-CS4,Resource Efficiency / Cost,False,none,
-CS5,Safety,False,none,
-CS5,Performance,False,none,
-CS5,Reliability & Availability,False,summary,cessful completion depends on the robot reliably performing all services in a dynamic environment.
-CS5,Mission Success,True,impact,"ses. Metrics: probability of completing mission, fatigue level. Spectrum: mission execution, failure, loss"
-CS5,Human Factors & Trust,True,impact,"Triggers: human ignores instruction, fatigue increases. Metrics: probability of completing mission, fati"
-CS5,Resource Efficiency / Cost,False,none,
-CS6,Safety,False,impact,cenario with vague instruction. Impact: crash or undesirable traffic behavior.
-CS6,Performance,False,none,
-CS6,Reliability & Availability,False,none,
-CS6,Mission Success,False,none,
-CS6,Human Factors & Trust,False,none,
-CS6,Resource Efficiency / Cost,False,none,
-CS7,Safety,False,none,
-CS7,Performance,False,impact,"riggers: proximity to vehicle. Metrics: number of adaptations, violations. Spectrum: highly likely."
-CS7,Reliability & Availability,False,none,
-CS7,Mission Success,False,none,
-CS7,Human Factors & Trust,False,none,
-CS7,Resource Efficiency / Cost,False,none,
-CS8,Safety,False,none,
-CS8,Performance,True,impact,ope metrics spectrum) describing system performance effects.
-CS8,Reliability & Availability,False,none,
-CS8,Mission Success,False,none,
-CS8,Human Factors & Trust,False,summary,"s face uncertainty from highly variable workloads and unpredictable output generation, which affect memory u"
-CS8,Resource Efficiency / Cost,False,summary,"ictable output generation, which affect memory usage, batching decisions, and latency. These uncertainties"
-CS9,Safety,False,impact,"Impact: reliability and safety, correctness, cost, sustainability impact."
-CS9,Performance,False,none,
-CS9,Reliability & Availability,False,impact,"Impact: reliability and safety, correctness, cost, sustainability impact."
-CS9,Mission Success,False,none,
-CS9,Human Factors & Trust,False,none,
-CS9,Resource Efficiency / Cost,False,impact,"t: reliability and safety, correctness, cost, sustainability impact."
-CS10,Safety,False,summary,ed reinforcement learning aims to learn safe decision-making policies while minimizing catastrophic fail
-CS10,Performance,False,none,
-CS10,Reliability & Availability,False,none,
-CS10,Mission Success,False,none,
-CS10,Human Factors & Trust,False,none,
-CS10,Resource Efficiency / Cost,False,none,
-CS11,Safety,True,impact,"ignals; metrics mission success, delay, safety, false positives."
-CS11,Performance,False,impact,"ormal signals; metrics mission success, delay, safety, false positives."
-CS11,Reliability & Availability,False,summary,"es. Reduced monitoring capability and unreliable sensor data create uncertainty, requiring the system to m"
-CS11,Mission Success,True,impact,"BSN triggers abnormal signals; metrics mission success, delay, safety, false positives."
-CS11,Human Factors & Trust,False,none,
-CS11,Resource Efficiency / Cost,False,none,
-CS12,Safety,True,trade-offs,"Conservative thresholds ? safety ?, mission completion ?. Frequent replanning ? robustness ?"
-CS12,Performance,False,trade-offs,"afety ?, mission completion ?. Frequent replanning ? robustness ?, energy cost ?."
-CS12,Reliability & Availability,False,none,
-CS12,Mission Success,True,trade-offs,"Conservative thresholds ? safety ?, mission completion ?. Frequent replanning ? robustness ?, energy co"
-CS12,Human Factors & Trust,False,none,
-CS12,Resource Efficiency / Cost,False,trade-offs,"?. Frequent replanning ? robustness ?, energy cost ?."
-CS13,Safety,False,none,
-CS13,Performance,False,impact,"loss, failures. Impact reliability cost performance violations."
-CS13,Reliability & Availability,True,impact,"Triggers packet loss, failures. Impact reliability cost performance violations."
-CS13,Mission Success,False,none,
-CS13,Human Factors & Trust,False,none,
-CS13,Resource Efficiency / Cost,True,impact,"cket loss, failures. Impact reliability cost performance violations."
-CS14,Safety,False,summary,ehavior affects braking performance and safety analysis. Adaptive and periodic braking strategies reduce u
-CS14,Performance,False,summary,"ss, and driver behavior affects braking performance and safety analysis. Adaptive and periodic braking strategi"
-CS14,Reliability & Availability,False,none,
-CS14,Mission Success,False,none,
-CS14,Human Factors & Trust,False,none,
-CS14,Resource Efficiency / Cost,False,summary,"but introduce trade-offs among safety, energy efficiency, sustainability, and ease of assurance."
-CS15,Safety,False,none,
-CS15,Performance,False,none,
-CS15,Reliability & Availability,True,impact,acked configuration. Impact DT mismatch SLA violations.
-CS15,Mission Success,False,none,
-CS15,Human Factors & Trust,False,trade-offs,"fits: Increased autonomy, reduced human cognitive load, and enhanced explainability. Costs: Significant compu"
-CS15,Resource Efficiency / Cost,False,trade-offs,"tive load, and enhanced explainability. Costs: Significant computational resources and high time investme"
-CS16,Safety,True,impact,trian crossing ACC acceleration. Impact collision risk.
-CS16,Performance,False,none,
-CS16,Reliability & Availability,False,none,
-CS16,Mission Success,False,none,
-CS16,Human Factors & Trust,False,none,
-CS16,Resource Efficiency / Cost,False,trade-offs,ime monitoring: Early detection/Compute overhead. Conservative emergency braking: Reduced pedestrian risk/Tr
-CS17,Safety,True,summary,al predictability creates challenges in safely transferring control between the autonomous system and the
-CS17,Performance,False,none,
-CS17,Reliability & Availability,False,none,
-CS17,Mission Success,False,none,
-CS17,Human Factors & Trust,True,impact,Trigger ODD boundary; metrics takeover success workload; high severity.
-CS17,Resource Efficiency / Cost,False,none,
-CS18,Safety,True,impact,"ense environment, mode changes. Metrics collision probability, tracking error, delays."
-CS18,Performance,True,impact,"changes. Metrics collision probability, tracking error, delays."
-CS18,Reliability & Availability,False,none,
-CS18,Mission Success,False,none,
-CS18,Human Factors & Trust,False,none,
-CS18,Resource Efficiency / Cost,True,trade-offs,"ent failures, predictable degradations. Costs: extra instrumentation and modeling effort, performance los"
+dimension,case,support,evidence_excerpt
+Safety,CS11,impact,"ignals; metrics mission success, delay, safety, false positives."
+Safety,CS12,trade-offs,"Conservative thresholds ? safety ?, mission completion ?. Frequent replanning ? robustness ?"
+Safety,CS16,impact,trian crossing ACC acceleration. Impact collision risk.
+Safety,CS17,summary,al predictability creates challenges in safely transferring control between the autonomous system and the
+Safety,CS18,impact,"ense environment, mode changes. Metrics collision probability, tracking error, delays."
+Performance,CS1,impact,waves. Metrics: number and overhead of replanning. Spectrum: from inefficiency to disruption.
+Performance,CS3,impact,aptation. Impact: higher uncertainty in response time estimations.
+Performance,CS8,impact,ope metrics spectrum) describing system performance effects.
+Performance,CS18,impact,"changes. Metrics collision probability, tracking error, delays."
+Reliability & Availability,CS2,impact,"Trigger(s): environmental disruption (e.g., radiation). Impact scope: system-wide safe mode or f"
+Reliability & Availability,CS13,impact,"Triggers packet loss, failures. Impact reliability cost performance violations."
+Reliability & Availability,CS15,impact,acked configuration. Impact DT mismatch SLA violations.
+Mission Success,CS5,impact,"ses. Metrics: probability of completing mission, fatigue level. Spectrum: mission execution, failure, loss"
+Mission Success,CS11,impact,"BSN triggers abnormal signals; metrics mission success, delay, safety, false positives."
+Mission Success,CS12,trade-offs,"Conservative thresholds ? safety ?, mission completion ?. Frequent replanning ? robustness ?, energy co"
+Human Factors & Trust,CS5,impact,"Triggers: human ignores instruction, fatigue increases. Metrics: probability of completing mission, fati"
+Human Factors & Trust,CS17,impact,Trigger ODD boundary; metrics takeover success workload; high severity.
+Resource Efficiency / Cost,CS1,impact,propagation waves. Metrics: number and overhead of replanning. Spectrum: from inefficiency to disruption.
+Resource Efficiency / Cost,CS3,summary,eb application that dynamically adjusts resources and service quality in response to changing workloads. Unc
+Resource Efficiency / Cost,CS13,impact,"cket loss, failures. Impact reliability cost performance violations."
+Resource Efficiency / Cost,CS18,trade-offs,"ent failures, predictable degradations. Costs: extra instrumentation and modeling effort, performance los"

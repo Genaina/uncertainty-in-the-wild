@@ -1,7 +1,0 @@
-dimension,n_cited_in_paper,n_parsed_from_text,coverage,cited_cases,parsed_cases,cited_not_parsed,parsed_not_cited
-Architectural Assumptions,4,4,1.0,"CS1, CS12, CS13, CS15","CS1, CS12, CS13, CS15",,
-Infrastructure Requirements,3,4,1.0,"CS2, CS11, CS12","CS2, CS11, CS12, CS15",,CS15
-Observability Requirements,4,4,0.75,"CS11, CS12, CS16, CS18","CS4, CS12, CS16, CS18",CS11,CS4
-Model Availability,2,2,0.5,"CS5, CS16","CS5, CS15",CS16,CS15
-Adaptation Capability,4,7,1.0,"CS5, CS13, CS16, CS18","CS4, CS5, CS7, CS12, CS13, CS16, CS18",,"CS4, CS7, CS12"
-Operational Scope,3,3,1.0,"CS4, CS7, CS13","CS4, CS7, CS13",,

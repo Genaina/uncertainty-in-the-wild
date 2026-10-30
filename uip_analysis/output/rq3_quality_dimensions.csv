@@ -1,7 +1,7 @@
-dimension,n_cited_in_paper,cited_in_paper,cited_supported_by_impact,cited_supported_by_any_field,coverage_impact,coverage_any_field,cited_impact_support,cited_secondary_only,cited_no_evidence,not_cited_impact_support,not_cited_secondary_only
-Safety,5,"CS11, CS12, CS16, CS17, CS18",3,5,0.6,1.0,"CS11, CS16, CS18","CS12 (trade-offs), CS17 (summary)",,"CS2, CS6, CS9","CS10 (summary), CS14 (summary)"
-Performance,4,"CS1, CS3, CS8, CS18",4,4,1.0,1.0,"CS1, CS3, CS8, CS18",,,"CS7, CS11, CS13","CS2 (trade-offs), CS4 (summary), CS12 (trade-offs), CS14 (summary)"
-Reliability & Availability,3,"CS2, CS13, CS15",3,3,1.0,1.0,"CS2, CS13, CS15",,,"CS1, CS9","CS5 (summary), CS11 (summary)"
-Mission Success,3,"CS5, CS11, CS12",2,3,0.67,1.0,"CS5, CS11",CS12 (trade-offs),,,
-Human Factors & Trust,2,"CS5, CS17",2,2,1.0,1.0,"CS5, CS17",,,,"CS3 (summary), CS8 (summary), CS15 (trade-offs)"
-Resource Efficiency / Cost,4,"CS1, CS3, CS13, CS18",2,4,0.5,1.0,"CS1, CS13","CS3 (summary), CS18 (trade-offs)",,CS9,"CS2 (trade-offs), CS8 (summary), CS12 (trade-offs), CS14 (summary), CS15 (trade-offs), CS16 (trade-offs)"
+dimension,n_assigned,assigned_cases,supported_by_impact,secondary_only,no_textual_evidence
+Safety,5,"CS11, CS12, CS16, CS17, CS18","CS11, CS16, CS18","CS12 (trade-offs), CS17 (summary)",
+Performance,4,"CS1, CS3, CS8, CS18","CS1, CS3, CS8, CS18",,
+Reliability & Availability,3,"CS2, CS13, CS15","CS2, CS13, CS15",,
+Mission Success,3,"CS5, CS11, CS12","CS5, CS11",CS12 (trade-offs),
+Human Factors & Trust,2,"CS5, CS17","CS5, CS17",,
+Resource Efficiency / Cost,4,"CS1, CS3, CS13, CS18","CS1, CS13","CS3 (summary), CS18 (trade-offs)",
