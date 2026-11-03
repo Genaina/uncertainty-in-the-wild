@@ -46,11 +46,10 @@ The swap is corrected in `artifacts_case_studies_raw.csv`. Only the revised shee
 - Impact lists in the .tex comments corrected: generic = CS8, CS10, CS14.
 
 ## 4. Pending to double-check with Raffaela and Javier
-- Ask the contributors of CS4, CS7, CS8 and CS14 for the interaction text (CS8 and CS14 are also generic on impact and blank on the solution space), then replace the template-only codes with evidence-backed ones and delete the disclosure sentence.
-- Table 8: CS5 and CS4 Representation are credited from the Strategy entries; a sentence explaining this was added to Sec. 6.4.1 (marked) and to the README. Decide whether to keep these two credits.
-- Table 7 (quality dimensions) is unchanged. Every case it lists has supporting text (from the `Impact` field, or from `Trade-offs` / `Summary` for CS12 and CS17 under Safety, CS12 under Mission Success, and CS3 and CS18 under Resource Efficiency). The `Impact` field also supports cases that the table does not list (e.g., CS9 under Safety, Reliability and Cost; CS6 under Safety; CS13 and CS11 under Performance). Decide whether to keep the table as a list of supporting cases or to extend it.
-- Not reviewed in this round: `LLMAnalysis.tex` and `Catalog-Javi.tex`.
-
+- Major: Ask the contributors of CS4, CS7, CS8 and CS14 for the interaction text (CS8 and CS14 are also generic on impact and blank on the solution space), then replace the template-only codes with evidence-backed ones and delete the disclosure sentence.
+- Minor: Table 8 -  CS5 and CS4 Representation are credited from the Strategy entries; a sentence explaining this was added to Sec. 6.4.1 (marked) and to the README. Decide whether to keep these two credits.
+- Minor: Table 7 (quality dimensions) is unchanged. Every case it lists has supporting text (from the `Impact` field, or from `Trade-offs` / `Summary` for CS12 and CS17 under Safety, CS12 under Mission Success, and CS3 and CS18 under Resource Efficiency). The `Impact` field also supports cases that the table does not list (e.g., CS9 under Safety, Reliability and Cost; CS6 under Safety; CS13 and CS11 under Performance). Decide whether to keep the table as a list of supporting cases or to extend it.
+  
 ## 5. Public scripts vs tracking
 The public package (`uip_analysis`) describes only the final state: the scripts compute the results and print the supporting text, and contain **no comparison with earlier versions or with the printed values of the paper**
 (the former `[OK]`/`[DIFF]` checks and `paper_reported.py` were removed; `analyst_assignments.py` keeps only the case assignments of Tables 7, 9, 10 and 11 as input).
