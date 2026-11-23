@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# Python environment and caches
+.venv/
+__pycache__/
+
+# Dropbox sync conflicts
+*conflicted copy*
+
+# Notes for co-authors only (kept out of the repository)
+COAUTHORS_NOTES.md

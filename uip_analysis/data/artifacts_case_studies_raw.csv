@@ -131,39 +131,39 @@ CS10,Ivana Dusparic,IT/Cloud Infrastructure,"Risk-Averse Constrained Reinforceme
 
 Uncertainty source category can be considered to be both environment and adaptation functions (agent behaviour) - we don’t know if, when, where will environmental factor that increase cost/cause catastrophic event occur, but we also do not know when will agent behave in a risky manner (as determined by its risk level, or as required to explore the environment). ","Uncertainty sources are in conflict; reducing uncertainty by exploring (in order to learn about frequency and/or locations of when/where uncertain events occur, further exposes the system to cost incurred by these uncertainties)",Homogeneous,Not provided,Impact described generically (template text),Not provided,Not provided,Not provided,Not provided,Not provided
 CS11,Genaina Rodrigues,Healthcare,"The Body Sensor Network (BSN): A Body Sensor Network for Healthcare monitoring must detect medical emergencies while respecting patient privacy preferences. Reduced monitoring capability and unreliable sensor data create uncertainty, requiring the system to make safety-critical decisions under partial observability.","Measurement uncertainty: Vital signals
- ? Quantitative, probabilistic, noisy
+ → Quantitative, probabilistic, noisy
 Occurrence uncertainty: Emergency occurrence
- ? Discrete, stochastic event uncertainty
+ → Discrete, stochastic event uncertainty
 Design uncertainty: Diagnostic model adequacy
- ? Epistemic (incomplete medical model assumptions)
+ → Epistemic (incomplete medical model assumptions)
 Behavior uncertainty: Patient movement variability
- ? Stochastic, context-dependent
+ → Stochastic, context-dependent
 Belief uncertainty: “Has the patient fallen?”
- ? Epistemic, inferential, second-order
+ → Epistemic, inferential, second-order
 Spatio-temporal uncertainty: Location and timing of medical event
- ? Spatial imprecision + temporal latency.","Vital signal uncertainty × fall detection belief
- ? Augmentation
+ → Spatial imprecision + temporal latency.","Vital signal uncertainty × fall detection belief
+ → Augmentation
 Signal filtering × emergency detection
- ? Conflict
+ → Conflict
 Patient behavior × emergency occurrence
- ? Augmentation",Heterogeneous,"signal, inference, clinical goal","BSN triggers abnormal signals; metrics mission success, delay, safety, false positives.","Awareness: Yes. Prevention: Partial (sensor redundancy). Detectability: Yes (anomaly detection). Representation: Yes (Bayesian/diagnostic models). Comprehension: Moderate. Mitigation: Yes (alarm escalation, adaptive sampling).",Multi-sensor availability; Known patient baseline; Reliable communication.,Both stages.,"High sensitivity ? fewer missed emergencies, more false alarms. Strong filtering ? fewer false positives, risk of false negatives.",Detection: Statistical anomaly detection; Multi-sensor consistency checking. Representation: Bayesian networks; Confidence intervals. Analysis: Risk scoring; Probabilistic inference. Mitigation: Alarm escalation; Adaptive sampling; Human-in-the-loop confirmation.
+ → Augmentation",Heterogeneous,"signal, inference, clinical goal","BSN triggers abnormal signals; metrics mission success, delay, safety, false positives.","Awareness: Yes. Prevention: Partial (sensor redundancy). Detectability: Yes (anomaly detection). Representation: Yes (Bayesian/diagnostic models). Comprehension: Moderate. Mitigation: Yes (alarm escalation, adaptive sampling).",Multi-sensor availability; Known patient baseline; Reliable communication.,Both stages.,"High sensitivity → fewer missed emergencies, more false alarms. Strong filtering → fewer false positives, risk of false negatives.",Detection: Statistical anomaly detection; Multi-sensor consistency checking. Representation: Bayesian networks; Confidence intervals. Analysis: Risk scoring; Probabilistic inference. Mitigation: Alarm escalation; Adaptive sampling; Human-in-the-loop confirmation.
 CS12,Genaina Rodrigues,Robotics,"The Lab Sample Logistics (from RoboMAX missions): A hospital delivery robot transports lab samples while navigating uncertain environments with dynamic obstacles and limited battery resources. Recovery decisions under uncertainty must balance navigation success, resource constraints, and mission continuity, as failures can have significant operational and Healthcare consequences.","Measurement uncertainty: Robot battery level
  Quantitative, continuous, probabilistic (sensor noise, estimation error)
 Occurrence uncertainty: Unexpected mission events (e.g., timeout, failure)
- ? Discrete event-based, stochastic
+ → Discrete event-based, stochastic
 Design uncertainty: Mission model completeness
- ? Epistemic (lack of knowledge at design time)
+ → Epistemic (lack of knowledge at design time)
 Behavior uncertainty: Robot navigation performance under dynamic conditions
- ? Stochastic + non-deterministic
+ → Stochastic + non-deterministic
 Belief uncertainty: Robot belief about environment state
- ? Epistemic, inferential (belief-state based)
+ → Epistemic, inferential (belief-state based)
 Spatio-temporal uncertainty: Encountering obstacle
- ? Spatial ambiguity + temporal unpredictability","Battery measurement × mission continuation
- ? Dominance (battery uncertainty dominates mission feasibility)
+ → Spatial ambiguity + temporal unpredictability","Battery measurement × mission continuation
+ → Dominance (battery uncertainty dominates mission feasibility)
 Obstacle uncertainty × belief uncertainty
- ? Augmentation
+ → Augmentation
 Battery optimization × exploration behavior
- ? Conflict",Heterogeneous,"Different levels: sensor, world model, mission goal;","Triggers: low battery, obstacle, timeout;","Awareness: Yes. Prevention: Partial (redundancy, planning margins). Detectability: Yes (runtime monitoring). Representation: Yes (probabilistic + runtime models). Comprehension: Moderate. Mitigation: Yes (replanning, safe mode).",Sufficient sensing capability; Defined safety thresholds; Adaptive control architecture.,Both stages.,"Conservative thresholds ? safety ?, mission completion ?. Frequent replanning ? robustness ?, energy cost ?.",Detection: Runtime monitoring; Threshold-based alerts. Representation: Probabilistic models; Runtime belief states. Analysis: Sensitivity analysis; Risk estimation. Mitigation: Replanning; Safe-mode activation; Energy-aware adaptation.
+ → Conflict",Heterogeneous,"Different levels: sensor, world model, mission goal;","Triggers: low battery, obstacle, timeout;","Awareness: Yes. Prevention: Partial (redundancy, planning margins). Detectability: Yes (runtime monitoring). Representation: Yes (probabilistic + runtime models). Comprehension: Moderate. Mitigation: Yes (replanning, safe mode).",Sufficient sensing capability; Defined safety thresholds; Adaptive control architecture.,Both stages.,"Conservative thresholds → safety ↑, mission completion ↓. Frequent replanning → robustness ↑, energy cost ↑.",Detection: Runtime monitoring; Threshold-based alerts. Representation: Probabilistic models; Runtime belief states. Analysis: Sensitivity analysis; Risk estimation. Mitigation: Replanning; Safe-mode activation; Energy-aware adaptation.
 CS13,Nelly Bencomo,IT/Cloud Infrastructure,"Remote Data Mirroring (RDM): It dynamically adapts network topologies to balance reliability, cost, and performance objectives. Uncertainty originating from environmental disturbances propagates across system layers, affecting monitored metrics, adaptation decisions, and ultimately the satisfaction of system goals.","Uncertainty 1
 Environmental Disturbances
 Packet loss, network degradation, and site failures affecting communication links.
@@ -250,7 +250,7 @@ Augmentation
 Poor visibility (fog) increases detection uncertainty. Road friction (e.g., wet surface) increases braking uncertainty. Both simultaneously increase pedestrian protection uncertainty. Reducing sensor noise (better detection) improves braking timing effectiveness. Improving braking (better actuators) reduces the impact of late detection.
 Conflict
 Reducing uncertainty in pedestrian detection (lower detection threshold, more conservative braking) may increase pedestrian safety, yet increasing ACC control uncertainty (sudden braking, violation of ACC safety distance, rear-end collision).
-Aggressive PP uncertainty reduction ? ACC control uncertainty increases (safety may degrade). Aggressive ACC control uncertainty reduction ? PP uncertainty increases (pedestrian safety degrades). Tradeoff emerges.",Heterogeneous,Requirements control logic feature logic perception physical,Triggers pedestrian crossing ACC acceleration. Impact collision risk.,"Awareness: foreseeable interaction. Prevention: Partial prevention is possible. Detectability: achievable with scenario-based simulation testing and runtime monitoring. Representation: Probably yes, with multi-layer uncertainty models. Comprehension/analyzability: yes, by simulation and sensitivity analysis. Mitigation: feasible at multiple levels.","Solutions applicable when perception confidence metrics are available, environmental uncertainty can be quantified, system supports adaptive control policies.","Design-time: simulation, analysis, verification. Runtime: testing, monitoring, safety enforcement.",Verification of safety invariants: Strong prevention/Reduced flexibility. Runtime monitoring: Early detection/Compute overhead. Conservative emergency braking: Reduced pedestrian risk/Traffic instability. Formal modeling: Better analyzability/Modeling effort. Search-based testing: Reveals hidden scenarios/Computational cost.,"Detection: search-based testing, adversarial scenario generation, time-to-collision monitoring. Representation: risk modeling, multi-layer uncertainty models, Bayesian networks. Analysis: adversarial perturbation testing, sensitivity analysis, fault injection. Mitigation: rule-based structural mitigation, adaptive conflict resolution, runtime safety envelopes."
+Aggressive PP uncertainty reduction → ACC control uncertainty increases (safety may degrade). Aggressive ACC control uncertainty reduction → PP uncertainty increases (pedestrian safety degrades). Tradeoff emerges.",Heterogeneous,Requirements control logic feature logic perception physical,Triggers pedestrian crossing ACC acceleration. Impact collision risk.,"Awareness: foreseeable interaction. Prevention: Partial prevention is possible. Detectability: achievable with scenario-based simulation testing and runtime monitoring. Representation: Probably yes, with multi-layer uncertainty models. Comprehension/analyzability: yes, by simulation and sensitivity analysis. Mitigation: feasible at multiple levels.","Solutions applicable when perception confidence metrics are available, environmental uncertainty can be quantified, system supports adaptive control policies.","Design-time: simulation, analysis, verification. Runtime: testing, monitoring, safety enforcement.",Verification of safety invariants: Strong prevention/Reduced flexibility. Runtime monitoring: Early detection/Compute overhead. Conservative emergency braking: Reduced pedestrian risk/Traffic instability. Formal modeling: Better analyzability/Modeling effort. Search-based testing: Reveals hidden scenarios/Computational cost.,"Detection: search-based testing, adversarial scenario generation, time-to-collision monitoring. Representation: risk modeling, multi-layer uncertainty models, Bayesian networks. Analysis: adversarial perturbation testing, sensitivity analysis, fault injection. Mitigation: rule-based structural mitigation, adaptive conflict resolution, runtime safety envelopes."
 CS17,Jialong Li,Automotive,Adaptive Takeover Time Allocation: A Level 3 autonomous driving system dynamically adapts takeover time based on the driver’s condition and environmental complexity. Uncertainty in human readiness and environmental predictability creates challenges in safely transferring control between the autonomous system and the human driver.,"Source 1: Human State (Human Behavior & Belief Uncertainty)
 Nature: Measurement & Belief. Sensors monitoring eye-tracking or heart rate contain noise, and the system’s internal model of ""human readiness"" is inherently imprecise.
 Category: User
@@ -296,7 +296,7 @@ Category: Goals.
 
 U10. Model abstraction uncertainty (map/costmap discretization, simplifications): grid resolution effects, unmodeled actuator saturation, simplified contact/friction model. 
 Nature: Design uncertainty (modeling choices/abstractions). 
-Category: Model.","(1) Augmentation (positive coupling): Timing jitter (U2) and delay uncertainty (U3) jointly increase effective “state staleness,” which amplifies the impact of parametric uncertainty (U1) and disturbances (U4) on closed-loop stability and safety margins. Conceptually: jitter ? variable sensor age ? estimator lag ? controller uses an outdated/biased state; with model mismatch and disturbances, tracking error grows superlinearly. 
+Category: Model.","(1) Augmentation (positive coupling): Timing jitter (U2) and delay uncertainty (U3) jointly increase effective “state staleness,” which amplifies the impact of parametric uncertainty (U1) and disturbances (U4) on closed-loop stability and safety margins. Conceptually: jitter → variable sensor age → estimator lag → controller uses an outdated/biased state; with model mismatch and disturbances, tracking error grows superlinearly. 
 
 (2) Conflict (trade-off via mitigation actions): Reducing measurement uncertainty (U6) by adding sensors / increasing perception rate (more camera frames, bigger NN) increases compute load, worsening timing uncertainty (U2) and sometimes communication delay (U3). The “fix” for one uncertainty increases another. 
 
