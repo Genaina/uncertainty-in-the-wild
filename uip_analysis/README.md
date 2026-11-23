@@ -127,4 +127,4 @@ Outputs: `rq4_preparedness_per_case.csv`, `rq4_strategy_per_case.csv`, `rq4_life
 
 ## Limitations
 The exemplars are purposively sampled contributor descriptions, so frequencies describe the catalogue and not the wider population of systems (Section 7).
-Several fields were answered in free text with varying detail; the rule-based coders are deliberately conservative, and the manual coding of the interaction categories is the reference for RQ1.
+Several fields were answered in free text with varying detail, and the rule-based coders are deliberately conservative.
