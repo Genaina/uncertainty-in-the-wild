@@ -1,8 +1,8 @@
 # Uncertainty in the Wild
 
-This repository accompanies the paper submission "Uncertainty in the Wild: A Cross-Domain Catalogue of Uncertainty Interactions in Autonomous and Self-Adaptive Systems".
+This repository accompanies the TAAS paper submission "Uncertainty in the Wild: A Cross-Domain Catalogue of Uncertainty Interactions in Autonomous and Self-Adaptive Systems". The starting point for the collection was a set of uncertainty-interaction examples contributed by seminar participants before and during the UNISON Shonan seminar. These examples were provided by domain experts and reflected systems, models, or scenarios with which the contributors were familiar.
 
-The project brings together a curated catalogue of cross-domain exemplars of uncertainty interactions in autonomous and self-adaptive systems, along with the analysis scripts used to characterize the catalogue and reproduce the study results. The goal is to make the underlying dataset, the analysis process, and the study findings accessible to researchers and practitioners who want to inspect the evidence, reuse the material, or replicate the reported analysis.
+As a result, the project brings together a curated catalogue of cross-domain exemplars of uncertainty interactions in autonomous and self-adaptive systems, along with the analysis scripts used to characterize the catalogue and reproduce the study results. The goal is to make the underlying dataset, the analysis process, and the study findings accessible to researchers and practitioners who want to inspect the evidence, reuse the material, or replicate the reported analysis.
 
 ## Why this repository exists
 
@@ -57,9 +57,3 @@ python rq4.py
 - The analysis is designed to be run from inside the `uip_analysis` directory.
 - The project uses Python 3.9 or newer.
 - The generated report and associated files are stored in `uip_analysis/output/`.
-
-## Citation / paper context
-
-The repository supports the TAAS paper submission entitled "Uncertainty in the Wild: A Cross-Domain Catalogue of Uncertainty Interactions in Autonomous and Self-Adaptive Systems." The accompanying analysis synthesizes the catalogue into a structured set of observations about uncertainty interaction types, abstraction spans, impacts, and mitigation strategies.
-
-The paper's findings show that uncertainty interactions are commonly heterogeneous, often cross levels of system description, and typically affect multiple system qualities. The catalogue and cross-case synthesis are intended to support researchers and practitioners in recognizing and managing interaction risks and in guiding future representations, analysis techniques, and mitigation approaches.
