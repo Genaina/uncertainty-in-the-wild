@@ -1,4 +1,12 @@
+cd "$(git rev-parse --show-toplevel)"
+cat > .gitignore <<'EOF'
+# macOS
+.DS_Store
+
+# Python environment and caches
 .venv/
 __pycache__/
-*conflicted copy*
-.DS_Store
+
+# Notes for co-authors only
+COAUTHORS_NOTES.md
+EOF
