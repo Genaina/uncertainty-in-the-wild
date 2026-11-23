@@ -1,8 +1,64 @@
-"""RQ2 - Which uncertainty sources, system elements, abstraction levels and causal mechanisms participate? (Sec. 6.2)"""
+"""RQ2 - Which uncertainty sources, system elements, abstraction levels and causal mechanisms participate? (Sec. 6.2)
+
+Section 6.2.1 (abstraction span, Table 5) is computed from the Abstraction Gap field.
+Sections 6.2.2 (sources) and 6.2.3 (causal mechanisms) list, for each kind of source and each mechanism, the exemplars the
+authors assigned to it; the report shows the text of each exemplar that supports the assignment.
+"""
+import re
 import pandas as pd
-from common import load_raw, OUT, pct, cases_to_str
-from coding import code_abstraction, code_sources, code_mechanisms
-from analyst_assignments import DOMAINS
+from common import load_raw, OUT, pct, cases_to_str, is_blank
+from coding import code_abstraction, _strip_template
+from analyst_assignments import DOMAINS, SOURCES_622, MECHANISMS_623
+
+SOURCE_PATTERNS = {
+    "workload variation": r"workload|request|arrival|demand",
+    "network disruptions and communication failures": r"network|connectivity|communication|partition|packet|disconnect",
+    "physical disturbances": r"disturbance|wind|floor|push|occlusion|lighting",
+    "human behavior": r"human|user|patient|driver|behaviou?r",
+    "traffic conditions": r"traffic|road|pedestrian|fog|visibility|vehicle",
+    "changing operational contexts": r"context|situation|operating|environment",
+    "computational resources": r"comput|memory|gpu|cpu|resource|processing",
+    "communication infrastructure": r"communication|network|telemetry|\bbus\b|bandwidth|link|topology|partition|disconnect",
+    "energy availability": r"battery|energy|power",
+    "sensing infrastructure": r"sensor|sensing|measurement|camera|signal",
+    "actuator behavior": r"actuator|brak|motor",
+    "abstractions and assumptions in formal models": r"abstraction|assumption|incomplete|model",
+    "estimation and prediction processes": r"estimat|predict|forecast|belief",
+    "digital twins": r"twin|fidelity|completeness",
+    "machine-learning components": r"\bml\b|machine|learn|neural|\bllm\b|\bai\b|classifier|predictor|perception",
+    "system representations": r"representation|parametr|mismatch|model",
+    "planning, configuration selection, runtime decision-making and control policies": r"adapt|planning|decision|configuration|polic|tactic|control",
+    "competing objectives (safety, performance, reliability, cost, efficiency)": r"goal|objective|utility|requirement|trade|safety|cost|performance",
+}
+MECHANISM_PATTERNS = {
+    "Propagation": r"propagat|transform|cascad|flows? into|levels?|layers?|across|\u2192|to high-level",
+    "Amplification": r"amplif|reinforc|jointly increase|correlated|augment",
+    "Dominance": r"dominan|dominat",
+    "Trade-off / conflict": r"conflict|trade-?off|reducing|increase[s]? (?:uncertainty|instability|overhead)",
+}
+SOURCE_FIELDS = ["Uncertainty Sources (verbatim)", "Applicability Conditions", "Summary"]
+MECHANISM_FIELDS = ["Uncertainty Interaction Category", "Impact", "Trade-offs", "Abstraction Gap", "Summary"]
+
+
+LABELS = {"augmentation", "conflict", "dominance", "independence"}
+
+
+def _first_match(raw, cid, fields, pattern):
+    """First excerpt that supports `pattern` (a label that is followed by no text, as in a template-only answer, does not count)."""
+    pat = re.compile(pattern, re.I)
+    for f in fields:
+        t = raw.loc[cid, f]
+        if is_blank(t):
+            continue
+        t = _strip_template(t) if f == "Uncertainty Interaction Category" else str(t)    # ignore the template definitions
+        s = re.sub(r"\s+", " ", t)
+        for mm in pat.finditer(s):
+            tail = [w for w in re.sub(r"[^A-Za-z ]", " ", s[mm.end(): mm.end() + 80]).split() if w.lower() not in LABELS]
+            if f == "Uncertainty Interaction Category" and len(tail) < 3:
+                continue
+            k = max(0, mm.start() - 35)
+            return f, s[k: mm.end() + 55].strip()
+    return "", ""
 
 
 def run(raw=None):
@@ -26,41 +82,35 @@ def run(raw=None):
     print("\n   Abstraction Gap text of the Same/Partial exemplars:")
     for cid in span.index[span == "Same/Partial"]:
         t = str(raw.loc[cid, "Abstraction Gap"]).replace("\n", " ")
-        print(f"     {cid:<5} {t if t.lower() != 'nan' else '(empty field)'}")
+        print(f"     {cid:<5} {t}")
 
-    # ---- 6.2.2 sources (type and category) -- keyword heuristic
-    types, cats = code_sources(raw)
-    print("\n[6.2.2] Sources by CATEGORY (cases that mention it; keyword heuristic):")
-    cc = cats.sum().sort_values(ascending=False)
-    for k, v in cc.items():
-        print(f"   {k:<22} {v:>2}/{n}  {cases_to_str(cats.index[cats[k]])}")
-    print("\n   Sources by TYPE (nature):")
-    tc = types.sum().sort_values(ascending=False)
-    for k, v in tc.items():
-        print(f"   {k:<22} {v:>2}/{n}  {cases_to_str(types.index[types[k]])}")
-    cats.to_csv(OUT / "rq2_source_categories_per_case.csv")
-    types.to_csv(OUT / "rq2_source_types_per_case.csv")
-    pd.concat([cc.rename("categoria"), tc.rename("tipo")]).to_csv(OUT / "rq2_source_counts.csv", header=["cases"])
+    # ---- 6.2.2 uncertainty sources: supporting text for every assigned case
+    print("\n[6.2.2] Uncertainty sources: supporting text for each exemplar assigned to a kind of source")
+    print("   (excerpt of the 'Uncertainty Sources (verbatim)' field first, then 'Applicability Conditions' and 'Summary'; the assignments are the authors' reading of the exemplars)")
+    rows = []
+    for category, kinds in SOURCES_622.items():
+        print(f"\n   {category.upper()}")
+        for kind, ids in kinds.items():
+            print(f"     {kind}: {cases_to_str(ids)}")
+            for cid in ids:
+                f, ex = _first_match(raw, cid, SOURCE_FIELDS, SOURCE_PATTERNS[kind])
+                rows.append({"category": category, "kind": kind, "case": cid, "supported": bool(ex), "field": f, "evidence_excerpt": ex})
+                tag = {"Uncertainty Sources (verbatim)": "sources", "Applicability Conditions": "applicability", "Summary": "summary"}.get(f, "-")
+                print(f"        {cid:<5} [{tag}] {ex[:95] or '-- no supporting text found --'}")
+    pd.DataFrame(rows).to_csv(OUT / "rq2_sources_evidence.csv", index=False)
 
-    # ---- co-occurrence of source categories (most frequent pairs)
-    pairs = {}
-    for cid, r in cats.iterrows():
-        on = [k for k, v in r.items() if v]
-        for i in range(len(on)):
-            for j in range(i + 1, len(on)):
-                pairs[(on[i], on[j])] = pairs.get((on[i], on[j]), 0) + 1
-    print("\n   Pairs of source categories that most often co-occur in the same case:")
-    for (a, b), v in sorted(pairs.items(), key=lambda x: -x[1])[:8]:
-        print(f"   {a} x {b}: {v}")
-
-    # ---- 6.2.3 causal mechanisms
-    mech = code_mechanisms(raw)
-    mech.to_csv(OUT / "rq2_mechanisms_per_case.csv")
-    print("\n[6.2.3] Causal mechanisms: cases whose interaction, impact, trade-off or abstraction text shows the mechanism (keyword search):")
-    for m in mech.columns:
-        got = mech.index[mech[m]]
-        print(f"   {m:<22} {len(got):>2}/{n}  {cases_to_str(got)}")
-    return {"span": span, "cats": cats, "types": types, "mech": mech}
+    # ---- 6.2.3 causal mechanisms: supporting text for every assigned case
+    print("\n[6.2.3] Causal mechanisms: supporting text for each exemplar assigned to a mechanism")
+    print("   (first matching field among: " + ", ".join(MECHANISM_FIELDS) + ")")
+    mrows = []
+    for mech, ids in MECHANISMS_623.items():
+        print(f"\n   {mech}: {cases_to_str(ids)}")
+        for cid in ids:
+            f, ex = _first_match(raw, cid, MECHANISM_FIELDS, MECHANISM_PATTERNS[mech])
+            mrows.append({"mechanism": mech, "case": cid, "supported": bool(ex), "field": f, "evidence_excerpt": ex})
+            print(f"        {cid:<5} [{f or '-'}] {ex[:95] or '-- no supporting text found --'}")
+    pd.DataFrame(mrows).to_csv(OUT / "rq2_mechanisms_evidence.csv", index=False)
+    return {"span": span}
 
 
 if __name__ == "__main__":
