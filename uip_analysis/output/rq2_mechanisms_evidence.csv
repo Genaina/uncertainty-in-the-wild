@@ -1,0 +1,18 @@
+mechanism,case,supported,field,evidence_excerpt
+Propagation,CS1,True,Impact,due to segmentation. Impact scope: propagation waves. Metrics: number and overhead of replanning.
+Propagation,CS13,True,Uncertainty Interaction Category,is not confined to one abstraction level. Occurrence uncertainty in the environment (U1) is tra
+Propagation,CS15,True,Uncertainty Interaction Category,"ecision and LLMs could have higher levels of hallucination; reducing the ""completeness"" uncertai"
+Propagation,CS18,True,Uncertainty Interaction Category,fety margins. Conceptually: jitter → variable sensor age → estimator lag → controller uses
+Amplification,CS5,True,Uncertainty Interaction Category,"s dominates sensing/AI-in-the-loop Augmentation: The more accurate the sensors/AI modules, the mo"
+Amplification,CS11,True,Uncertainty Interaction Category,ertainty × fall detection belief → Augmentation Signal filtering × emergency detection → Conflict
+Amplification,CS16,True,Uncertainty Interaction Category,s conflict resolution uncertainty. Augmentation Poor visibility (fog) increases detection uncerta
+Amplification,CS18,True,Uncertainty Interaction Category,(1) Augmentation (positive coupling): Timing jitter (U2) and delay
+Dominance,CS2,True,Uncertainty Interaction Category,Dominance: U1 completely dominates U4; the uncertainty of the
+Dominance,CS5,True,Uncertainty Interaction Category,"Dominance: If an act of human behavior is not modeled, the mod"
+Dominance,CS12,True,Uncertainty Interaction Category,asurement × mission continuation → Dominance (battery uncertainty dominates mission feasibility)
+Dominance,CS15,True,Uncertainty Interaction Category,Independence: N/A in this case Dominance: U1 (Incompleteness) dominates U2 (Fidelity) and U3
+Trade-off / conflict,CS1,True,Uncertainty Interaction Category,ptions of no network segmentation. Conflict (dominant): improving responsiveness (more frequent mo
+Trade-off / conflict,CS7,False,,
+Trade-off / conflict,CS13,True,Uncertainty Interaction Category,Conflict: This interaction is not confined to one abstraction l
+Trade-off / conflict,CS16,True,Uncertainty Interaction Category,"an probability > threshold”), then reducing detection uncertainty improves decision quality. Impro"
+Trade-off / conflict,CS17,True,Uncertainty Interaction Category,Conflict: There is a fundamental trade-off. To reduce the uncer

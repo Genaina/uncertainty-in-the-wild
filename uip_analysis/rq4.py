@@ -1,8 +1,9 @@
 """RQ4 - Detection/representation/analysis/prevention/mitigation mechanisms and their conditions (Sec. 6.4)
 
-Tables 8 and 12 (preparedness, strategy) are computed by parsing the labelled entries of the verbatim fields.
-Tables 9 and 11 (applicability conditions, trade-offs) are analyst-assigned categories, so for every assigned case
-the script shows the text excerpt that supports the assignment.
+The sections follow the order of the manuscript: Table 8 (preparedness), Table 9 (applicability conditions),
+Table 10 (lifecycle stage), Table 11 (trade-offs) and Table 12 (strategy).
+Tables 8 and 12 are computed by parsing the labelled entries of the verbatim fields.
+Tables 9 and 11 are analyst-assigned categories, so for every assigned case the script shows the text excerpt that supports it.
 """
 import re
 import pandas as pd
@@ -101,10 +102,9 @@ def _evidence_table(raw, title, field, patterns, assignments):
 def run(raw=None):
     raw = load_raw() if raw is None else raw
     n = len(raw)
-    print("=" * 72, "\nRQ4 - Solution space\n" + "=" * 72)
-    long_rows = []
+    print("=" * 72, "\nRQ4 - Solution space (Tables 8 to 12)\n" + "=" * 72)
 
-    # ---- 6.4.1 preparedness (Tab.8)
+    # ---- 6.4.1 Level of preparedness (Table 8)
     prep = code_preparedness(raw)
     prep.to_csv(OUT / "rq4_preparedness_per_case.csv")
     print("\n[Tab.8] Preparedness -- number of cases reporting the capability (parsed from the text):")
@@ -113,23 +113,22 @@ def run(raw=None):
     reported = raw["Level of Preparedness"].map(lambda t: not is_blank(t))
     print(f"   Cases that filled in the Preparedness field: {int(reported.sum())}/{n} "
           f"(missing: {cases_to_str(raw.index[~reported])})")
-    t8 = _list_labeled(raw, "[Tab.8] Preparedness: cases that report each capability, with the supporting entry", prep, "prep", long_rows)
+    rows8 = []
+    t8 = _list_labeled(raw, "[Tab.8] Preparedness: cases that report each capability, with the supporting entry", prep, "prep", rows8)
     t8.to_csv(OUT / "rq4_table8_cases.csv", index=False)
+    pd.DataFrame(rows8).to_csv(OUT / "rq4_table8_evidence.csv", index=False)
 
-    # ---- 6.4.5 strategy (Tab.12)
-    strat = code_strategy(raw)
-    strat.to_csv(OUT / "rq4_strategy_per_case.csv")
-    print("\n[Tab.12] Strategy -- cases reporting a strategy (parsed from the text):")
-    for k, v in strat.sum().items():
-        print(f"   {k:<15} {v:>2}/{n}")
-    t12 = _list_labeled(raw, "[Tab.12] Strategy: cases that report each strategy category, with the supporting entry", strat, "strat", long_rows)
-    t12.to_csv(OUT / "rq4_table12_cases.csv", index=False)
-    pd.DataFrame(long_rows).to_csv(OUT / "rq4_table8_12_evidence.csv", index=False)
+    # ---- 6.4.2 Applicability conditions (Table 9)
+    t9 = _evidence_table(raw, "[Tab.9] Applicability conditions: supporting text for each assigned case",
+                         "Applicability Conditions", APPLIC_PATTERNS, TABLE9)
+    t9.to_csv(OUT / "rq4_table9_evidence.csv", index=False)
+    filled = raw["Applicability Conditions"].map(lambda t: not is_blank(t))
+    print(f"\n   Cases with the Applicability field filled in: {int(filled.sum())}/{n}")
 
-    # ---- 6.4.3 lifecycle
+    # ---- 6.4.3 Lifecycle stage (Table 10)
     life = code_lifecycle(raw)
     life.to_csv(OUT / "rq4_lifecycle_per_case.csv", header=["lifecycle"])
-    print("\n[6.4.3] Lifecycle stage (raw field):")
+    print("\n[Tab.10] Lifecycle stage (raw field):")
     for k, v in life.value_counts().items():
         print(f"   {k:<13} {v:>2}/{n}  {cases_to_str(life.index[life == k])}")
     rep = life[life != "not reported"]
@@ -139,17 +138,23 @@ def run(raw=None):
     for k, v in TABLE10.items():
         print(f"   {k:<26} {len(v):>2} cases  ({cases_to_str(v)})")
 
-    # ---- 6.4.2 applicability (Tab.9) and 6.4.4 trade-offs (Tab.11): evidence per assigned case
-    t9 = _evidence_table(raw, "[Tab.9] Applicability conditions: supporting text for each assigned case",
-                         "Applicability Conditions", APPLIC_PATTERNS, TABLE9)
-    t9.to_csv(OUT / "rq4_table9_evidence.csv", index=False)
+    # ---- 6.4.4 Trade-offs (Table 11)
     t11 = _evidence_table(raw, "[Tab.11] Trade-offs: supporting text for each assigned case",
                           "Trade-offs", TRADEOFF_PATTERNS, TABLE11)
     t11.to_csv(OUT / "rq4_table11_evidence.csv", index=False)
-    filled = raw["Applicability Conditions"].map(lambda t: not is_blank(t))
     filled_t = raw["Trade-offs"].map(lambda t: not is_blank(t))
-    print(f"\n   Cases with the Applicability field filled in: {int(filled.sum())}/{n}")
-    print(f"   Cases with the Trade-offs field filled in: {int(filled_t.sum())}/{n} (not filled in: {cases_to_str(raw.index[~filled_t])})")
+    print(f"\n   Cases with the Trade-offs field filled in: {int(filled_t.sum())}/{n} (not filled in: {cases_to_str(raw.index[~filled_t])})")
+
+    # ---- 6.4.5 Strategy (Table 12)
+    strat = code_strategy(raw)
+    strat.to_csv(OUT / "rq4_strategy_per_case.csv")
+    print("\n[Tab.12] Strategy -- cases reporting a strategy (parsed from the text):")
+    for k, v in strat.sum().items():
+        print(f"   {k:<15} {v:>2}/{n}")
+    rows12 = []
+    t12 = _list_labeled(raw, "[Tab.12] Strategy: cases that report each strategy category, with the supporting entry", strat, "strat", rows12)
+    t12.to_csv(OUT / "rq4_table12_cases.csv", index=False)
+    pd.DataFrame(rows12).to_csv(OUT / "rq4_table12_evidence.csv", index=False)
 
     # ---- coverage of solution-space information (relevant for threats to validity)
     cov = pd.DataFrame({"preparedness": reported, "applicability": filled, "lifecycle": life != "not reported",

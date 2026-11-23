@@ -1,0 +1,44 @@
+category,kind,case,supported,field,evidence_excerpt
+Environment,workload variation,CS3,True,Uncertainty Sources (verbatim),U1. Request arrival rate: the number of requests from users arrivi
+Environment,workload variation,CS8,True,Uncertainty Sources (verbatim),S1. User input Unpredictable request arrival patterns Prompt content Prompt length Domain d
+Environment,workload variation,CS10,False,,
+Environment,network disruptions and communication failures,CS1,True,Uncertainty Sources (verbatim),"onment/resources dynamic topology, partitions, temporary disconnections, varying neighborhood densi"
+Environment,network disruptions and communication failures,CS13,True,Uncertainty Sources (verbatim),"ainty 1 Environmental Disturbances Packet loss, network degradation, and site failures affecting"
+Environment,physical disturbances,CS18,True,Uncertainty Sources (verbatim),"ditions). U4. External / exogenous disturbances: pushes from carts/humans, floor bumps, wind gusts (l"
+Environment,human behavior,CS5,True,Uncertainty Sources (verbatim),Human Behavior (Human-in-the-loop): Human behavior is intrin
+Environment,human behavior,CS17,True,Uncertainty Sources (verbatim),Source 1: Human State (Human Behavior & Belief Uncertainty) Nature: Me
+Environment,traffic conditions,CS6,True,Uncertainty Sources (verbatim),Uncertainty of traffic scenarios Occurence-Environment The operational design
+Environment,traffic conditions,CS16,True,Uncertainty Sources (verbatim),"Pedestrian protection (detects pedestrians, issues braking comman"
+Environment,changing operational contexts,CS4,True,Uncertainty Sources (verbatim),". Behavior uncertainty: Whenever a situation is triggered, the appropriate behavior to assure conti"
+Environment,changing operational contexts,CS7,True,Uncertainty Sources (verbatim),ture [4]. Occurrence uncertainty: (Environment uncertainty) Specific situations in which uncertaintie
+Resources,computational resources,CS8,True,Uncertainty Sources (verbatim),"rial, combination) S3. Environment Memory bandwidth saturation KV-cache pressure GPU contention"
+Resources,computational resources,CS18,True,Uncertainty Sources (verbatim),"ntrolled). U2. Timing uncertainty (compute jitter, deadline misses): variable execution time of"
+Resources,communication infrastructure,CS1,True,Uncertainty Sources (verbatim),"ty - environment/resources dynamic topology, partitions, temporary disconnections, varying neighbo"
+Resources,communication infrastructure,CS2,True,Uncertainty Sources (verbatim),ory: Environment Managed System U2 Telemetry Accuracy Nature: Measurement Category: Resources Manag
+Resources,communication infrastructure,CS11,True,Applicability Conditions,; Known patient baseline; Reliable communication.
+Resources,energy availability,CS12,True,Uncertainty Sources (verbatim),"Measurement uncertainty: Robot battery level Quantitative, continuous, probabilistic (sensor"
+Resources,energy availability,CS18,True,Uncertainty Sources (verbatim),ronment. U8. Resource uncertainty (energy + compute availability): battery state-of-charge only
+Resources,sensing infrastructure,CS5,True,Uncertainty Sources (verbatim),. Category: Model Nature: Behavior Sensing/AI-in-the-loop: Even if an act of human behavior is pr
+Resources,sensing infrastructure,CS11,True,Uncertainty Sources (verbatim),"Measurement uncertainty: Vital signals → Quantitative, probabilist"
+Resources,sensing infrastructure,CS12,True,Uncertainty Sources (verbatim),"Measurement uncertainty: Robot battery level Quantitative, continu"
+Resources,actuator behavior,CS16,True,Uncertainty Sources (verbatim),"ction (detects pedestrians, issues braking commands) Nature measurement uncertainty (sensor no"
+Resources,actuator behavior,CS18,True,Uncertainty Sources (verbatim),"s/payload, friction, wheel radius, actuator constants, slip parameters. Nature: Design uncertainty"
+Model,abstractions and assumptions in formal models,CS5,True,Uncertainty Sources (verbatim),"able to follow it). Therefore, any model of human behavior must be either stochastic or capture"
+Model,abstractions and assumptions in formal models,CS16,True,Uncertainty Sources (verbatim),"ronment (fog, pedestrian behavior) model (perception model accuracy) resources (actuator condit"
+Model,estimation and prediction processes,CS3,True,Uncertainty Sources (verbatim),"ironment, adaptation functions U2. Estimated request arrival rate: estimation of arrival rates in"
+Model,estimation and prediction processes,CS5,True,Uncertainty Sources (verbatim),Human behavior is intrinsically unpredictable. The human interacting with the robot may decide t
+Model,digital twins,CS15,True,Uncertainty Sources (verbatim),Uncertainty 1 Incompleteness of the data measured about the variables that affect t
+Model,machine-learning components,CS5,True,Uncertainty Sources (verbatim),ry: Model Nature: Behavior Sensing/AI-in-the-loop: Even if an act of human behavior is prope
+Model,machine-learning components,CS6,True,Uncertainty Sources (verbatim),em is implemented by an end-to-end learning: intermediate data such as sensing results are in t
+Model,machine-learning components,CS9,True,Uncertainty Sources (verbatim),U1. LLM plan/trajectory variability: Non-deterministic reasoni
+Model,system representations,CS18,True,Uncertainty Sources (verbatim),U1. Parametric uncertainty (robot dynamics + contact): uncertain ma
+Adaptation functions,"planning, configuration selection, runtime decision-making and control policies",CS1,True,Uncertainty Sources (verbatim),"eave, churn Behavior uncertainty - adaptation functions Some algorithms (e.g. bounded election)"
+Adaptation functions,"planning, configuration selection, runtime decision-making and control policies",CS3,True,Uncertainty Sources (verbatim),"t, behavior Category: environment, adaptation functions U2. Estimated request arrival rate: est"
+Adaptation functions,"planning, configuration selection, runtime decision-making and control policies",CS9,True,Uncertainty Sources (verbatim),"el/LLM, goals. U2. Instruction and policy interpretation ambiguity: Natural-language policies c"
+Adaptation functions,"planning, configuration selection, runtime decision-making and control policies",CS13,True,Uncertainty Sources (verbatim),d system / Resources Uncertainty 3 Adaptation Model Uncertainty Uncertainty in selecting topolo
+Adaptation functions,"planning, configuration selection, runtime decision-making and control policies",CS16,True,Uncertainty Sources (verbatim),"environment (road conditions) ACC control (reacts to vehicle dynamics, keep safe distance) Natur"
+Adaptation functions,"planning, configuration selection, runtime decision-making and control policies",CS18,True,Uncertainty Sources (verbatim),assumptions in the model used for decision-making). Category: Model + Managed system (the abstrac
+Goals,"competing objectives (safety, performance, reliability, cost, efficiency)",CS3,True,Uncertainty Sources (verbatim),"ory: managed system, resources U8. Utility: A measure of the goodness of the performance of the s"
+Goals,"competing objectives (safety, performance, reliability, cost, efficiency)",CS9,True,Uncertainty Sources (verbatim),"re: behavior; Category: model/LLM, goals. U2. Instruction and policy interpretation ambiguity:"
+Goals,"competing objectives (safety, performance, reliability, cost, efficiency)",CS13,True,Uncertainty Sources (verbatim),eliability) Bandwidth consumption (cost) Time to write data (performance) Nature: Measurement
+Goals,"competing objectives (safety, performance, reliability, cost, efficiency)",CS18,True,Uncertainty Sources (verbatim),"conditions in shared state (e.g., costmap updates vs planner reads), callback interleavings,"

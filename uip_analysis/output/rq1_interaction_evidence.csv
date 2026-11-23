@@ -40,12 +40,12 @@ CS10,IT/Cloud,conflict,1,True,explicit text,"conflict; reducing uncertainty by e
 CS10,IT/Cloud,augmentation,0,False,no evidence,
 CS10,IT/Cloud,independence,0,False,no evidence,
 CS11,Healthcare,dominance,0,False,no evidence,
-CS11,Healthcare,conflict,1,True,explicit text,Conflict Patient behavior × emergency occurrence → Augmentation
-CS11,Healthcare,augmentation,2,True,explicit text,Augmentation Signal filtering × emergency detection → Conflict Patient behavior × emergency occurrence → Augmentation
+CS11,Healthcare,conflict,1,True,explicit text,Signal filtering × emergency detection -> Conflict
+CS11,Healthcare,augmentation,2,True,explicit text,Vital signal uncertainty × fall detection belief -> Augmentation
 CS11,Healthcare,independence,0,False,no evidence,
-CS12,Robotics,dominance,1,True,explicit text,Dominance (battery uncertainty dominates mission feasibility) Obstacle uncertainty × belief uncertainty → Augmentation Battery optimization × exploration behavior → Conflict
-CS12,Robotics,conflict,1,True,explicit text,Conflict
-CS12,Robotics,augmentation,1,True,explicit text,Augmentation Battery optimization × exploration behavior → Conflict
+CS12,Robotics,dominance,1,True,explicit text,Battery measurement × mission continuation -> Dominance
+CS12,Robotics,conflict,1,True,explicit text,Battery optimization × exploration behavior -> Conflict
+CS12,Robotics,augmentation,1,True,explicit text,Obstacle uncertainty × belief uncertainty -> Augmentation
 CS12,Robotics,independence,0,False,no evidence,
 CS13,IT/Cloud,dominance,0,False,no evidence,
 CS13,IT/Cloud,conflict,1,True,explicit text,Conflict: This interaction is not confined to one abstraction level. Occurrence uncertainty in the environment (U1) is transformed into measurement uncertainty in system metrics

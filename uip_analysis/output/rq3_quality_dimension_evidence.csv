@@ -1,6 +1,6 @@
 dimension,case,support,evidence_excerpt
 Safety,CS11,impact,"ignals; metrics mission success, delay, safety, false positives."
-Safety,CS12,trade-offs,"Conservative thresholds ? safety ?, mission completion ?. Frequent replanning ? robustness ?"
+Safety,CS12,trade-offs,"Conservative thresholds → safety ↑, mission completion ↓. Frequent replanning → robustness ↑"
 Safety,CS16,impact,trian crossing ACC acceleration. Impact collision risk.
 Safety,CS17,summary,al predictability creates challenges in safely transferring control between the autonomous system and the
 Safety,CS18,impact,"ense environment, mode changes. Metrics collision probability, tracking error, delays."
@@ -13,7 +13,7 @@ Reliability & Availability,CS13,impact,"Triggers packet loss, failures. Impact r
 Reliability & Availability,CS15,impact,acked configuration. Impact DT mismatch SLA violations.
 Mission Success,CS5,impact,"ses. Metrics: probability of completing mission, fatigue level. Spectrum: mission execution, failure, loss"
 Mission Success,CS11,impact,"BSN triggers abnormal signals; metrics mission success, delay, safety, false positives."
-Mission Success,CS12,trade-offs,"Conservative thresholds ? safety ?, mission completion ?. Frequent replanning ? robustness ?, energy co"
+Mission Success,CS12,trade-offs,"Conservative thresholds → safety ↑, mission completion ↓. Frequent replanning → robustness ↑, energy co"
 Human Factors & Trust,CS5,impact,"Triggers: human ignores instruction, fatigue increases. Metrics: probability of completing mission, fati"
 Human Factors & Trust,CS17,impact,Trigger ODD boundary; metrics takeover success workload; high severity.
 Resource Efficiency / Cost,CS1,impact,propagation waves. Metrics: number and overhead of replanning. Spectrum: from inefficiency to disruption.

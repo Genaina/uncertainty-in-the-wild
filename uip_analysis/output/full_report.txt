@@ -145,37 +145,107 @@ Aerospace                  1             0
      CS7   Same abstraction level interaction agent-environment
      CS10  Not provided
 
-[6.2.2] Sources by CATEGORY (cases that mention it; keyword heuristic):
-   Environment            17/18  CS1, CS2, CS3, CS4, CS5, CS6, CS7, CS8, CS9, CS10, CS12, CS13, CS14, CS15, CS16, CS17, CS18
-   Model                  14/18  CS1, CS2, CS3, CS5, CS6, CS9, CS11, CS12, CS13, CS14, CS15, CS16, CS17, CS18
-   Resources              11/18  CS1, CS2, CS3, CS4, CS9, CS12, CS13, CS14, CS15, CS16, CS18
-   Adaptation functions   10/18  CS1, CS2, CS3, CS4, CS5, CS10, CS13, CS15, CS16, CS18
-   Human                   8/18  CS3, CS5, CS6, CS8, CS11, CS14, CS17, CS18
-   Goals                   5/18  CS3, CS6, CS9, CS13, CS18
+[6.2.2] Uncertainty sources: supporting text for each exemplar assigned to a kind of source
+   (excerpt of the 'Uncertainty Sources (verbatim)' field first, then 'Applicability Conditions' and 'Summary'; the assignments are the authors' reading of the exemplars)
 
-   Sources by TYPE (nature):
-   Behavior               16/18  CS1, CS3, CS4, CS5, CS6, CS7, CS9, CS10, CS11, CS12, CS13, CS14, CS15, CS16, CS17, CS18
-   Measurement            12/18  CS1, CS2, CS3, CS5, CS9, CS11, CS12, CS13, CS15, CS16, CS17, CS18
-   Occurrence             12/18  CS1, CS2, CS4, CS5, CS6, CS7, CS9, CS10, CS11, CS12, CS13, CS18
-   Spatio-temporal        11/18  CS1, CS2, CS3, CS4, CS7, CS10, CS11, CS12, CS16, CS17, CS18
-   Belief                 10/18  CS2, CS3, CS9, CS11, CS12, CS13, CS15, CS16, CS17, CS18
-   Design                  8/18  CS6, CS9, CS11, CS12, CS14, CS15, CS16, CS18
+   ENVIRONMENT
+     workload variation: CS3, CS8, CS10
+        CS3   [sources] U1. Request arrival rate: the number of requests from users arrivi
+        CS8   [sources] S1. User input Unpredictable request arrival patterns Prompt content Prompt length Domain d
+        CS10  [-] -- no supporting text found --
+     network disruptions and communication failures: CS1, CS13
+        CS1   [sources] onment/resources dynamic topology, partitions, temporary disconnections, varying neighborhood d
+        CS13  [sources] ainty 1 Environmental Disturbances Packet loss, network degradation, and site failures affectin
+     physical disturbances: CS18
+        CS18  [sources] ditions). U4. External / exogenous disturbances: pushes from carts/humans, floor bumps, wind gu
+     human behavior: CS5, CS17
+        CS5   [sources] Human Behavior (Human-in-the-loop): Human behavior is intrin
+        CS17  [sources] Source 1: Human State (Human Behavior & Belief Uncertainty) Nature: Me
+     traffic conditions: CS6, CS16
+        CS6   [sources] Uncertainty of traffic scenarios Occurence-Environment The operational design
+        CS16  [sources] Pedestrian protection (detects pedestrians, issues braking comman
+     changing operational contexts: CS4, CS7
+        CS4   [sources] . Behavior uncertainty: Whenever a situation is triggered, the appropriate behavior to assure c
+        CS7   [sources] ture [4]. Occurrence uncertainty: (Environment uncertainty) Specific situations in which uncert
 
-   Pairs of source categories that most often co-occur in the same case:
-   Model x Environment: 13
-   Environment x Resources: 11
-   Model x Resources: 10
-   Adaptation functions x Environment: 10
-   Model x Adaptation functions: 8
-   Adaptation functions x Resources: 8
-   Model x Human: 7
-   Environment x Human: 7
+   RESOURCES
+     computational resources: CS8, CS18
+        CS8   [sources] rial, combination) S3. Environment Memory bandwidth saturation KV-cache pressure GPU contention
+        CS18  [sources] ntrolled). U2. Timing uncertainty (compute jitter, deadline misses): variable execution time of
+     communication infrastructure: CS1, CS2, CS11
+        CS1   [sources] ty - environment/resources dynamic topology, partitions, temporary disconnections, varying neig
+        CS2   [sources] ory: Environment Managed System U2 Telemetry Accuracy Nature: Measurement Category: Resources M
+        CS11  [applicability] ; Known patient baseline; Reliable communication.
+     energy availability: CS12, CS18
+        CS12  [sources] Measurement uncertainty: Robot battery level Quantitative, continuous, probabilistic (sensor
+        CS18  [sources] ronment. U8. Resource uncertainty (energy + compute availability): battery state-of-charge only
+     sensing infrastructure: CS5, CS11, CS12
+        CS5   [sources] . Category: Model Nature: Behavior Sensing/AI-in-the-loop: Even if an act of human behavior is 
+        CS11  [sources] Measurement uncertainty: Vital signals → Quantitative, probabilist
+        CS12  [sources] Measurement uncertainty: Robot battery level Quantitative, continu
+     actuator behavior: CS16, CS18
+        CS16  [sources] ction (detects pedestrians, issues braking commands) Nature measurement uncertainty (sensor no
+        CS18  [sources] s/payload, friction, wheel radius, actuator constants, slip parameters. Nature: Design uncertai
 
-[6.2.3] Causal mechanisms: cases whose interaction, impact, trade-off or abstraction text shows the mechanism (keyword search):
-   Propagation             2/18  CS1, CS13
-   Amplification          16/18  CS1, CS2, CS3, CS4, CS5, CS6, CS7, CS8, CS9, CS11, CS12, CS13, CS14, CS15, CS16, CS18
-   Dominance              12/18  CS1, CS2, CS3, CS4, CS5, CS8, CS9, CS12, CS14, CS15, CS16, CS18
-   Trade-off / Conflict   15/18  CS1, CS2, CS3, CS4, CS7, CS8, CS10, CS11, CS12, CS13, CS14, CS15, CS16, CS17, CS18
+   MODEL
+     abstractions and assumptions in formal models: CS5, CS16
+        CS5   [sources] able to follow it). Therefore, any model of human behavior must be either stochastic or capture
+        CS16  [sources] ronment (fog, pedestrian behavior) model (perception model accuracy) resources (actuator condit
+     estimation and prediction processes: CS3, CS5
+        CS3   [sources] ironment, adaptation functions U2. Estimated request arrival rate: estimation of arrival rates 
+        CS5   [sources] Human behavior is intrinsically unpredictable. The human interacting with the robot may decide 
+     digital twins: CS15
+        CS15  [sources] Uncertainty 1 Incompleteness of the data measured about the variables that affect t
+     machine-learning components: CS5, CS6, CS9
+        CS5   [sources] ry: Model Nature: Behavior Sensing/AI-in-the-loop: Even if an act of human behavior is prope
+        CS6   [sources] em is implemented by an end-to-end learning: intermediate data such as sensing results are in t
+        CS9   [sources] U1. LLM plan/trajectory variability: Non-deterministic reasoni
+     system representations: CS18
+        CS18  [sources] U1. Parametric uncertainty (robot dynamics + contact): uncertain ma
+
+   ADAPTATION FUNCTIONS
+     planning, configuration selection, runtime decision-making and control policies: CS1, CS3, CS9, CS13, CS16, CS18
+        CS1   [sources] eave, churn Behavior uncertainty - adaptation functions Some algorithms (e.g. bounded election)
+        CS3   [sources] t, behavior Category: environment, adaptation functions U2. Estimated request arrival rate: est
+        CS9   [sources] el/LLM, goals. U2. Instruction and policy interpretation ambiguity: Natural-language policies c
+        CS13  [sources] d system / Resources Uncertainty 3 Adaptation Model Uncertainty Uncertainty in selecting topolo
+        CS16  [sources] environment (road conditions) ACC control (reacts to vehicle dynamics, keep safe distance) Natu
+        CS18  [sources] assumptions in the model used for decision-making). Category: Model + Managed system (the abstr
+
+   GOALS
+     competing objectives (safety, performance, reliability, cost, efficiency): CS3, CS9, CS13, CS18
+        CS3   [sources] ory: managed system, resources U8. Utility: A measure of the goodness of the performance of the
+        CS9   [sources] re: behavior; Category: model/LLM, goals. U2. Instruction and policy interpretation ambiguity:
+        CS13  [sources] eliability) Bandwidth consumption (cost) Time to write data (performance) Nature: Measurement
+        CS18  [sources] conditions in shared state (e.g., costmap updates vs planner reads), callback interleavings,
+
+[6.2.3] Causal mechanisms: supporting text for each exemplar assigned to a mechanism
+   (first matching field among: Uncertainty Interaction Category, Impact, Trade-offs, Abstraction Gap, Summary)
+
+   Propagation: CS1, CS13, CS15, CS18
+        CS1   [Impact] due to segmentation. Impact scope: propagation waves. Metrics: number and overhead of replannin
+        CS13  [Uncertainty Interaction Category] is not confined to one abstraction level. Occurrence uncertainty in the environment (U1) is tra
+        CS15  [Uncertainty Interaction Category] ecision and LLMs could have higher levels of hallucination; reducing the "completeness" uncerta
+        CS18  [Uncertainty Interaction Category] fety margins. Conceptually: jitter → variable sensor age → estimator lag → controller uses
+
+   Amplification: CS5, CS11, CS16, CS18
+        CS5   [Uncertainty Interaction Category] s dominates sensing/AI-in-the-loop Augmentation: The more accurate the sensors/AI modules, the 
+        CS11  [Uncertainty Interaction Category] ertainty × fall detection belief → Augmentation Signal filtering × emergency detection → Confli
+        CS16  [Uncertainty Interaction Category] s conflict resolution uncertainty. Augmentation Poor visibility (fog) increases detection uncer
+        CS18  [Uncertainty Interaction Category] (1) Augmentation (positive coupling): Timing jitter (U2) and delay
+
+   Dominance: CS2, CS5, CS12, CS15
+        CS2   [Uncertainty Interaction Category] Dominance: U1 completely dominates U4; the uncertainty of the
+        CS5   [Uncertainty Interaction Category] Dominance: If an act of human behavior is not modeled, the mod
+        CS12  [Uncertainty Interaction Category] asurement × mission continuation → Dominance (battery uncertainty dominates mission feasibility
+        CS15  [Uncertainty Interaction Category] Independence: N/A in this case Dominance: U1 (Incompleteness) dominates U2 (Fidelity) and U3
+
+   Trade-off / conflict: CS1, CS7, CS13, CS16, CS17
+        CS1   [Uncertainty Interaction Category] ptions of no network segmentation. Conflict (dominant): improving responsiveness (more frequent
+        CS7   [-] -- no supporting text found --
+        CS13  [Uncertainty Interaction Category] Conflict: This interaction is not confined to one abstraction l
+        CS16  [Uncertainty Interaction Category] an probability > threshold”), then reducing detection uncertainty improves decision quality. Im
+        CS17  [Uncertainty Interaction Category] Conflict: There is a fundamental trade-off. To reduce the uncer
 ======================================================================== 
 RQ3 - Operational impacts
 ========================================================================
@@ -215,7 +285,7 @@ Aerospace                     1                 0
 
    Safety
      CS11  [impact] ignals; metrics mission success, delay, safety, false positives.
-     CS12  [trade-offs] Conservative thresholds ? safety ?, mission completion ?. Frequent replanning ? robustness ?
+     CS12  [trade-offs] Conservative thresholds → safety ↑, mission completion ↓. Frequent replanning → robustness ↑
      CS16  [impact] trian crossing ACC acceleration. Impact collision risk.
      CS17  [summary] al predictability creates challenges in safely transferring control between the autonomous system an
      CS18  [impact] ense environment, mode changes. Metrics collision probability, tracking error, delays.
@@ -234,7 +304,7 @@ Aerospace                     1                 0
    Mission Success
      CS5   [impact] ses. Metrics: probability of completing mission, fatigue level. Spectrum: mission execution, failure
      CS11  [impact] BSN triggers abnormal signals; metrics mission success, delay, safety, false positives.
-     CS12  [trade-offs] Conservative thresholds ? safety ?, mission completion ?. Frequent replanning ? robustness ?, energy
+     CS12  [trade-offs] Conservative thresholds → safety ↑, mission completion ↓. Frequent replanning → robustness ↑, energy
 
    Human Factors & Trust
      CS5   [impact] Triggers: human ignores instruction, fatigue increases. Metrics: probability of completing mission, 
@@ -248,7 +318,7 @@ Aerospace                     1                 0
 
    Full excerpts: output/rq3_quality_dimension_evidence.csv
 ======================================================================== 
-RQ4 - Solution space
+RQ4 - Solution space (Tables 8 to 12)
 ========================================================================
 
 [Tab.8] Preparedness -- number of cases reporting the capability (parsed from the text):
@@ -330,6 +400,70 @@ RQ4 - Solution space
           CS16  Preparedness: 'feasible at multiple levels.'
           CS18  Preparedness: 'Medium.'
 
+[Tab.9] Applicability conditions: supporting text for each assigned case
+   Architectural Assumptions: 4/4 assigned cases have supporting text
+          CS1   Systems with no natural central coordinator nor connectivity guarantee, forcing collective deci...
+          CS12  afety thresholds; Adaptive control architecture.
+          CS13  f-adaptive systems with structural reconfiguration; systems balancing competing non-functional ...
+          CS15  rk structured into five functional layers: Context Management, Data Storage, Model Management a...
+   Infrastructure Requirements: 3/3 assigned cases have supporting text
+          CS2   The shared CAN bus must remain physically intact to allow the PDPU to com
+          CS11  ; Known patient baseline; Reliable communication.
+          CS12  Sufficient sensing capability; Defined safety thresholds; Adaptive control architect
+   Observability Requirements: 4/4 assigned cases have supporting text
+          CS11  Multi-sensor availability; Known patient baseline; Reliable communi
+          CS12  Sufficient sensing capability; Defined safety thresholds; Adaptive contro
+          CS16  lutions applicable when perception confidence metrics are available, environmental uncertainty ...
+          CS18  System can measure timing/delay/concurrency health; alternative configura
+   Model Availability: 2/2 assigned cases have supporting text
+          CS5   trollable factors exist; predictor model can be trained; formal model is available; time budget
+          CS16  , environmental uncertainty can be quantified, system supports adaptive control policies.
+   Adaptation Capability: 4/4 assigned cases have supporting text
+          CS5   controllable factors exist; predictor model can be trained; formal
+          CS13  Self-adaptive systems with structural reconfiguration; systems balan
+          CS16  can be quantified, system supports adaptive control policies.
+          CS18  e timing/delay/concurrency health; alternative configurations; degraded safe mode; bounded reso...
+   Operational Scope: 3/3 assigned cases have supporting text
+          CS4   Applicability restricted to the enabling scope of the uncertainty. So long a sp
+          CS7   Restricted to the enabling scope of the uncertainty. System switc
+          CS13  eting non-functional requirements; contexts with failure-driven environmental uncertainty.
+
+   Cases with the Applicability field filled in: 11/18
+
+[Tab.10] Lifecycle stage (raw field):
+   both          11/18  CS1, CS2, CS5, CS6, CS9, CS11, CS12, CS13, CS15, CS16, CS18
+   not reported   5/18  CS3, CS8, CS10, CS14, CS17
+   runtime        2/18  CS4, CS7
+   Among the 13 cases that report it: both = 11, runtime-only = 2, design-only = 0
+   Table 10 (lifecycle activities) is analyst-derived; cases assigned to each activity:
+   Modeling                    4 cases  (CS5, CS13, CS15, CS16)
+   Analysis & Verification     5 cases  (CS1, CS5, CS13, CS15, CS16)
+   Monitoring                  9 cases  (CS1, CS2, CS4, CS7, CS9, CS11, CS12, CS15, CS18)
+   Runtime Decision-Making     6 cases  (CS5, CS11, CS12, CS13, CS16, CS18)
+   Mitigation & Adaptation    11 cases  (CS1, CS2, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS18)
+
+[Tab.11] Trade-offs: supporting text for each assigned case
+   Robustness vs Resource Consumption: 4/4 assigned cases have supporting text
+          CS1   Robustness vs overhead: more robustness typically implies more da
+          CS2   g and responsiveness but increases memory utilization and context-switching overhead. FatalHand...
+          CS12  ompletion ↓. Frequent replanning → robustness ↑, energy cost ↑.
+          CS13  Improving reliability through redundancy increases operational cost and may reduce performanc
+   Safety vs Performance: 3/3 assigned cases have supporting text
+          CS12  Conservative thresholds → safety ↑, mission completion ↓. Frequent
+          CS16  Verification of safety invariants: Strong prevention/Reduced flexibility. Run
+          CS18  Benefits: higher safety assurance, fewer emergent failures, predictable degrad
+   Responsiveness vs Stability: 3/3 assigned cases have supporting text
+          CS1   omputational and network overhead. Responsiveness vs overhead: more responsiveness implies more...
+          CS13  proves robustness but may increase instability in other quality dimensions. Propagation effects...
+          CS16  g: Reduced pedestrian risk/Traffic instability. Formal modeling: Better analyzability/Modeling ...
+   Autonomy vs Assurance: 2/2 assigned cases have supporting text
+          CS5   (between 2 and 9 seconds) but low guarantees because of AI-in-the-loop.
+          CS15  Benefits: Increased autonomy, reduced human cognitive load, and enhanced explainabi
+   Sensitivity vs False Positives: 1/1 assigned cases have supporting text
+          CS11  High sensitivity → fewer missed emergencies, more false alarms. Strong
+
+   Cases with the Trade-offs field filled in: 11/18 (not filled in: CS3, CS6, CS8, CS9, CS10, CS14, CS17)
+
 [Tab.12] Strategy -- cases reporting a strategy (parsed from the text):
    Detection       12/18
    Representation  10/18
@@ -385,69 +519,6 @@ RQ4 - Solution space
           CS16  Strategy: 'rule-based structural mitigation, adaptive conflict resolution, runtime safety envelopes.'
           CS17  Strategy: 'Dynamic boundary adjustment; Escalate the intensity of HCI via haptic feedback.'
           CS18  Strategy: 'dominance-aware, augmentation-aware, and conflict-aware mitigation.'
-
-[6.4.3] Lifecycle stage (raw field):
-   both          11/18  CS1, CS2, CS5, CS6, CS9, CS11, CS12, CS13, CS15, CS16, CS18
-   not reported   5/18  CS3, CS8, CS10, CS14, CS17
-   runtime        2/18  CS4, CS7
-   Among the 13 cases that report it: both = 11, runtime-only = 2, design-only = 0
-   Table 10 (lifecycle activities) is analyst-derived; cases assigned to each activity:
-   Modeling                    4 cases  (CS5, CS13, CS15, CS16)
-   Analysis & Verification     5 cases  (CS1, CS5, CS13, CS15, CS16)
-   Monitoring                  9 cases  (CS1, CS2, CS4, CS7, CS9, CS11, CS12, CS15, CS18)
-   Runtime Decision-Making     6 cases  (CS5, CS11, CS12, CS13, CS16, CS18)
-   Mitigation & Adaptation    11 cases  (CS1, CS2, CS4, CS5, CS7, CS11, CS12, CS13, CS15, CS16, CS18)
-
-[Tab.9] Applicability conditions: supporting text for each assigned case
-   Architectural Assumptions: 4/4 assigned cases have supporting text
-          CS1   Systems with no natural central coordinator nor connectivity guarantee, forcing collective deci...
-          CS12  afety thresholds; Adaptive control architecture.
-          CS13  f-adaptive systems with structural reconfiguration; systems balancing competing non-functional ...
-          CS15  rk structured into five functional layers: Context Management, Data Storage, Model Management a...
-   Infrastructure Requirements: 3/3 assigned cases have supporting text
-          CS2   The shared CAN bus must remain physically intact to allow the PDPU to com
-          CS11  ; Known patient baseline; Reliable communication.
-          CS12  Sufficient sensing capability; Defined safety thresholds; Adaptive control architect
-   Observability Requirements: 4/4 assigned cases have supporting text
-          CS11  Multi-sensor availability; Known patient baseline; Reliable communi
-          CS12  Sufficient sensing capability; Defined safety thresholds; Adaptive contro
-          CS16  lutions applicable when perception confidence metrics are available, environmental uncertainty ...
-          CS18  System can measure timing/delay/concurrency health; alternative configura
-   Model Availability: 2/2 assigned cases have supporting text
-          CS5   trollable factors exist; predictor model can be trained; formal model is available; time budget
-          CS16  , environmental uncertainty can be quantified, system supports adaptive control policies.
-   Adaptation Capability: 4/4 assigned cases have supporting text
-          CS5   controllable factors exist; predictor model can be trained; formal
-          CS13  Self-adaptive systems with structural reconfiguration; systems balan
-          CS16  can be quantified, system supports adaptive control policies.
-          CS18  e timing/delay/concurrency health; alternative configurations; degraded safe mode; bounded reso...
-   Operational Scope: 3/3 assigned cases have supporting text
-          CS4   Applicability restricted to the enabling scope of the uncertainty. So long a sp
-          CS7   Restricted to the enabling scope of the uncertainty. System switc
-          CS13  eting non-functional requirements; contexts with failure-driven environmental uncertainty.
-
-[Tab.11] Trade-offs: supporting text for each assigned case
-   Robustness vs Resource Consumption: 4/4 assigned cases have supporting text
-          CS1   Robustness vs overhead: more robustness typically implies more da
-          CS2   g and responsiveness but increases memory utilization and context-switching overhead. FatalHand...
-          CS12  ompletion ?. Frequent replanning ? robustness ?, energy cost ?.
-          CS13  Improving reliability through redundancy increases operational cost and may reduce performanc
-   Safety vs Performance: 3/3 assigned cases have supporting text
-          CS12  Conservative thresholds ? safety ?, mission completion ?. Frequent
-          CS16  Verification of safety invariants: Strong prevention/Reduced flexibility. Run
-          CS18  Benefits: higher safety assurance, fewer emergent failures, predictable degrad
-   Responsiveness vs Stability: 3/3 assigned cases have supporting text
-          CS1   omputational and network overhead. Responsiveness vs overhead: more responsiveness implies more...
-          CS13  proves robustness but may increase instability in other quality dimensions. Propagation effects...
-          CS16  g: Reduced pedestrian risk/Traffic instability. Formal modeling: Better analyzability/Modeling ...
-   Autonomy vs Assurance: 2/2 assigned cases have supporting text
-          CS5   (between 2 and 9 seconds) but low guarantees because of AI-in-the-loop.
-          CS15  Benefits: Increased autonomy, reduced human cognitive load, and enhanced explainabi
-   Sensitivity vs False Positives: 1/1 assigned cases have supporting text
-          CS11  High sensitivity ? fewer missed emergencies, more false alarms. Strong
-
-   Cases with the Applicability field filled in: 11/18
-   Cases with the Trade-offs field filled in: 11/18 (not filled in: CS3, CS6, CS8, CS9, CS10, CS14, CS17)
 
 [Coverage] Solution-space fields filled in per case:
 n_fields
