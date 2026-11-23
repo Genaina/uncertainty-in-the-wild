@@ -200,7 +200,7 @@ PREP_LABELS = {
     "Understanding": r"comprehension(?:/analy[sz]ability)?|understanding|analy[sz]ability",
     "Mitigation": r"mitigation",
 }
-NEGATIVE = r"^(?:\s*[:\-]?\s*)?(?:no\b|cannot|unknown|\(?blank\)?|not (?:provided|specified)|none)"
+NEGATIVE = r"^(?:\s*[:\-]?\s*)?(?:no\b|cannot|unknown|not (?:provided|specified)|none)"
 
 
 def _prep_segments(text: str):
@@ -225,10 +225,10 @@ def code_preparedness(raw: pd.DataFrame) -> pd.DataFrame:
     rows = {}
     for cid, t in raw["Level of Preparedness"].items():
         res = {k: False for k in PREP_LABELS}
-        if not is_blank(t) and "blank" not in str(t).lower()[:12]:
+        if not is_blank(t):
             segs = _prep_segments(t)
             for k, v in segs.items():
-                if v and not neg.search(v) and not re.match(r"^\(?blank", v, re.I):
+                if v and not neg.search(v):
                     res[k] = True
             if not segs and re.search(r"mitigation", str(t), re.I):
                 res["Mitigation"] = True
@@ -247,7 +247,7 @@ def _strategy_segments(text: str):
         end = ms[i + 1].start() if i + 1 < len(ms) else len(t)
         seg = t[m.end():end].strip()
         out[m.group(1)] = bool(seg) and not re.match(
-            r"^(unknown|blank|not specified|\(blank\)|n/a)", seg, re.I)
+            r"^(unknown|not provided|not specified|n/a)", seg, re.I)
     return out
 
 
@@ -263,7 +263,7 @@ def code_strategy(raw: pd.DataFrame) -> pd.DataFrame:
 # ------------------------------------------------------------------ lifecycle
 def code_lifecycle(raw: pd.DataFrame) -> pd.Series:
     def f(t):
-        if is_blank(t) or "blank" in str(t).lower():
+        if is_blank(t):
             return "not reported"
         s = str(t).lower()
         d = bool(re.search(r"design|pre-release", s))

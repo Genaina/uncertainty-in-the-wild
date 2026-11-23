@@ -110,7 +110,7 @@ def run(raw=None):
     print("\n[Tab.8] Preparedness -- number of cases reporting the capability (parsed from the text):")
     for k, v in prep.sum().sort_values(ascending=False).items():
         print(f"   {k:<15} {v:>2}/{n} = {pct(v, n)}")
-    reported = raw["Level of Preparedness"].map(lambda t: isinstance(t, str) and "blank" not in t.lower()[:12])
+    reported = raw["Level of Preparedness"].map(lambda t: not is_blank(t))
     print(f"   Cases that filled in the Preparedness field: {int(reported.sum())}/{n} "
           f"(missing: {cases_to_str(raw.index[~reported])})")
     t8 = _list_labeled(raw, "[Tab.8] Preparedness: cases that report each capability, with the supporting entry", prep, "prep", long_rows)
@@ -146,10 +146,8 @@ def run(raw=None):
     t11 = _evidence_table(raw, "[Tab.11] Trade-offs: supporting text for each assigned case",
                           "Trade-offs", TRADEOFF_PATTERNS, TABLE11)
     t11.to_csv(OUT / "rq4_table11_evidence.csv", index=False)
-    filled = raw["Applicability Conditions"].map(lambda t: isinstance(t, str) and
-                                                 "blank" not in t.lower()[:12] and "not provided" not in t.lower())
-    filled_t = raw["Trade-offs"].map(lambda t: isinstance(t, str) and
-                                     "blank" not in t.lower()[:12] and "not provided" not in t.lower())
+    filled = raw["Applicability Conditions"].map(lambda t: not is_blank(t))
+    filled_t = raw["Trade-offs"].map(lambda t: not is_blank(t))
     print(f"\n   Cases with the Applicability field filled in: {int(filled.sum())}/{n}")
     print(f"   Cases with the Trade-offs field filled in: {int(filled_t.sum())}/{n} (not filled in: {cases_to_str(raw.index[~filled_t])})")
 

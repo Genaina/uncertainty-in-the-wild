@@ -1,6 +1,6 @@
 """Shared utilities: raw CSV loading, field parsing helpers and comparison helpers.
 
-The raw CSV uses ';' as separator and cp1252 encoding. It has empty rows at the end.
+The catalogue CSV is comma-separated and UTF-8 encoded, so that GitHub renders it as a table.
 """
 import re
 from pathlib import Path
@@ -30,7 +30,7 @@ TEMPLATE_DEFS = [  # template sentences copied from the collection template
 
 
 def load_raw() -> pd.DataFrame:
-    df = pd.read_csv(RAW, sep=";", encoding="cp1252", engine="python")
+    df = pd.read_csv(RAW, encoding="utf-8")
     df = df.dropna(subset=["ID"]).copy()
     df["ID"] = df["ID"].str.strip()
     df = df.set_index("ID")
@@ -41,9 +41,8 @@ def load_raw() -> pd.DataFrame:
 def is_blank(text) -> bool:
     if text is None or (isinstance(text, float) and pd.isna(text)):
         return True
-    t = str(text).strip().lower()
-    return t in {"", "nan", "not provided", "not provided.", "n/a"} or \
-        bool(re.match(r"^(field (left )?blank|field blank)\.?$", t))
+    t = str(text).strip().lower().rstrip(".")
+    return t in {"", "nan", "not provided"}      # missing information is recorded as 'Not provided' in the catalogue
 
 
 def cases_to_str(ids):

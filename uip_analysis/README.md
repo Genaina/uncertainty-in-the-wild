@@ -10,6 +10,9 @@ Requirements: Python 3.9 or newer and `git`. The steps use a virtual environment
 `externally-managed-environment` error raised by system-managed Python installations (e.g., Homebrew).
 
 ```bash
+git clone https://github.com/Genaina/uncertainty-in-the-wild.git
+cd uncertainty-in-the-wild/uip_analysis
+
 python3 -m venv .venv                          # create the environment (once)
 source .venv/bin/activate                      # activate it (Windows PowerShell: .venv\Scripts\Activate.ps1)
 python -m pip install -r requirements.txt      # install pandas and matplotlib (once)
@@ -36,12 +39,12 @@ python run_all.py                              # run RQ1..RQ4: prints the report
 | `run_all.py` | Runs the four scripts in order |
 
 ## Input data
-**`artifacts_case_studies_raw.csv`** — separator `;`, encoding cp1252. Columns: `ID`, `Participant(s)`, `Case Study (Domains)`, `Summary`,
+**`artifacts_case_studies_raw.csv`** — comma-separated, UTF-8 (GitHub renders it as an interactive table). Columns: `ID`, `Participant(s)`, `Case Study (Domains)`, `Summary`,
 and the template fields `Uncertainty Sources (verbatim)`, `Uncertainty Interaction Category`, `Uncertainty Nature`, `Abstraction Gap`,
 `Impact`, `Level of Preparedness`, `Applicability Conditions`, `Lifecycle Stage`, `Trade-offs`, `Strategy`.
 The *problem space* (sources, interaction category, nature, abstraction gap, impact) feeds RQ1–RQ3; the *solution space*
-(preparedness, applicability, lifecycle, trade-offs, strategy) feeds RQ4. Empty or "not provided" fields are treated as
-**missing information, never as negative evidence** (Section 3.4).
+(preparedness, applicability, lifecycle, trade-offs, strategy) feeds RQ4. Fields that a contributor left empty are recorded as `Not provided` (one convention for every field, including empty entries inside labelled answers) and are treated as
+**missing information, never as negative evidence** (Section 3.4). Answers such as "unknown" or "N/A in this case" are the contributors' own answers and are kept verbatim.
 
 **`manual_interaction_counts.csv`** — columns `ID, conflict, dominance, augmentation, independence, template_only`.
 Each value is the number of documented interaction instances of that category in the exemplar; a category counts once per exemplar

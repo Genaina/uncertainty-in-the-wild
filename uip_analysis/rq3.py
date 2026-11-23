@@ -49,7 +49,7 @@ def run(raw=None):
             support, excerpt = "none", ""
             for col, tag in sources:
                 txt = raw.loc[cid, col]
-                if is_blank(txt) or "left blank" in str(txt).lower() or "not provided" in str(txt).lower():
+                if is_blank(txt):
                     continue
                 mm = re.search(pat, str(txt), re.I)
                 if mm:
